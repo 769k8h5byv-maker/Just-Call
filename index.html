@@ -7,331 +7,640 @@
 <title>Just Call</title>
 
 <style>
-    * {
-        box-sizing: border-box;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #eef4ff, #f8f5ff);
+    color: #20252d;
+}
+
+.app {
+    width: 100%;
+    max-width: 650px;
+    min-height: 100vh;
+    margin: auto;
+    padding: 28px 20px 40px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 12px;
+    border-radius: 22px;
+    background: #20252d;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.15);
+}
+
+h1 {
+    margin: 0;
+    font-size: 43px;
+    letter-spacing: -1.5px;
+}
+
+.subtitle {
+    margin-top: 6px;
+    color: #69717d;
+    font-size: 19px;
+}
+
+
+/* =========================
+   MAIN ACTIONS
+========================= */
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.action {
+    border: none;
+    border-radius: 30px;
+    min-height: 190px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0,0,0,.14);
+    transition: .18s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.action:hover {
+    transform: translateY(-3px);
+}
+
+.action:active {
+    transform: scale(.97);
+}
+
+.call-action {
+    background: linear-gradient(145deg, #168b4b, #32ad68);
+}
+
+.text-action {
+    background: linear-gradient(145deg, #5367df, #7585ef);
+}
+
+.action-icon {
+    font-size: 62px;
+    margin-bottom: 10px;
+}
+
+.action-title {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.action-subtitle {
+    font-size: 15px;
+    opacity: .85;
+    margin-top: 4px;
+}
+
+
+/* =========================
+   LISTENING PANEL
+========================= */
+
+.voice-panel {
+    display: none;
+    background: white;
+    border-radius: 28px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(48,63,90,.10);
+    margin-bottom: 25px;
+}
+
+.voice-panel.show {
+    display: block;
+}
+
+.voice-circle {
+    width: 135px;
+    height: 135px;
+    border-radius: 50%;
+    margin: auto;
+    background: #20252d;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    animation: pulse 1.3s infinite;
+}
+
+.voice-title {
+    margin-top: 20px;
+    font-size: 27px;
+    font-weight: 750;
+}
+
+.voice-instruction {
+    margin-top: 7px;
+    color: #727a85;
+    font-size: 18px;
+}
+
+.cancel {
+    margin-top: 20px;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    background: #eee;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+@keyframes pulse {
+
+    0% {
+        box-shadow: 0 0 0 0 rgba(84,105,225,.35);
     }
 
-    body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: linear-gradient(135deg, #eef4ff, #f8f5ff);
-        color: #20252d;
+    70% {
+        box-shadow: 0 0 0 25px rgba(84,105,225,0);
     }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(84,105,225,0);
+    }
+
+}
+
+
+/* =========================
+   TEXT CONFIRMATION
+========================= */
+
+.confirm-panel {
+    display: none;
+    background: white;
+    border-radius: 28px;
+    padding: 28px 22px;
+    box-shadow: 0 12px 35px rgba(48,63,90,.10);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.confirm-panel.show {
+    display: block;
+}
+
+.confirm-icon {
+    font-size: 55px;
+}
+
+.confirm-title {
+    font-size: 25px;
+    font-weight: 750;
+    margin-top: 8px;
+}
+
+.confirm-to {
+    color: #707985;
+    margin-top: 5px;
+}
+
+.message-box {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 18px;
+    background: #f1f3ff;
+    font-size: 21px;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.confirm-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.yes-button,
+.no-button {
+    border: none;
+    border-radius: 15px;
+    padding: 17px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.yes-button {
+    background: #24934d;
+    color: white;
+}
+
+.no-button {
+    background: #eee;
+    color: #333;
+}
+
+
+/* =========================
+   CONTACTS
+========================= */
+
+.section-title {
+    font-size: 21px;
+    font-weight: 750;
+    margin: 25px 5px 12px;
+}
+
+.contacts {
+    display: grid;
+    gap: 12px;
+}
+
+.contact {
+    width: 100%;
+    border: none;
+    border-radius: 22px;
+    background: white;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(48,63,90,.08);
+    transition: .18s;
+}
+
+.contact:hover {
+    transform: translateY(-2px);
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #edf1f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-name {
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.relationship {
+    color: #747d88;
+    margin-top: 3px;
+    font-size: 16px;
+}
+
+.contact-action {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #e8f7ed;
+    color: #24934d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+}
+
+
+/* =========================
+   SETUP
+========================= */
+
+.setup {
+    margin-top: 30px;
+    background: white;
+    border-radius: 22px;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(48,63,90,.08);
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.form {
+    margin-top: 18px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #5d6570;
+}
+
+input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 14px;
+    border: 1px solid #d9dde4;
+    border-radius: 12px;
+    font-size: 17px;
+    outline: none;
+}
+
+.save {
+    width: 100%;
+    margin-top: 20px;
+    border: none;
+    border-radius: 13px;
+    padding: 15px;
+    background: #20252d;
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 25px;
+    transform: translate(-50%, 120px);
+    background: #20252d;
+    color: white;
+    padding: 16px 22px;
+    border-radius: 15px;
+    font-size: 17px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    transition: .3s;
+    z-index: 10;
+    max-width: 90%;
+    text-align: center;
+}
+
+.toast.show {
+    transform: translate(-50%, 0);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:450px) {
 
     .app {
-        width: 100%;
-        max-width: 620px;
-        min-height: 100vh;
-        margin: auto;
-        padding: 30px 22px 40px;
-    }
-
-    .top {
-        text-align: center;
-        margin-bottom: 25px;
-    }
-
-    .logo {
-        width: 68px;
-        height: 68px;
-        margin: 0 auto 12px;
-        border-radius: 22px;
-        background: #20252d;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 34px;
-        box-shadow: 0 12px 30px rgba(0,0,0,.15);
+        padding: 22px 15px 35px;
     }
 
     h1 {
-        margin: 0;
-        font-size: 42px;
-        letter-spacing: -1.5px;
+        font-size: 37px;
     }
 
-    .tagline {
-        margin-top: 6px;
-        color: #69717d;
-        font-size: 19px;
+    .actions {
+        gap: 11px;
     }
 
-    .voice-area {
-        background: white;
-        border-radius: 32px;
-        padding: 28px 22px 30px;
-        box-shadow: 0 15px 45px rgba(48,63,90,.10);
-        text-align: center;
-        margin-bottom: 24px;
+    .action {
+        min-height: 165px;
+        border-radius: 25px;
     }
 
-    .talk-button {
-        width: 210px;
-        height: 210px;
-        border-radius: 50%;
-        border: none;
-        background: #20252d;
-        color: white;
-        font-size: 30px;
-        font-weight: 700;
-        cursor: pointer;
-        box-shadow:
-            0 15px 35px rgba(0,0,0,.20),
-            inset 0 -8px 0 rgba(255,255,255,.05);
-        transition: .2s;
+    .action-icon {
+        font-size: 50px;
     }
 
-    .talk-button:hover {
-        transform: scale(1.03);
+    .action-title {
+        font-size: 25px;
     }
 
-    .talk-button:active {
-        transform: scale(.97);
-    }
+}
 
-    .talk-button.listening {
-        background: #e34848;
-        animation: pulse 1.3s infinite;
-    }
-
-    @keyframes pulse {
-        0% {
-            box-shadow: 0 0 0 0 rgba(227,72,72,.35);
-        }
-
-        70% {
-            box-shadow: 0 0 0 25px rgba(227,72,72,0);
-        }
-
-        100% {
-            box-shadow: 0 0 0 0 rgba(227,72,72,0);
-        }
-    }
-
-    .mic {
-        display: block;
-        font-size: 60px;
-        margin-bottom: 5px;
-    }
-
-    .talk-text {
-        display: block;
-    }
-
-    .heard {
-        min-height: 35px;
-        margin-top: 22px;
-        font-size: 21px;
-        font-weight: 600;
-    }
-
-    .status {
-        min-height: 27px;
-        margin-top: 4px;
-        color: #737b86;
-        font-size: 17px;
-    }
-
-    .section-title {
-        font-size: 21px;
-        font-weight: 750;
-        margin: 25px 5px 12px;
-    }
-
-    .contacts {
-        display: grid;
-        gap: 12px;
-    }
-
-    .contact {
-        width: 100%;
-        border: none;
-        border-radius: 22px;
-        background: white;
-        padding: 18px;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        text-align: left;
-        cursor: pointer;
-        box-shadow: 0 7px 25px rgba(48,63,90,.08);
-        transition: .18s;
-    }
-
-    .contact:hover {
-        transform: translateY(-2px);
-    }
-
-    .avatar {
-        width: 64px;
-        height: 64px;
-        flex-shrink: 0;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-        background: #edf1f7;
-    }
-
-    .contact-info {
-        flex: 1;
-    }
-
-    .contact-name {
-        font-size: 23px;
-        font-weight: 700;
-    }
-
-    .relationship {
-        color: #747d88;
-        margin-top: 3px;
-        font-size: 16px;
-    }
-
-    .call-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: #e8f7ed;
-        color: #24934d;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 23px;
-    }
-
-    .setup {
-        margin-top: 30px;
-        background: white;
-        border-radius: 22px;
-        padding: 20px;
-        box-shadow: 0 7px 25px rgba(48,63,90,.08);
-    }
-
-    summary {
-        cursor: pointer;
-        font-weight: 700;
-        font-size: 18px;
-    }
-
-    .form {
-        margin-top: 18px;
-    }
-
-    label {
-        display: block;
-        margin-top: 15px;
-        font-size: 15px;
-        font-weight: 600;
-        color: #5d6570;
-    }
-
-    input {
-        width: 100%;
-        margin-top: 6px;
-        padding: 14px;
-        border: 1px solid #d9dde4;
-        border-radius: 12px;
-        font-size: 17px;
-        outline: none;
-    }
-
-    input:focus {
-        border-color: #667eea;
-    }
-
-    .save {
-        width: 100%;
-        margin-top: 20px;
-        border: none;
-        border-radius: 13px;
-        padding: 15px;
-        background: #20252d;
-        color: white;
-        font-size: 17px;
-        font-weight: 700;
-        cursor: pointer;
-    }
-
-    .toast {
-        position: fixed;
-        left: 50%;
-        bottom: 25px;
-        transform: translate(-50%, 120px);
-        background: #20252d;
-        color: white;
-        padding: 16px 22px;
-        border-radius: 15px;
-        font-size: 17px;
-        box-shadow: 0 12px 30px rgba(0,0,0,.25);
-        transition: .3s;
-        z-index: 10;
-    }
-
-    .toast.show {
-        transform: translate(-50%, 0);
-    }
-
-    @media(max-width:450px) {
-        .app {
-            padding: 22px 16px 35px;
-        }
-
-        h1 {
-            font-size: 37px;
-        }
-
-        .talk-button {
-            width: 185px;
-            height: 185px;
-        }
-    }
 </style>
 </head>
+
 
 <body>
 
 <div class="app">
 
-    <div class="top">
-        <div class="logo">☎</div>
-        <h1>Just Call</h1>
-        <div class="tagline">
-            Just tell me who you want to call.
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">
+            ☎
         </div>
+
+        <h1>
+            Just Call
+        </h1>
+
+        <div class="subtitle">
+            What would you like to do?
+        </div>
+
     </div>
 
 
-    <div class="voice-area">
 
-        <button class="talk-button" id="talkButton">
-            <span class="mic">🎙️</span>
-            <span class="talk-text">TALK</span>
+    <!-- TWO BIG BUTTONS -->
+
+    <div class="actions">
+
+        <button
+            class="action call-action"
+            id="callButton"
+        >
+
+            <div class="action-icon">
+                ☎️
+            </div>
+
+            <div class="action-title">
+                CALL
+            </div>
+
+            <div class="action-subtitle">
+                Tell me who to call
+            </div>
+
         </button>
 
-        <div class="heard" id="heard"></div>
 
-        <div class="status" id="status">
-            Press the button and speak
+
+        <button
+            class="action text-action"
+            id="textButton"
+        >
+
+            <div class="action-icon">
+                💬
+            </div>
+
+            <div class="action-title">
+                TEXT
+            </div>
+
+            <div class="action-subtitle">
+                Tell me what to say
+            </div>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- VOICE PANEL -->
+
+    <div
+        class="voice-panel"
+        id="voicePanel"
+    >
+
+        <div
+            class="voice-circle"
+            id="voiceIcon"
+        >
+            🎙️
+        </div>
+
+        <div
+            class="voice-title"
+            id="voiceTitle"
+        >
+            I'm listening
+        </div>
+
+        <div
+            class="voice-instruction"
+            id="voiceInstruction"
+        >
+            Tell me who you'd like to call.
+        </div>
+
+        <button
+            class="cancel"
+            id="cancelVoice"
+        >
+            Cancel
+        </button>
+
+    </div>
+
+
+
+    <!-- TEXT CONFIRMATION -->
+
+    <div
+        class="confirm-panel"
+        id="confirmPanel"
+    >
+
+        <div class="confirm-icon">
+            💬
+        </div>
+
+        <div
+            class="confirm-title"
+            id="confirmTitle"
+        >
+            Ready to send
+        </div>
+
+        <div
+            class="confirm-to"
+            id="confirmTo"
+        >
+        </div>
+
+
+        <div
+            class="message-box"
+            id="messageBox"
+        >
+        </div>
+
+
+        <div class="confirm-buttons">
+
+            <button
+                class="yes-button"
+                id="sendText"
+            >
+                ✓ SEND
+            </button>
+
+            <button
+                class="no-button"
+                id="cancelText"
+            >
+                ✕ CANCEL
+            </button>
+
         </div>
 
     </div>
 
 
+
+    <!-- CONTACTS -->
+
     <div class="section-title">
-        Or tap someone
+        Family & friends
     </div>
 
-    <div class="contacts" id="contacts"></div>
+    <div
+        class="contacts"
+        id="contacts"
+    >
+    </div>
 
+
+
+    <!-- SETUP -->
 
     <details class="setup">
 
-        <summary>⚙️ Family setup</summary>
+        <summary>
+            ⚙️ Family setup
+        </summary>
+
 
         <div class="form">
+
 
             <label>
                 Granddaughter's name
@@ -340,19 +649,12 @@
 
             <label>
                 Phone number
-                <input id="granddaughterPhone" type="tel">
+                <input
+                    id="granddaughterPhone"
+                    type="tel"
+                >
             </label>
 
-
-            <label>
-                Brother's name
-                <input id="brotherName">
-            </label>
-
-            <label>
-                Phone number
-                <input id="brotherPhone" type="tel">
-            </label>
 
 
             <label>
@@ -362,8 +664,12 @@
 
             <label>
                 Phone number
-                <input id="daughterPhone" type="tel">
+                <input
+                    id="daughterPhone"
+                    type="tel"
+                >
             </label>
+
 
 
             <label>
@@ -373,11 +679,33 @@
 
             <label>
                 Phone number
-                <input id="sonPhone" type="tel">
+                <input
+                    id="sonPhone"
+                    type="tel"
+                >
             </label>
 
 
-            <button class="save" id="save">
+
+            <label>
+                Brother's name
+                <input id="brotherName">
+            </label>
+
+            <label>
+                Phone number
+                <input
+                    id="brotherPhone"
+                    type="tel"
+                >
+            </label>
+
+
+
+            <button
+                class="save"
+                id="save"
+            >
                 Save family contacts
             </button>
 
@@ -385,47 +713,104 @@
 
     </details>
 
+
 </div>
 
 
-<div class="toast" id="toast"></div>
+<div
+    class="toast"
+    id="toast"
+>
+</div>
+
 
 
 <script>
+
+
+/* =========================
+   CONTACT DATA
+========================= */
 
 const defaultContacts = {
 
     granddaughterName: "Sarah",
     granddaughterPhone: "",
 
-    brotherName: "John",
-    brotherPhone: "",
-
     daughterName: "Susan",
     daughterPhone: "",
 
     sonName: "Michael",
-    sonPhone: ""
+    sonPhone: "",
+
+    brotherName: "John",
+    brotherPhone: ""
 
 };
 
 
 let contacts =
-    JSON.parse(localStorage.getItem("justCallContacts"))
-    || defaultContacts;
+    JSON.parse(
+        localStorage.getItem("justCallContacts")
+    ) || defaultContacts;
 
 
-const talkButton = document.getElementById("talkButton");
-const heard = document.getElementById("heard");
-const status = document.getElementById("status");
-const contactsContainer = document.getElementById("contacts");
-const toast = document.getElementById("toast");
 
+/* =========================
+   ELEMENTS
+========================= */
+
+const callButton =
+    document.getElementById("callButton");
+
+const textButton =
+    document.getElementById("textButton");
+
+const voicePanel =
+    document.getElementById("voicePanel");
+
+const voiceTitle =
+    document.getElementById("voiceTitle");
+
+const voiceInstruction =
+    document.getElementById("voiceInstruction");
+
+const voiceIcon =
+    document.getElementById("voiceIcon");
+
+const cancelVoice =
+    document.getElementById("cancelVoice");
+
+const confirmPanel =
+    document.getElementById("confirmPanel");
+
+const confirmTo =
+    document.getElementById("confirmTo");
+
+const messageBox =
+    document.getElementById("messageBox");
+
+const sendText =
+    document.getElementById("sendText");
+
+const cancelText =
+    document.getElementById("cancelText");
+
+const contactsContainer =
+    document.getElementById("contacts");
+
+const toast =
+    document.getElementById("toast");
+
+
+
+/* =========================
+   RENDER CONTACTS
+========================= */
 
 function renderContacts() {
 
     contactsContainer.innerHTML = "";
-
 
     addContact(
         "👧",
@@ -434,7 +819,6 @@ function renderContacts() {
         "granddaughter"
     );
 
-
     addContact(
         "👩",
         contacts.daughterName,
@@ -442,14 +826,12 @@ function renderContacts() {
         "daughter"
     );
 
-
     addContact(
         "👨",
         contacts.sonName,
         "Son",
         "son"
     );
-
 
     addContact(
         "👨",
@@ -461,19 +843,28 @@ function renderContacts() {
 }
 
 
-function addContact(icon, name, relationship, key) {
+
+function addContact(
+    icon,
+    name,
+    relationship,
+    key
+) {
 
     if (!name) return;
 
 
-    const button = document.createElement("button");
+    const button =
+        document.createElement("button");
 
     button.className = "contact";
 
 
     button.innerHTML = `
 
-        <div class="avatar">${icon}</div>
+        <div class="avatar">
+            ${icon}
+        </div>
 
         <div class="contact-info">
 
@@ -487,24 +878,37 @@ function addContact(icon, name, relationship, key) {
 
         </div>
 
-        <div class="call-icon">
+        <div class="contact-action">
             ☎
         </div>
 
     `;
 
 
-    button.onclick = () => callPerson(key);
+    button.onclick = () => {
+
+        callPerson(key);
+
+    };
+
 
     contactsContainer.appendChild(button);
 
 }
 
 
+
+/* =========================
+   CALL
+========================= */
+
 function callPerson(key) {
 
-    const name = contacts[key + "Name"];
-    const phone = contacts[key + "Phone"];
+    const name =
+        contacts[key + "Name"];
+
+    const phone =
+        contacts[key + "Phone"];
 
 
     if (!phone) {
@@ -518,188 +922,34 @@ function callPerson(key) {
     }
 
 
-    status.textContent =
-        `Calling ${name}…`;
-
-
-    /*
-       On an actual phone this opens the
-       phone's calling system.
-    */
-
-    window.location.href = "tel:" + phone;
+    window.location.href =
+        "tel:" + phone;
 
 }
 
 
-function showToast(message) {
 
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-
-    setTimeout(() => {
-
-        toast.classList.remove("show");
-
-    }, 3000);
-
-}
-
-
-function escapeHTML(text) {
-
-    return String(text || "")
-        .replace(/[&<>"']/g, character => {
-
-            const replacements = {
-
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#039;"
-
-            };
-
-            return replacements[character];
-
-        });
-
-}
-
-
-/* --------------------------
-   SAVE CONTACTS
---------------------------- */
-
-document.getElementById("save").onclick = () => {
-
-    contacts = {
-
-        granddaughterName:
-            document.getElementById(
-                "granddaughterName"
-            ).value.trim(),
-
-        granddaughterPhone:
-            document.getElementById(
-                "granddaughterPhone"
-            ).value.trim(),
-
-
-        brotherName:
-            document.getElementById(
-                "brotherName"
-            ).value.trim(),
-
-        brotherPhone:
-            document.getElementById(
-                "brotherPhone"
-            ).value.trim(),
-
-
-        daughterName:
-            document.getElementById(
-                "daughterName"
-            ).value.trim(),
-
-        daughterPhone:
-            document.getElementById(
-                "daughterPhone"
-            ).value.trim(),
-
-
-        sonName:
-            document.getElementById(
-                "sonName"
-            ).value.trim(),
-
-        sonPhone:
-            document.getElementById(
-                "sonPhone"
-            ).value.trim()
-
-    };
-
-
-    localStorage.setItem(
-        "justCallContacts",
-        JSON.stringify(contacts)
-    );
-
-
-    renderContacts();
-
-    showToast("Family contacts saved ❤️");
-
-};
-
-
-/* --------------------------
-   LOAD SETUP VALUES
---------------------------- */
-
-function loadSetup() {
-
-    document.getElementById(
-        "granddaughterName"
-    ).value = contacts.granddaughterName || "";
-
-
-    document.getElementById(
-        "granddaughterPhone"
-    ).value = contacts.granddaughterPhone || "";
-
-
-    document.getElementById(
-        "brotherName"
-    ).value = contacts.brotherName || "";
-
-
-    document.getElementById(
-        "brotherPhone"
-    ).value = contacts.brotherPhone || "";
-
-
-    document.getElementById(
-        "daughterName"
-    ).value = contacts.daughterName || "";
-
-
-    document.getElementById(
-        "daughterPhone"
-    ).value = contacts.daughterPhone || "";
-
-
-    document.getElementById(
-        "sonName"
-    ).value = contacts.sonName || "";
-
-
-    document.getElementById(
-        "sonPhone"
-    ).value = contacts.sonPhone || "";
-
-}
-
-
-/* --------------------------
+/* =========================
    VOICE RECOGNITION
---------------------------- */
+========================= */
 
 const SpeechRecognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
 
 
-talkButton.onclick = () => {
+let currentMode = null;
+
+let recognition = null;
+
+
+
+function startListening(mode) {
 
     if (!SpeechRecognition) {
 
         showToast(
-            "Voice control isn't supported in this browser."
+            "Voice recognition isn't supported in this browser."
         );
 
         return;
@@ -707,7 +957,37 @@ talkButton.onclick = () => {
     }
 
 
-    const recognition =
+    currentMode = mode;
+
+
+    voicePanel.classList.add("show");
+
+    confirmPanel.classList.remove("show");
+
+
+    if (mode === "call") {
+
+        voiceTitle.textContent =
+            "Who would you like to call?";
+
+        voiceInstruction.textContent =
+            'Try saying "Call my brother."';
+
+    }
+
+
+    if (mode === "text") {
+
+        voiceTitle.textContent =
+            "Who would you like to text?";
+
+        voiceInstruction.textContent =
+            'Try saying "Text my daughter that I am home."';
+
+    }
+
+
+    recognition =
         new SpeechRecognition();
 
 
@@ -718,57 +998,196 @@ talkButton.onclick = () => {
     recognition.maxAlternatives = 3;
 
 
-    talkButton.classList.add("listening");
-
-    status.textContent =
-        "I'm listening…";
-
-    heard.textContent = "";
-
-
-    recognition.start();
-
-
     recognition.onresult = event => {
 
-        const text =
+        const spoken =
             event.results[0][0]
             .transcript
-            .toLowerCase()
             .trim();
 
 
-        heard.textContent =
-            `“${text}”`;
+        voicePanel.classList.remove("show");
 
 
-        understandCommand(text);
+        if (currentMode === "call") {
+
+            processCall(spoken);
+
+        }
+
+        if (currentMode === "text") {
+
+            processText(spoken);
+
+        }
 
     };
 
 
     recognition.onerror = () => {
 
-        status.textContent =
-            "I didn't catch that. Try again.";
+        voicePanel.classList.remove("show");
+
+        showToast(
+            "I didn't catch that. Please try again."
+        );
 
     };
 
 
     recognition.onend = () => {
 
-        talkButton.classList.remove(
-            "listening"
-        );
+        voiceIcon.textContent = "🎙️";
 
     };
 
-};
+
+    recognition.start();
+
+}
 
 
-function understandCommand(text) {
 
-    let person = null;
+/* =========================
+   CALL COMMAND
+========================= */
+
+function processCall(spoken) {
+
+    const person =
+        findPerson(spoken);
+
+
+    if (!person) {
+
+        showToast(
+            'I don\'t know who you mean. Try "Call my brother."'
+        );
+
+        return;
+
+    }
+
+
+    const phone =
+        contacts[person.key + "Phone"];
+
+
+    if (!phone) {
+
+        showToast(
+            `No phone number saved for ${person.name}.`
+        );
+
+        return;
+
+    }
+
+
+    showToast(
+        `Calling ${person.name}…`
+    );
+
+
+    setTimeout(() => {
+
+        window.location.href =
+            "tel:" + phone;
+
+    }, 600);
+
+}
+
+
+
+/* =========================
+   TEXT COMMAND
+========================= */
+
+function processText(spoken) {
+
+    const person =
+        findPerson(spoken);
+
+
+    if (!person) {
+
+        showToast(
+            'Try "Text my daughter that I am home."'
+        );
+
+        return;
+
+    }
+
+
+    const message =
+        extractMessage(
+            spoken,
+            person
+        );
+
+
+    if (!message) {
+
+        showToast(
+            "I heard the person, but not the message."
+        );
+
+        return;
+
+    }
+
+
+    const phone =
+        contacts[person.key + "Phone"];
+
+
+    if (!phone) {
+
+        showToast(
+            `No phone number saved for ${person.name}.`
+        );
+
+        return;
+
+    }
+
+
+    confirmTo.textContent =
+        "To " + person.name;
+
+
+    messageBox.textContent =
+        message;
+
+
+    confirmPanel.classList.add("show");
+
+
+    sendText.dataset.phone =
+        phone;
+
+
+    sendText.dataset.message =
+        message;
+
+
+    sendText.dataset.name =
+        person.name;
+
+}
+
+
+
+/* =========================
+   FIND PERSON
+========================= */
+
+function findPerson(text) {
+
+    const lower =
+        text.toLowerCase();
 
 
     const people = [
@@ -809,100 +1228,428 @@ function understandCommand(text) {
     ];
 
 
-    /*
-       First look for the person's actual name.
-    */
-
-    for (const p of people) {
+    for (const person of people) {
 
         if (
-            p.name &&
-            text.includes(
-                p.name.toLowerCase()
+            person.name &&
+            lower.includes(
+                person.name.toLowerCase()
             )
         ) {
 
-            person = p;
-
-            break;
+            return person;
 
         }
 
     }
 
 
-    /*
-       Then look for relationships.
-    */
+    for (const person of people) {
 
-    if (!person) {
+        for (const word of person.words) {
 
-        for (const p of people) {
+            if (lower.includes(word)) {
 
-            for (const word of p.words) {
-
-                if (text.includes(word)) {
-
-                    person = p;
-
-                    break;
-
-                }
+                return person;
 
             }
 
-            if (person) break;
-
         }
 
     }
 
 
-    if (!person) {
+    return null;
 
-        status.textContent =
-            "I'm not sure who you mean.";
+}
 
-        showToast(
-            'Try saying "Call my brother."'
-        );
 
-        return;
+
+/* =========================
+   EXTRACT TEXT MESSAGE
+========================= */
+
+function extractMessage(
+    spoken,
+    person
+) {
+
+    let message =
+        spoken.trim();
+
+
+    const lower =
+        message.toLowerCase();
+
+
+    const name =
+        person.name
+        ? person.name.toLowerCase()
+        : "";
+
+
+    if (name) {
+
+        message =
+            message.replace(
+                new RegExp(
+                    name,
+                    "i"
+                ),
+                ""
+            );
 
     }
 
+
+    const phrases = [
+
+        /^text my /i,
+        /^text the /i,
+        /^text /i,
+
+        /^message my /i,
+        /^message the /i,
+        /^message /i,
+
+        /^send a text to my /i,
+        /^send a text to /i,
+
+        /^send my /i
+
+    ];
+
+
+    for (const phrase of phrases) {
+
+        message =
+            message.replace(
+                phrase,
+                ""
+            );
+
+    }
+
+
+    const relationshipWords = [
+
+        "granddaughter",
+        "grand daughter",
+        "daughter",
+        "son",
+        "brother"
+
+    ];
+
+
+    for (
+        const relationship
+        of relationshipWords
+    ) {
+
+        message =
+            message.replace(
+                new RegExp(
+                    relationship,
+                    "i"
+                ),
+                ""
+            );
+
+    }
+
+
+    message =
+        message
+        .replace(
+            /^(that|saying|say|to say)\s+/i,
+            ""
+        )
+        .trim();
+
+
+    return message;
+
+}
+
+
+
+/* =========================
+   SEND TEXT
+========================= */
+
+sendText.onclick = () => {
 
     const phone =
-        contacts[person.key + "Phone"];
+        sendText.dataset.phone;
+
+    const message =
+        sendText.dataset.message;
+
+    const name =
+        sendText.dataset.name;
 
 
-    if (!phone) {
+    /*
+       On a real phone this opens
+       the native Messages app.
+    */
 
-        status.textContent =
-            `I know who ${person.name} is, but their number isn't set up.`;
+    const smsURL =
+        "sms:" +
+        phone +
+        "?&body=" +
+        encodeURIComponent(message);
 
-        return;
 
-    }
+    confirmPanel.classList.remove("show");
 
 
-    status.textContent =
-        `Calling ${person.name}…`;
+    showToast(
+        `Opening Messages for ${name}…`
+    );
 
 
     setTimeout(() => {
 
         window.location.href =
-            "tel:" + phone;
+            smsURL;
 
-    }, 600);
+    }, 500);
+
+};
+
+
+
+/* =========================
+   CANCEL
+========================= */
+
+cancelVoice.onclick = () => {
+
+    if (recognition) {
+
+        recognition.stop();
+
+    }
+
+    voicePanel.classList.remove(
+        "show"
+    );
+
+};
+
+
+cancelText.onclick = () => {
+
+    confirmPanel.classList.remove(
+        "show"
+    );
+
+};
+
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+callButton.onclick = () => {
+
+    startListening("call");
+
+};
+
+
+textButton.onclick = () => {
+
+    startListening("text");
+
+};
+
+
+
+/* =========================
+   SAVE CONTACTS
+========================= */
+
+document.getElementById("save").onclick =
+() => {
+
+    contacts = {
+
+        granddaughterName:
+            document
+            .getElementById(
+                "granddaughterName"
+            )
+            .value.trim(),
+
+        granddaughterPhone:
+            document
+            .getElementById(
+                "granddaughterPhone"
+            )
+            .value.trim(),
+
+
+        daughterName:
+            document
+            .getElementById(
+                "daughterName"
+            )
+            .value.trim(),
+
+        daughterPhone:
+            document
+            .getElementById(
+                "daughterPhone"
+            )
+            .value.trim(),
+
+
+        sonName:
+            document
+            .getElementById(
+                "sonName"
+            )
+            .value.trim(),
+
+        sonPhone:
+            document
+            .getElementById(
+                "sonPhone"
+            )
+            .value.trim(),
+
+
+        brotherName:
+            document
+            .getElementById(
+                "brotherName"
+            )
+            .value.trim(),
+
+        brotherPhone:
+            document
+            .getElementById(
+                "brotherPhone"
+            )
+            .value.trim()
+
+    };
+
+
+    localStorage.setItem(
+        "justCallContacts",
+        JSON.stringify(contacts)
+    );
+
+
+    renderContacts();
+
+
+    showToast(
+        "Family contacts saved ❤️"
+    );
+
+};
+
+
+
+/* =========================
+   LOAD SETUP
+========================= */
+
+function loadSetup() {
+
+    const fields = [
+
+        "granddaughterName",
+        "granddaughterPhone",
+
+        "daughterName",
+        "daughterPhone",
+
+        "sonName",
+        "sonPhone",
+
+        "brotherName",
+        "brotherPhone"
+
+    ];
+
+
+    fields.forEach(field => {
+
+        document.getElementById(field).value =
+            contacts[field] || "";
+
+    });
 
 }
 
 
-/* --------------------------
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(text) {
+
+    return String(text || "")
+        .replace(
+            /[&<>"']/g,
+            character => {
+
+                const replacements = {
+
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+
+                };
+
+                return replacements[
+                    character
+                ];
+
+            }
+        );
+
+}
+
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message) {
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove(
+            "show"
+        );
+
+    }, 3000);
+
+}
+
+
+
+/* =========================
    START
---------------------------- */
+========================= */
 
 loadSetup();
 
