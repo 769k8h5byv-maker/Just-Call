@@ -3,954 +3,734 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Just Call</title>
 
 <style>
+*{box-sizing:border-box}
 
-* {
-    box-sizing: border-box;
+body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:linear-gradient(135deg,#eef4ff,#f8f5ff);
+    color:#20252d;
 }
 
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #eef4ff, #f8f5ff);
-    color: #20252d;
+.app{
+    max-width:650px;
+    min-height:100vh;
+    margin:auto;
+    padding:30px 18px 45px;
 }
 
-.app {
-    width: 100%;
-    max-width: 650px;
-    min-height: 100vh;
-    margin: auto;
-    padding: 35px 20px 45px;
+.header{
+    text-align:center;
+    margin-bottom:25px;
 }
 
-.header {
-    text-align: center;
-    margin-bottom: 28px;
+h1{
+    margin:0;
+    font-size:45px;
+    letter-spacing:-1.5px;
 }
 
-h1 {
-    margin: 0;
-    font-size: 46px;
-    letter-spacing: -1.5px;
+.subtitle{
+    margin-top:6px;
+    color:#69717d;
+    font-size:19px;
 }
 
-.subtitle {
-    margin-top: 7px;
-    color: #69717d;
-    font-size: 19px;
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-bottom:14px;
 }
 
-
-/* =========================
-   BIG ACTION BUTTONS
-========================= */
-
-.actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 15px;
+.action{
+    border:0;
+    border-radius:27px;
+    min-height:180px;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 15px 35px rgba(0,0,0,.14);
+    transition:.18s;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 }
 
-.action {
-    border: none;
-    border-radius: 28px;
-    min-height: 185px;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 15px 35px rgba(0,0,0,.14);
-    transition: .18s;
+.action:active{transform:scale(.97)}
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.call-action{
+    background:linear-gradient(145deg,#168b4b,#32ad68);
 }
 
-.action:hover {
-    transform: translateY(-3px);
+.text-action{
+    background:linear-gradient(145deg,#5367df,#7585ef);
 }
 
-.action:active {
-    transform: scale(.97);
+.help-action{
+    width:100%;
+    min-height:125px;
+    margin-bottom:28px;
+    background:linear-gradient(145deg,#df4545,#f06b6b);
 }
 
-.call-action {
-    background: linear-gradient(145deg, #168b4b, #32ad68);
+.action-icon{
+    font-size:55px;
+    margin-bottom:8px;
 }
 
-.text-action {
-    background: linear-gradient(145deg, #5367df, #7585ef);
+.action-title{
+    font-size:29px;
+    font-weight:800;
 }
 
-.help-action {
-    width: 100%;
-    min-height: 125px;
-    margin-bottom: 28px;
-    background: linear-gradient(145deg, #df4545, #f06b6b);
+.action-subtitle{
+    font-size:15px;
+    opacity:.9;
+    margin-top:4px;
 }
 
-.action-icon {
-    font-size: 58px;
-    margin-bottom: 9px;
+.section-title{
+    font-size:21px;
+    font-weight:750;
+    margin:25px 5px 12px;
 }
 
-.help-action .action-icon {
-    font-size: 50px;
+.contacts{
+    display:grid;
+    gap:11px;
 }
 
-.action-title {
-    font-size: 30px;
-    font-weight: 800;
+.contact{
+    width:100%;
+    border:0;
+    border-radius:21px;
+    background:white;
+    padding:17px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    text-align:left;
+    cursor:pointer;
+    box-shadow:0 7px 25px rgba(48,63,90,.08);
 }
 
-.action-subtitle {
-    font-size: 15px;
-    opacity: .88;
-    margin-top: 4px;
+.avatar{
+    width:62px;
+    height:62px;
+    flex-shrink:0;
+    border-radius:19px;
+    background:#edf1f7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:31px;
 }
 
+.contact-info{flex:1}
 
-/* =========================
-   VOICE PANEL
-========================= */
-
-.voice-panel {
-    display: none;
-    background: white;
-    border-radius: 28px;
-    padding: 28px 20px;
-    text-align: center;
-    box-shadow: 0 12px 35px rgba(48,63,90,.10);
-    margin-bottom: 25px;
+.contact-name{
+    font-size:22px;
+    font-weight:700;
 }
 
-.voice-panel.show {
-    display: block;
+.relationship{
+    color:#747d88;
+    margin-top:3px;
 }
 
-.voice-circle {
-    width: 135px;
-    height: 135px;
-    border-radius: 50%;
-    margin: auto;
-    background: #20252d;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 55px;
-
-    animation: pulse 1.3s infinite;
+.contact-action{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#e8f7ed;
+    color:#24934d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
 }
 
-.voice-title {
-    margin-top: 20px;
-    font-size: 27px;
-    font-weight: 750;
+/* VOICE */
+
+.voice-panel,
+.confirm-panel,
+.thread{
+    display:none;
 }
 
-.voice-instruction {
-    margin-top: 7px;
-    color: #727a85;
-    font-size: 18px;
+.voice-panel.show,
+.confirm-panel.show,
+.thread.show{
+    display:block;
 }
 
-.cancel {
-    margin-top: 20px;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 12px;
-    background: #eee;
-    font-size: 16px;
-    cursor: pointer;
+.voice-panel,
+.confirm-panel{
+    background:white;
+    border-radius:27px;
+    padding:28px 20px;
+    text-align:center;
+    box-shadow:0 12px 35px rgba(48,63,90,.10);
+    margin-bottom:25px;
 }
 
-@keyframes pulse {
-
-    0% {
-        box-shadow: 0 0 0 0 rgba(84,105,225,.35);
-    }
-
-    70% {
-        box-shadow: 0 0 0 25px rgba(84,105,225,0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(84,105,225,0);
-    }
-
+.voice-circle{
+    width:135px;
+    height:135px;
+    border-radius:50%;
+    margin:auto;
+    background:#20252d;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:55px;
+    animation:pulse 1.3s infinite;
 }
 
-
-/* =========================
-   TEXT CONFIRMATION
-========================= */
-
-.confirm-panel {
-    display: none;
-
-    background: white;
-    border-radius: 28px;
-
-    padding: 28px 22px;
-
-    box-shadow: 0 12px 35px rgba(48,63,90,.10);
-
-    margin-bottom: 25px;
-
-    text-align: center;
+.voice-title{
+    margin-top:20px;
+    font-size:27px;
+    font-weight:750;
 }
 
-.confirm-panel.show {
-    display: block;
+.voice-instruction{
+    margin-top:7px;
+    color:#727a85;
+    font-size:18px;
 }
 
-.confirm-icon {
-    font-size: 55px;
+.cancel{
+    margin-top:20px;
+    border:0;
+    padding:12px 25px;
+    border-radius:12px;
+    background:#eee;
+    font-size:16px;
 }
 
-.confirm-title {
-    font-size: 25px;
-    font-weight: 750;
-    margin-top: 8px;
+@keyframes pulse{
+    70%{box-shadow:0 0 0 25px rgba(84,105,225,0)}
 }
 
-.confirm-to {
-    color: #707985;
-    margin-top: 5px;
+/* THREAD */
+
+.thread{
+    background:white;
+    border-radius:27px;
+    overflow:hidden;
+    box-shadow:0 12px 35px rgba(48,63,90,.12);
+    margin-bottom:25px;
 }
 
-.message-box {
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 18px;
-
-    background: #f1f3ff;
-
-    font-size: 21px;
-    line-height: 1.4;
-
-    text-align: left;
+.thread-header{
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    border-bottom:1px solid #eee;
 }
 
-.confirm-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 20px;
+.back{
+    border:0;
+    background:#eef1f6;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    font-size:23px;
+    cursor:pointer;
 }
 
-.yes-button,
-.no-button {
-    border: none;
-    border-radius: 15px;
-    padding: 17px;
-
-    font-size: 20px;
-    font-weight: 700;
-
-    cursor: pointer;
+.thread-avatar{
+    width:50px;
+    height:50px;
+    border-radius:16px;
+    background:#edf1f7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
 }
 
-.yes-button {
-    background: #24934d;
-    color: white;
+.thread-name{
+    font-size:22px;
+    font-weight:750;
 }
 
-.no-button {
-    background: #eee;
-    color: #333;
+.thread-sub{
+    color:#7b838d;
+    font-size:14px;
 }
 
-
-/* =========================
-   CONTACTS
-========================= */
-
-.section-title {
-    font-size: 21px;
-    font-weight: 750;
-    margin: 25px 5px 12px;
+.messages{
+    min-height:280px;
+    max-height:430px;
+    overflow-y:auto;
+    padding:20px 16px;
+    background:#f7f8fb;
 }
 
-.contacts {
-    display: grid;
-    gap: 12px;
+.message{
+    max-width:82%;
+    padding:12px 16px;
+    border-radius:19px;
+    margin-bottom:10px;
+    font-size:18px;
+    line-height:1.35;
 }
 
-.contact {
-    width: 100%;
-
-    border: none;
-    border-radius: 22px;
-
-    background: white;
-
-    padding: 18px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 16px;
-
-    text-align: left;
-
-    cursor: pointer;
-
-    box-shadow: 0 7px 25px rgba(48,63,90,.08);
-
-    transition: .18s;
+.message.you{
+    margin-left:auto;
+    background:#5367df;
+    color:white;
+    border-bottom-right-radius:5px;
 }
 
-.contact:hover {
-    transform: translateY(-2px);
+.message.them{
+    background:#e4e7ec;
+    color:#20252d;
+    border-bottom-left-radius:5px;
 }
 
-.avatar {
-    width: 64px;
-    height: 64px;
-
-    flex-shrink: 0;
-
-    border-radius: 20px;
-
-    background: #edf1f7;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 32px;
+.empty-thread{
+    text-align:center;
+    color:#8a919b;
+    padding:70px 20px;
+    font-size:18px;
 }
 
-.contact-info {
-    flex: 1;
+.thread-actions{
+    padding:14px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.contact-name {
-    font-size: 23px;
-    font-weight: 700;
+.thread-button{
+    border:0;
+    border-radius:15px;
+    padding:16px;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
 }
 
-.relationship {
-    color: #747d88;
-    margin-top: 3px;
-    font-size: 16px;
+.say-button{
+    background:#5367df;
+    color:white;
 }
 
-.contact-action {
-    width: 48px;
-    height: 48px;
-
-    border-radius: 50%;
-
-    background: #e8f7ed;
-
-    color: #24934d;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 23px;
+.type-button{
+    background:#eef0f4;
 }
 
-
-/* =========================
-   CONTACT MANAGEMENT
-========================= */
-
-.setup {
-    margin-top: 30px;
-
-    background: white;
-
-    border-radius: 22px;
-
-    padding: 20px;
-
-    box-shadow: 0 7px 25px rgba(48,63,90,.08);
+.text-entry{
+    display:none;
+    padding:0 14px 15px;
+    gap:8px;
 }
 
-summary {
-    cursor: pointer;
-
-    font-weight: 700;
-
-    font-size: 18px;
+.text-entry.show{
+    display:flex;
 }
 
-.manage-title {
-    margin-top: 22px;
-
-    font-size: 20px;
-    font-weight: 750;
+.text-entry input{
+    flex:1;
+    padding:14px;
+    border:1px solid #d5d9df;
+    border-radius:14px;
+    font-size:17px;
 }
 
-.person-editor {
-    background: #f6f7fa;
-
-    border-radius: 18px;
-
-    padding: 16px;
-
-    margin-top: 12px;
+.send{
+    border:0;
+    border-radius:14px;
+    padding:0 18px;
+    background:#24934d;
+    color:white;
+    font-weight:700;
 }
 
-.editor-row {
-    display: grid;
+/* MANAGE */
 
-    grid-template-columns: 1fr 1fr;
-
-    gap: 10px;
+.setup{
+    margin-top:30px;
+    background:white;
+    border-radius:22px;
+    padding:20px;
+    box-shadow:0 7px 25px rgba(48,63,90,.08);
 }
 
-label {
-    display: block;
-
-    margin-top: 12px;
-
-    font-size: 14px;
-
-    font-weight: 650;
-
-    color: #5d6570;
+summary{
+    cursor:pointer;
+    font-weight:700;
+    font-size:18px;
 }
 
-input,
-select {
-    width: 100%;
-
-    margin-top: 6px;
-
-    padding: 13px;
-
-    border: 1px solid #d9dde4;
-
-    border-radius: 11px;
-
-    font-size: 16px;
-
-    background: white;
+.person-editor{
+    background:#f6f7fa;
+    border-radius:18px;
+    padding:16px;
+    margin-top:12px;
 }
 
-.editor-buttons {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 10px;
-
-    margin-top: 14px;
+input,select{
+    width:100%;
+    margin-top:6px;
+    padding:13px;
+    border:1px solid #d9dde4;
+    border-radius:11px;
+    font-size:16px;
+    background:white;
 }
 
-.save-person,
-.delete-person {
-    border: none;
-
-    border-radius: 11px;
-
-    padding: 12px;
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    cursor: pointer;
+label{
+    display:block;
+    margin-top:12px;
+    font-size:14px;
+    font-weight:650;
+    color:#5d6570;
 }
 
-.save-person {
-    background: #20252d;
-    color: white;
+.editor-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:14px;
 }
 
-.delete-person {
-    background: #f2dddd;
-    color: #a32d2d;
+.save-person,.delete-person,.add-person{
+    border:0;
+    border-radius:12px;
+    padding:13px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
 }
 
-.add-person {
-    width: 100%;
-
-    margin-top: 15px;
-
-    border: none;
-
-    border-radius: 13px;
-
-    padding: 15px;
-
-    background: #5367df;
-
-    color: white;
-
-    font-size: 17px;
-
-    font-weight: 700;
-
-    cursor: pointer;
+.save-person{
+    background:#20252d;
+    color:white;
 }
 
-
-/* =========================
-   TOAST
-========================= */
-
-.toast {
-    position: fixed;
-
-    left: 50%;
-    bottom: 25px;
-
-    transform: translate(-50%, 120px);
-
-    background: #20252d;
-
-    color: white;
-
-    padding: 16px 22px;
-
-    border-radius: 15px;
-
-    font-size: 17px;
-
-    box-shadow: 0 12px 30px rgba(0,0,0,.25);
-
-    transition: .3s;
-
-    z-index: 20;
-
-    max-width: 90%;
-
-    text-align: center;
+.delete-person{
+    background:#f2dddd;
+    color:#a32d2d;
 }
 
-.toast.show {
-    transform: translate(-50%, 0);
+.add-person{
+    width:100%;
+    margin-top:15px;
+    background:#5367df;
+    color:white;
 }
 
+/* TOAST */
 
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:450px) {
-
-    .app {
-        padding: 27px 15px 35px;
-    }
-
-    h1 {
-        font-size: 39px;
-    }
-
-    .actions {
-        gap: 11px;
-    }
-
-    .action {
-        min-height: 165px;
-        border-radius: 24px;
-    }
-
-    .action-icon {
-        font-size: 50px;
-    }
-
-    .action-title {
-        font-size: 25px;
-    }
-
-    .help-action {
-        min-height: 120px;
-    }
-
-    .editor-row {
-        grid-template-columns: 1fr;
-    }
-
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translate(-50%,120px);
+    background:#20252d;
+    color:white;
+    padding:15px 21px;
+    border-radius:15px;
+    font-size:17px;
+    transition:.3s;
+    z-index:20;
 }
 
+.toast.show{
+    transform:translate(-50%,0);
+}
+
+@media(max-width:450px){
+    .app{padding:25px 14px 35px}
+    h1{font-size:39px}
+    .action{min-height:160px}
+    .action-title{font-size:25px}
+}
 </style>
 </head>
 
 
 <body>
 
-
 <div class="app">
 
+<div class="header">
+    <h1>Just Call</h1>
+    <div class="subtitle">What would you like to do?</div>
+</div>
 
-    <!-- HEADER -->
 
-    <div class="header">
+<div class="actions">
 
-        <h1>
-            Just Call
-        </h1>
+<button class="action call-action" id="callButton">
+    <div class="action-icon">☎️</div>
+    <div class="action-title">CALL</div>
+    <div class="action-subtitle">Tell me who to call</div>
+</button>
 
-        <div class="subtitle">
-            What would you like to do?
-        </div>
+<button class="action text-action" id="textButton">
+    <div class="action-icon">💬</div>
+    <div class="action-title">TEXT</div>
+    <div class="action-subtitle">Open a conversation</div>
+</button>
 
+</div>
+
+
+<button class="action help-action" id="helpButton">
+    <div class="action-icon">🆘</div>
+    <div class="action-title">HELP</div>
+    <div class="action-subtitle">Call my help contact</div>
+</button>
+
+
+<!-- VOICE -->
+
+<div class="voice-panel" id="voicePanel">
+
+    <div class="voice-circle">🎙️</div>
+
+    <div class="voice-title" id="voiceTitle">
+        I'm listening
     </div>
 
-
-
-    <!-- BIG ACTIONS -->
-
-    <div class="actions">
-
-
-        <button
-            class="action call-action"
-            id="callButton"
-        >
-
-            <div class="action-icon">
-                ☎️
-            </div>
-
-            <div class="action-title">
-                CALL
-            </div>
-
-            <div class="action-subtitle">
-                Tell me who to call
-            </div>
-
-        </button>
-
-
-
-        <button
-            class="action text-action"
-            id="textButton"
-        >
-
-            <div class="action-icon">
-                💬
-            </div>
-
-            <div class="action-title">
-                TEXT
-            </div>
-
-            <div class="action-subtitle">
-                Tell me what to say
-            </div>
-
-        </button>
-
-
+    <div class="voice-instruction" id="voiceInstruction">
     </div>
 
-
-
-    <!-- HELP -->
-
-    <button
-        class="action help-action"
-        id="helpButton"
-    >
-
-        <div class="action-icon">
-            🆘
-        </div>
-
-        <div class="action-title">
-            HELP
-        </div>
-
-        <div class="action-subtitle">
-            Call my help contact
-        </div>
-
+    <button class="cancel" id="cancelVoice">
+        Cancel
     </button>
 
+</div>
 
 
-    <!-- VOICE -->
+<!-- TEXT CONFIRMATION -->
 
-    <div
-        class="voice-panel"
-        id="voicePanel"
-    >
+<div class="confirm-panel" id="confirmPanel">
 
-        <div class="voice-circle">
-            🎙️
+    <div style="font-size:50px">💬</div>
+
+    <div style="font-size:24px;font-weight:750;margin-top:8px">
+        Ready to send
+    </div>
+
+    <div id="confirmTo" style="color:#707985;margin-top:5px"></div>
+
+    <div id="messageBox"
+         style="margin-top:20px;padding:20px;border-radius:18px;background:#f1f3ff;font-size:20px;text-align:left">
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">
+
+        <button class="thread-button"
+                style="background:#24934d;color:white"
+                id="sendText">
+            ✓ SEND
+        </button>
+
+        <button class="thread-button"
+                id="cancelText">
+            CANCEL
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CONVERSATION -->
+
+<div class="thread" id="thread">
+
+    <div class="thread-header">
+
+        <button class="back" id="closeThread">
+            ←
+        </button>
+
+        <div class="thread-avatar" id="threadAvatar">
+            👤
         </div>
 
-        <div
-            class="voice-title"
-            id="voiceTitle"
-        >
-            I'm listening
+        <div>
+            <div class="thread-name" id="threadName"></div>
+            <div class="thread-sub" id="threadRelationship"></div>
         </div>
 
-        <div
-            class="voice-instruction"
-            id="voiceInstruction"
-        >
-        </div>
+    </div>
 
-        <button
-            class="cancel"
-            id="cancelVoice"
-        >
-            Cancel
+
+    <div class="messages" id="messages"></div>
+
+
+    <div class="thread-actions">
+
+        <button class="thread-button say-button" id="sayMessage">
+            🎙️ SAY A TEXT
+        </button>
+
+        <button class="thread-button type-button" id="typeMessage">
+            ⌨️ TYPE
         </button>
 
     </div>
 
 
+    <div class="text-entry" id="textEntry">
 
-    <!-- TEXT CONFIRMATION -->
-
-    <div
-        class="confirm-panel"
-        id="confirmPanel"
-    >
-
-        <div class="confirm-icon">
-            💬
-        </div>
-
-        <div class="confirm-title">
-            Ready to send
-        </div>
-
-        <div
-            class="confirm-to"
-            id="confirmTo"
+        <input
+            id="typedMessage"
+            placeholder="Type a message..."
         >
-        </div>
 
-        <div
-            class="message-box"
-            id="messageBox"
-        >
-        </div>
-
-        <div class="confirm-buttons">
-
-            <button
-                class="yes-button"
-                id="sendText"
-            >
-                ✓ SEND
-            </button>
-
-            <button
-                class="no-button"
-                id="cancelText"
-            >
-                ✕ CANCEL
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- CONTACT LIST -->
-
-    <div class="section-title">
-        People
-    </div>
-
-    <div
-        class="contacts"
-        id="contacts"
-    >
-    </div>
-
-
-
-    <!-- EDITABLE PEOPLE -->
-
-    <details class="setup">
-
-        <summary>
-            ⚙️ Manage people
-        </summary>
-
-
-        <div class="manage-title">
-            Your people
-        </div>
-
-
-        <div id="peopleEditors">
-        </div>
-
-
-        <button
-            class="add-person"
-            id="addPerson"
-        >
-            + Add a person
+        <button class="send" id="sendTyped">
+            SEND
         </button>
 
-    </details>
-
+    </div>
 
 </div>
 
 
-
-<div
-    class="toast"
-    id="toast"
->
+<div class="section-title">
+    People
 </div>
 
+<div class="contacts" id="contacts"></div>
+
+
+<details class="setup">
+
+<summary>
+    ⚙️ Manage people
+</summary>
+
+<div id="peopleEditors"></div>
+
+<button class="add-person" id="addPerson">
+    + Add a person
+</button>
+
+</details>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
 
 
 <script>
 
-
-/* =========================
-   DATA
-========================= */
-
 let people =
-    JSON.parse(
-        localStorage.getItem(
-            "justCallPeople"
-        )
-    ) || [
-
-        {
-            id: crypto.randomUUID(),
-            name: "Sarah",
-            relationship: "Granddaughter",
-            phone: "",
-            icon: "👧",
-            help: false
-        },
-
-        {
-            id: crypto.randomUUID(),
-            name: "John",
-            relationship: "Brother",
-            phone: "",
-            icon: "👨",
-            help: false
-        }
-
-    ];
+JSON.parse(localStorage.getItem("justCallPeople")) || [
+    {
+        id:crypto.randomUUID(),
+        name:"Sarah",
+        relationship:"Granddaughter",
+        phone:"",
+        icon:"👧",
+        help:false
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"John",
+        relationship:"Brother",
+        phone:"",
+        icon:"👨",
+        help:false
+    }
+];
 
 
+let conversations =
+JSON.parse(localStorage.getItem("justCallConversations")) || {};
 
-/* =========================
-   ELEMENTS
-========================= */
-
-const contactsContainer =
-    document.getElementById(
-        "contacts"
-    );
-
-const peopleEditors =
-    document.getElementById(
-        "peopleEditors"
-    );
-
-const voicePanel =
-    document.getElementById(
-        "voicePanel"
-    );
-
-const voiceTitle =
-    document.getElementById(
-        "voiceTitle"
-    );
-
-const voiceInstruction =
-    document.getElementById(
-        "voiceInstruction"
-    );
-
-const confirmPanel =
-    document.getElementById(
-        "confirmPanel"
-    );
-
-const confirmTo =
-    document.getElementById(
-        "confirmTo"
-    );
-
-const messageBox =
-    document.getElementById(
-        "messageBox"
-    );
-
-const sendText =
-    document.getElementById(
-        "sendText"
-    );
-
-const toast =
-    document.getElementById(
-        "toast"
-    );
-
+let selectedPerson = null;
 let recognition = null;
-
 let currentMode = null;
 
 
+const contacts =
+document.getElementById("contacts");
 
-/* =========================
-   SAVE DATA
-========================= */
+const peopleEditors =
+document.getElementById("peopleEditors");
 
-function savePeople() {
+const thread =
+document.getElementById("thread");
 
+const messages =
+document.getElementById("messages");
+
+const threadName =
+document.getElementById("threadName");
+
+const threadRelationship =
+document.getElementById("threadRelationship");
+
+const threadAvatar =
+document.getElementById("threadAvatar");
+
+const voicePanel =
+document.getElementById("voicePanel");
+
+const voiceTitle =
+document.getElementById("voiceTitle");
+
+const voiceInstruction =
+document.getElementById("voiceInstruction");
+
+const confirmPanel =
+document.getElementById("confirmPanel");
+
+const confirmTo =
+document.getElementById("confirmTo");
+
+const messageBox =
+document.getElementById("messageBox");
+
+const toast =
+document.getElementById("toast");
+
+
+function savePeople(){
     localStorage.setItem(
         "justCallPeople",
         JSON.stringify(people)
     );
-
 }
 
 
-
-/* =========================
-   RENDER CONTACTS
-========================= */
-
-function renderContacts() {
-
-    contactsContainer.innerHTML = "";
+function saveConversations(){
+    localStorage.setItem(
+        "justCallConversations",
+        JSON.stringify(conversations)
+    );
+}
 
 
-    people.forEach(person => {
+function renderContacts(){
 
-        if (!person.name) return;
+    contacts.innerHTML="";
 
+    people.forEach(person=>{
 
-        const button =
-            document.createElement(
-                "button"
-            );
+        if(!person.name)return;
 
+        const button=document.createElement("button");
 
-        button.className =
-            "contact";
+        button.className="contact";
 
-
-        button.innerHTML = `
+        button.innerHTML=`
 
             <div class="avatar">
                 ${person.icon || "👤"}
@@ -959,798 +739,371 @@ function renderContacts() {
             <div class="contact-info">
 
                 <div class="contact-name">
-                    ${escapeHTML(
-                        person.name
-                    )}
+                    ${escapeHTML(person.name)}
                 </div>
 
                 <div class="relationship">
-                    ${escapeHTML(
-                        person.relationship ||
-                        "Contact"
-                    )}
+                    ${escapeHTML(person.relationship || "Contact")}
                 </div>
 
             </div>
 
             <div class="contact-action">
-                ☎
+                💬
             </div>
-
         `;
 
+        button.onclick=()=>openThread(person);
 
-        button.onclick = () => {
-
-            callPerson(person);
-
-        };
-
-
-        contactsContainer.appendChild(
-            button
-        );
+        contacts.appendChild(button);
 
     });
-
 }
 
 
+function openThread(person){
 
-/* =========================
-   EDITORS
-========================= */
+    selectedPerson=person;
 
-function renderEditors() {
+    threadName.textContent=person.name;
 
-    peopleEditors.innerHTML = "";
+    threadRelationship.textContent=
+        person.relationship || "Contact";
 
+    threadAvatar.textContent=
+        person.icon || "👤";
 
-    people.forEach(person => {
+    thread.classList.add("show");
 
-        const editor =
-            document.createElement(
-                "div"
-            );
+    document.querySelector(".section-title").style.display="none";
 
+    contacts.style.display="none";
 
-        editor.className =
-            "person-editor";
+    renderMessages();
 
-
-        editor.innerHTML = `
-
-            <div class="editor-row">
-
-                <div>
-
-                    <label>
-                        Name
-
-                        <input
-                            class="person-name"
-                            value="${escapeAttribute(
-                                person.name
-                            )}"
-                        >
-
-                    </label>
-
-                </div>
-
-
-                <div>
-
-                    <label>
-                        Relationship
-
-                        <input
-                            class="person-relationship"
-                            value="${escapeAttribute(
-                                person.relationship
-                            )}"
-                        >
-
-                    </label>
-
-                </div>
-
-            </div>
-
-
-            <label>
-                Phone number
-
-                <input
-                    class="person-phone"
-                    type="tel"
-                    value="${escapeAttribute(
-                        person.phone
-                    )}"
-                >
-
-            </label>
-
-
-            <label>
-                Icon
-
-                <select class="person-icon">
-
-                    <option value="👤">👤 Person</option>
-                    <option value="👩">👩 Woman</option>
-                    <option value="👨">👨 Man</option>
-                    <option value="👧">👧 Girl</option>
-                    <option value="👦">👦 Boy</option>
-                    <option value="❤️">❤️ Family</option>
-                    <option value="🧑">🧑 Person</option>
-
-                </select>
-
-            </label>
-
-
-            <label>
-
-                <input
-                    class="person-help"
-                    type="checkbox"
-                >
-
-                Use this person for HELP
-
-            </label>
-
-
-            <div class="editor-buttons">
-
-                <button
-                    class="save-person"
-                >
-                    Save
-                </button>
-
-                <button
-                    class="delete-person"
-                >
-                    Delete
-                </button>
-
-            </div>
-
-        `;
-
-
-        const iconSelect =
-            editor.querySelector(
-                ".person-icon"
-            );
-
-        iconSelect.value =
-            person.icon || "👤";
-
-
-        const helpCheckbox =
-            editor.querySelector(
-                ".person-help"
-            );
-
-        helpCheckbox.checked =
-            person.help === true;
-
-
-        editor
-        .querySelector(
-            ".save-person"
-        )
-        .onclick = () => {
-
-
-            const newName =
-                editor
-                .querySelector(
-                    ".person-name"
-                )
-                .value
-                .trim();
-
-
-            const newRelationship =
-                editor
-                .querySelector(
-                    ".person-relationship"
-                )
-                .value
-                .trim();
-
-
-            const newPhone =
-                editor
-                .querySelector(
-                    ".person-phone"
-                )
-                .value
-                .trim();
-
-
-            const newIcon =
-                editor
-                .querySelector(
-                    ".person-icon"
-                )
-                .value;
-
-
-            const isHelp =
-                editor
-                .querySelector(
-                    ".person-help"
-                )
-                .checked;
-
-
-            person.name =
-                newName || "Unnamed";
-
-
-            person.relationship =
-                newRelationship ||
-                "Contact";
-
-
-            person.phone =
-                newPhone;
-
-
-            person.icon =
-                newIcon;
-
-
-            person.help =
-                isHelp;
-
-
-            /*
-              Only one person can be
-              the HELP contact.
-            */
-
-            if (isHelp) {
-
-                people.forEach(other => {
-
-                    if (
-                        other.id !== person.id
-                    ) {
-
-                        other.help = false;
-
-                    }
-
-                });
-
-            }
-
-
-            savePeople();
-
-            renderContacts();
-
-            renderEditors();
-
-            showToast(
-                "Contact saved ❤️"
-            );
-
-        };
-
-
-        editor
-        .querySelector(
-            ".delete-person"
-        )
-        .onclick = () => {
-
-            const confirmed =
-                confirm(
-                    `Delete ${person.name}?`
-                );
-
-
-            if (!confirmed) return;
-
-
-            people =
-                people.filter(
-                    other =>
-                        other.id !==
-                        person.id
-                );
-
-
-            savePeople();
-
-            renderContacts();
-
-            renderEditors();
-
-            showToast(
-                "Contact deleted."
-            );
-
-        };
-
-
-        peopleEditors.appendChild(
-            editor
-        );
-
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
     });
-
 }
 
 
+function closeThread(){
 
-/* =========================
-   ADD PERSON
-========================= */
+    thread.classList.remove("show");
+
+    contacts.style.display="grid";
+
+    document.querySelector(".section-title").style.display="block";
+
+    selectedPerson=null;
+
+}
+
 
 document
-.getElementById(
-    "addPerson"
-)
-.onclick = () => {
+.getElementById("closeThread")
+.onclick=closeThread;
 
 
-    people.push({
+function renderMessages(){
 
-        id: crypto.randomUUID(),
+    messages.innerHTML="";
 
-        name: "New Person",
+    if(!selectedPerson)return;
 
-        relationship: "Friend",
+    const list=
+        conversations[selectedPerson.id] || [];
 
-        phone: "",
+    if(list.length===0){
 
-        icon: "👤",
+        messages.innerHTML=`
+            <div class="empty-thread">
+                No messages yet.<br><br>
+                Tap <b>SAY A TEXT</b> to send one.
+            </div>
+        `;
 
-        help: false
+        return;
+    }
+
+
+    list.forEach(item=>{
+
+        const bubble=document.createElement("div");
+
+        bubble.className=
+            "message " +
+            (item.from==="you" ? "you":"them");
+
+        bubble.textContent=item.text;
+
+        messages.appendChild(bubble);
 
     });
 
-
-    savePeople();
-
-    renderContacts();
-
-    renderEditors();
+    messages.scrollTop=
+        messages.scrollHeight;
+}
 
 
-    showToast(
-        "New person added."
-    );
+function addMessage(text){
 
-};
+    if(!selectedPerson)return;
+
+    if(!conversations[selectedPerson.id]){
+        conversations[selectedPerson.id]=[];
+    }
+
+    conversations[selectedPerson.id].push({
+
+        from:"you",
+
+        text:text,
+
+        time:Date.now()
+
+    });
+
+    saveConversations();
+
+    renderMessages();
+
+}
 
 
+function callPerson(person){
 
-/* =========================
-   CALL PERSON
-========================= */
-
-function callPerson(person) {
-
-    if (!person.phone) {
+    if(!person.phone){
 
         showToast(
             `No phone number saved for ${person.name}.`
         );
 
         return;
-
     }
 
-
-    window.location.href =
-        "tel:" + person.phone;
-
+    window.location.href="tel:"+person.phone;
 }
 
 
+document
+.getElementById("callButton")
+.onclick=()=>{
 
-/* =========================
-   HELP
-========================= */
+    startListening("call");
+
+};
+
 
 document
-.getElementById(
-    "helpButton"
-)
-.onclick = () => {
+.getElementById("textButton")
+.onclick=()=>{
+
+    startListening("text");
+
+};
 
 
-    const helpPerson =
-        people.find(
-            person =>
-                person.help === true
-        );
+document
+.getElementById("helpButton")
+.onclick=()=>{
 
+    const person=
+        people.find(p=>p.help===true);
 
-    if (!helpPerson) {
+    if(!person){
 
         showToast(
             "Set a HELP contact in Manage People."
         );
 
         return;
-
     }
 
-
-    if (!helpPerson.phone) {
-
-        showToast(
-            `No phone number saved for ${helpPerson.name}.`
-        );
-
-        return;
-
-    }
-
-
-    const confirmed =
-        confirm(
-            `Call ${helpPerson.name} for help?`
-        );
-
-
-    if (confirmed) {
-
-        window.location.href =
-            "tel:" +
-            helpPerson.phone;
-
-    }
+    callPerson(person);
 
 };
 
 
-
-/* =========================
-   FIND PERSON
-========================= */
-
-function findPerson(text) {
-
-    const lower =
-        text.toLowerCase();
+const SpeechRecognition=
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
 
 
-    /*
-       First try names.
-    */
+function startListening(mode){
 
-    for (
-        const person
-        of people
-    ) {
-
-        if (
-            person.name &&
-            lower.includes(
-                person.name.toLowerCase()
-            )
-        ) {
-
-            return person;
-
-        }
-
-    }
-
-
-    /*
-       Then try relationships.
-
-       This means:
-
-       "Call my granddaughter"
-
-       can still work.
-    */
-
-    for (
-        const person
-        of people
-    ) {
-
-        if (
-            person.relationship &&
-            lower.includes(
-                person.relationship.toLowerCase()
-            )
-        ) {
-
-            return person;
-
-        }
-
-    }
-
-
-    return null;
-
-}
-
-
-
-/* =========================
-   VOICE
-========================= */
-
-const SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
-
-
-function startListening(mode) {
-
-
-    if (!SpeechRecognition) {
+    if(!SpeechRecognition){
 
         showToast(
-            "Voice recognition isn't supported in this browser."
+            "Voice recognition isn't supported here."
         );
 
         return;
-
     }
 
+    currentMode=mode;
 
-    currentMode =
-        mode;
+    voicePanel.classList.add("show");
 
+    if(mode==="call"){
 
-    voicePanel.classList.add(
-        "show"
-    );
-
-
-    confirmPanel.classList.remove(
-        "show"
-    );
-
-
-    if (mode === "call") {
-
-        voiceTitle.textContent =
+        voiceTitle.textContent=
             "Who would you like to call?";
 
-        voiceInstruction.textContent =
-            'Try "Call Sarah" or "Call my granddaughter."';
+        voiceInstruction.textContent=
+            'Try "Call Sarah."';
 
-    }
+    }else{
 
-
-    if (mode === "text") {
-
-        voiceTitle.textContent =
+        voiceTitle.textContent=
             "Who would you like to text?";
 
-        voiceInstruction.textContent =
+        voiceInstruction.textContent=
             'Try "Text Sarah that I am home."';
 
     }
 
-
-    recognition =
+    recognition=
         new SpeechRecognition();
 
+    recognition.lang="en-CA";
 
-    recognition.lang =
-        "en-CA";
+    recognition.interimResults=false;
 
+    recognition.maxAlternatives=3;
 
-    recognition.interimResults =
-        false;
+    recognition.onresult=event=>{
 
+        const spoken=
+            event.results[0][0]
+            .transcript
+            .trim();
 
-    recognition.maxAlternatives =
-        3;
+        voicePanel.classList.remove("show");
 
+        if(currentMode==="call"){
+            processCall(spoken);
+        }else{
+            processText(spoken);
+        }
+    };
 
-    recognition.onresult =
-        event => {
+    recognition.onerror=()=>{
 
+        voicePanel.classList.remove("show");
 
-            const spoken =
-                event.results[0][0]
-                .transcript
-                .trim();
-
-
-            voicePanel.classList.remove(
-                "show"
-            );
-
-
-            if (
-                currentMode ===
-                "call"
-            ) {
-
-                processCall(
-                    spoken
-                );
-
-            }
-
-
-            if (
-                currentMode ===
-                "text"
-            ) {
-
-                processText(
-                    spoken
-                );
-
-            }
-
-        };
-
-
-    recognition.onerror =
-        () => {
-
-            voicePanel.classList.remove(
-                "show"
-            );
-
-
-            showToast(
-                "I didn't catch that. Please try again."
-            );
-
-        };
-
+        showToast(
+            "I didn't catch that. Please try again."
+        );
+    };
 
     recognition.start();
-
 }
 
 
+function findPerson(text){
 
-/* =========================
-   PROCESS CALL
-========================= */
+    const lower=text.toLowerCase();
 
-function processCall(
-    spoken
-) {
+    for(const person of people){
+
+        if(
+            person.name &&
+            lower.includes(
+                person.name.toLowerCase()
+            )
+        ){
+            return person;
+        }
+    }
+
+    for(const person of people){
+
+        if(
+            person.relationship &&
+            lower.includes(
+                person.relationship.toLowerCase()
+            )
+        ){
+            return person;
+        }
+    }
+
+    return null;
+}
 
 
-    const person =
-        findPerson(
-            spoken
-        );
+function processCall(spoken){
 
+    const person=findPerson(spoken);
 
-    if (!person) {
+    if(!person){
 
         showToast(
             "I don't know who you mean."
         );
 
         return;
-
     }
 
-
-    callPerson(
-        person
-    );
-
+    callPerson(person);
 }
 
 
+function processText(spoken){
 
-/* =========================
-   PROCESS TEXT
-========================= */
+    const person=findPerson(spoken);
 
-function processText(
-    spoken
-) {
-
-
-    const person =
-        findPerson(
-            spoken
-        );
-
-
-    if (!person) {
+    if(!person){
 
         showToast(
             "I don't know who you mean."
         );
 
         return;
-
     }
 
+    const message=
+        extractMessage(spoken,person);
 
-    if (!person.phone) {
-
-        showToast(
-            `No phone number saved for ${person.name}.`
-        );
-
-        return;
-
-    }
-
-
-    const message =
-        extractMessage(
-            spoken,
-            person
-        );
-
-
-    if (!message) {
+    if(!message){
 
         showToast(
             "I couldn't hear the message."
         );
 
         return;
-
     }
 
+    confirmTo.textContent=
+        "To "+person.name;
 
-    confirmTo.textContent =
-        "To " + person.name;
-
-
-    messageBox.textContent =
+    messageBox.textContent=
         message;
 
+    confirmPanel.classList.add("show");
 
-    sendText.dataset.phone =
-        person.phone;
+    document
+    .getElementById("sendText")
+    .dataset.personId=
+        person.id;
 
-
-    sendText.dataset.message =
+    document
+    .getElementById("sendText")
+    .dataset.message=
         message;
-
-
-    confirmPanel.classList.add(
-        "show"
-    );
 
 }
 
 
+function extractMessage(spoken,person){
 
-/* =========================
-   EXTRACT MESSAGE
-========================= */
+    let message=spoken;
 
-function extractMessage(
-    spoken,
-    person
-) {
+    if(person.name){
 
-
-    let message =
-        spoken.trim();
-
-
-    if (person.name) {
-
-        message =
+        message=
             message.replace(
                 new RegExp(
                     person.name,
@@ -1758,13 +1111,11 @@ function extractMessage(
                 ),
                 ""
             );
-
     }
 
+    if(person.relationship){
 
-    if (person.relationship) {
-
-        message =
+        message=
             message.replace(
                 new RegExp(
                     person.relationship,
@@ -1772,245 +1123,432 @@ function extractMessage(
                 ),
                 ""
             );
-
     }
 
-
-    const prefixes = [
-
-        /^text my /i,
-        /^text the /i,
-        /^text /i,
-
-        /^message my /i,
-        /^message the /i,
-        /^message /i,
-
-        /^send a text to my /i,
-        /^send a text to /i
-
-    ];
-
-
-    for (
-        const prefix
-        of prefixes
-    ) {
-
-        message =
-            message.replace(
-                prefix,
-                ""
-            );
-
-    }
-
-
-    message =
-        message
+    message=
+        message.replace(
+            /^text my /i,""
+        )
         .replace(
-            /^(that|saying|say|to say)\s+/i,
-            ""
+            /^text /i,""
+        )
+        .replace(
+            /^message my /i,""
+        )
+        .replace(
+            /^message /i,""
+        )
+        .replace(
+            /^send a text to /i,""
+        )
+        .replace(
+            /^(that|saying|say|to say)\s+/i,""
         )
         .trim();
 
-
     return message;
-
 }
 
 
-
-/* =========================
-   SEND TEXT
-========================= */
-
 document
-.getElementById(
-    "sendText"
-)
-.onclick = () => {
+.getElementById("sendText")
+.onclick=()=>{
 
-
-    const phone =
-        sendText.dataset.phone;
-
-
-    const message =
-        sendText.dataset.message;
-
-
-    const smsURL =
-        "sms:" +
-        phone +
-        "?&body=" +
-        encodeURIComponent(
-            message
+    const person=
+        people.find(
+            p =>
+            p.id ===
+            document
+            .getElementById("sendText")
+            .dataset.personId
         );
 
+    const message=
+        document
+        .getElementById("sendText")
+        .dataset.message;
 
-    confirmPanel.classList.remove(
-        "show"
-    );
+    if(!person)return;
 
+    addMessage(message);
 
-    window.location.href =
-        smsURL;
+    confirmPanel.classList.remove("show");
 
+    openThread(person);
+
+    if(person.phone){
+
+        window.location.href=
+            "sms:"+
+            person.phone+
+            "?&body="+
+            encodeURIComponent(message);
+    }
 };
 
 
+document
+.getElementById("cancelText")
+.onclick=()=>{
+    confirmPanel.classList.remove("show");
+};
 
-/* =========================
-   CANCEL
-========================= */
 
 document
-.getElementById(
-    "cancelVoice"
-)
-.onclick = () => {
+.getElementById("cancelVoice")
+.onclick=()=>{
 
-
-    if (recognition) {
-
+    if(recognition){
         recognition.stop();
-
     }
 
+    voicePanel.classList.remove("show");
+};
 
-    voicePanel.classList.remove(
-        "show"
-    );
+
+document
+.getElementById("sayMessage")
+.onclick=()=>{
+
+    startThreadVoice();
 
 };
 
 
 document
-.getElementById(
-    "cancelText"
-)
-.onclick = () => {
+.getElementById("typeMessage")
+.onclick=()=>{
 
-    confirmPanel.classList.remove(
-        "show"
-    );
+    document
+    .getElementById("textEntry")
+    .classList.toggle("show");
 
+    document
+    .getElementById("typedMessage")
+    .focus();
 };
 
 
+function startThreadVoice(){
 
-/* =========================
-   MAIN BUTTONS
-========================= */
+    if(!selectedPerson)return;
+
+    if(!SpeechRecognition){
+
+        showToast(
+            "Voice recognition isn't supported here."
+        );
+
+        return;
+    }
+
+    voicePanel.classList.add("show");
+
+    voiceTitle.textContent=
+        "What would you like to say?";
+
+    voiceInstruction.textContent=
+        "Speak your message.";
+
+    const r=
+        new SpeechRecognition();
+
+    r.lang="en-CA";
+
+    r.interimResults=false;
+
+    r.onresult=event=>{
+
+        const text=
+            event.results[0][0]
+            .transcript
+            .trim();
+
+        voicePanel.classList.remove("show");
+
+        sendThreadMessage(text);
+    };
+
+    r.onerror=()=>{
+
+        voicePanel.classList.remove("show");
+
+        showToast(
+            "I didn't catch that."
+        );
+    };
+
+    r.start();
+}
+
+
+function sendThreadMessage(text){
+
+    if(!text || !selectedPerson)return;
+
+    addMessage(text);
+
+    if(selectedPerson.phone){
+
+        window.location.href=
+            "sms:"+
+            selectedPerson.phone+
+            "?&body="+
+            encodeURIComponent(text);
+    }
+}
+
 
 document
-.getElementById(
-    "callButton"
-)
-.onclick = () => {
+.getElementById("sendTyped")
+.onclick=()=>{
 
-    startListening(
-        "call"
-    );
+    const input=
+        document.getElementById("typedMessage");
 
+    const text=input.value.trim();
+
+    if(!text)return;
+
+    sendThreadMessage(text);
+
+    input.value="";
 };
 
 
 document
-.getElementById(
-    "textButton"
-)
-.onclick = () => {
+.getElementById("typedMessage")
+.addEventListener("keydown",e=>{
 
-    startListening(
-        "text"
-    );
+    if(e.key==="Enter"){
+
+        document
+        .getElementById("sendTyped")
+        .click();
+
+    }
+});
+
+
+/* PEOPLE MANAGEMENT */
+
+function renderEditors(){
+
+    peopleEditors.innerHTML="";
+
+    people.forEach(person=>{
+
+        const editor=
+            document.createElement("div");
+
+        editor.className="person-editor";
+
+        editor.innerHTML=`
+
+            <label>
+                Name
+                <input class="name"
+                       value="${escapeAttribute(person.name)}">
+            </label>
+
+            <label>
+                Relationship
+                <input class="relationshipInput"
+                       value="${escapeAttribute(person.relationship)}">
+            </label>
+
+            <label>
+                Phone number
+                <input class="phone"
+                       type="tel"
+                       value="${escapeAttribute(person.phone)}">
+            </label>
+
+            <label>
+                Icon
+                <select class="icon">
+
+                    <option value="👤">👤 Person</option>
+                    <option value="👩">👩 Woman</option>
+                    <option value="👨">👨 Man</option>
+                    <option value="👧">👧 Girl</option>
+                    <option value="👦">👦 Boy</option>
+                    <option value="❤️">❤️ Family</option>
+
+                </select>
+            </label>
+
+            <label>
+                <input class="help"
+                       type="checkbox">
+                Use this person for HELP
+            </label>
+
+            <div class="editor-buttons">
+
+                <button class="save-person">
+                    Save
+                </button>
+
+                <button class="delete-person">
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+        editor.querySelector(".icon").value=
+            person.icon || "👤";
+
+        editor.querySelector(".help").checked=
+            person.help===true;
+
+
+        editor.querySelector(".save-person")
+        .onclick=()=>{
+
+            person.name=
+                editor.querySelector(".name")
+                .value.trim();
+
+            person.relationship=
+                editor.querySelector(".relationshipInput")
+                .value.trim();
+
+            person.phone=
+                editor.querySelector(".phone")
+                .value.trim();
+
+            person.icon=
+                editor.querySelector(".icon")
+                .value;
+
+            person.help=
+                editor.querySelector(".help")
+                .checked;
+
+            if(person.help){
+
+                people.forEach(other=>{
+
+                    if(other.id!==person.id){
+                        other.help=false;
+                    }
+
+                });
+            }
+
+            savePeople();
+
+            renderContacts();
+
+            renderEditors();
+
+            showToast("Contact saved ❤️");
+        };
+
+
+        editor.querySelector(".delete-person")
+        .onclick=()=>{
+
+            if(!confirm(
+                `Delete ${person.name}?`
+            ))return;
+
+            people=
+                people.filter(
+                    p=>p.id!==person.id
+                );
+
+            delete conversations[person.id];
+
+            savePeople();
+
+            saveConversations();
+
+            renderContacts();
+
+            renderEditors();
+
+            showToast("Contact deleted.");
+        };
+
+
+        peopleEditors.appendChild(editor);
+
+    });
+}
+
+
+document
+.getElementById("addPerson")
+.onclick=()=>{
+
+    people.push({
+
+        id:crypto.randomUUID(),
+
+        name:"New Person",
+
+        relationship:"Friend",
+
+        phone:"",
+
+        icon:"👤",
+
+        help:false
+
+    });
+
+    savePeople();
+
+    renderContacts();
+
+    renderEditors();
+
+    showToast("New person added.");
 
 };
 
 
+function showToast(message){
 
-/* =========================
-   HELPERS
-========================= */
+    const toast=
+        document.getElementById("toast");
 
-function showToast(
-    message
-) {
+    toast.textContent=message;
 
-    toast.textContent =
-        message;
+    toast.classList.add("show");
 
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    setTimeout(
-        () => {
-
-            toast.classList.remove(
-                "show"
-            );
-
-        },
-        3000
-    );
-
+    setTimeout(()=>{
+        toast.classList.remove("show");
+    },3000);
 }
 
 
-function escapeHTML(
-    text
-) {
+function escapeHTML(text){
 
-    return String(
-        text || ""
-    )
-    .replace(
-        /[&<>"']/g,
-        character => {
-
-            const replacements = {
-
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#039;"
-
-            };
-
-            return replacements[
-                character
-            ];
-
-        }
-    );
-
+    return String(text||"")
+        .replace(
+            /[&<>"']/g,
+            c=>({
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
+            })[c]
+        );
 }
 
 
-function escapeAttribute(
-    text
-) {
+function escapeAttribute(text){
 
-    return escapeHTML(
-        text
-    );
-
+    return escapeHTML(text);
 }
 
-
-
-/* =========================
-   START
-========================= */
 
 renderContacts();
-
 renderEditors();
 
 </script>
