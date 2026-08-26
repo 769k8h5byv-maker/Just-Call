@@ -24,55 +24,41 @@ body {
     max-width: 650px;
     min-height: 100vh;
     margin: auto;
-    padding: 28px 20px 40px;
+    padding: 35px 20px 45px;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 25px;
-}
-
-.logo {
-    width: 68px;
-    height: 68px;
-    margin: 0 auto 12px;
-    border-radius: 22px;
-    background: #20252d;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 34px;
-    box-shadow: 0 12px 30px rgba(0,0,0,.15);
+    margin-bottom: 28px;
 }
 
 h1 {
     margin: 0;
-    font-size: 43px;
+    font-size: 46px;
     letter-spacing: -1.5px;
 }
 
 .subtitle {
-    margin-top: 6px;
+    margin-top: 7px;
     color: #69717d;
     font-size: 19px;
 }
 
 
 /* =========================
-   MAIN ACTIONS
+   ACTION BUTTONS
 ========================= */
 
 .actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 25px;
+    gap: 15px;
+    margin-bottom: 15px;
 }
 
 .action {
     border: none;
-    border-radius: 30px;
+    border-radius: 28px;
     min-height: 190px;
     color: white;
     cursor: pointer;
@@ -100,9 +86,20 @@ h1 {
     background: linear-gradient(145deg, #5367df, #7585ef);
 }
 
+.help-action {
+    width: 100%;
+    min-height: 135px;
+    background: linear-gradient(145deg, #df4545, #f06b6b);
+    margin-bottom: 28px;
+}
+
 .action-icon {
-    font-size: 62px;
-    margin-bottom: 10px;
+    font-size: 58px;
+    margin-bottom: 9px;
+}
+
+.help-action .action-icon {
+    font-size: 50px;
 }
 
 .action-title {
@@ -110,15 +107,19 @@ h1 {
     font-weight: 800;
 }
 
+.help-action .action-title {
+    font-size: 28px;
+}
+
 .action-subtitle {
     font-size: 15px;
-    opacity: .85;
+    opacity: .88;
     margin-top: 4px;
 }
 
 
 /* =========================
-   LISTENING PANEL
+   VOICE PANEL
 ========================= */
 
 .voice-panel {
@@ -420,11 +421,11 @@ input {
 @media(max-width:450px) {
 
     .app {
-        padding: 22px 15px 35px;
+        padding: 27px 15px 35px;
     }
 
     h1 {
-        font-size: 37px;
+        font-size: 39px;
     }
 
     .actions {
@@ -433,7 +434,7 @@ input {
 
     .action {
         min-height: 165px;
-        border-radius: 25px;
+        border-radius: 24px;
     }
 
     .action-icon {
@@ -442,6 +443,10 @@ input {
 
     .action-title {
         font-size: 25px;
+    }
+
+    .help-action {
+        min-height: 125px;
     }
 
 }
@@ -459,10 +464,6 @@ input {
 
     <div class="header">
 
-        <div class="logo">
-            ☎
-        </div>
-
         <h1>
             Just Call
         </h1>
@@ -475,7 +476,7 @@ input {
 
 
 
-    <!-- TWO BIG BUTTONS -->
+    <!-- CALL + TEXT -->
 
     <div class="actions">
 
@@ -497,7 +498,6 @@ input {
             </div>
 
         </button>
-
 
 
         <button
@@ -523,7 +523,30 @@ input {
 
 
 
-    <!-- VOICE PANEL -->
+    <!-- HELP -->
+
+    <button
+        class="action help-action"
+        id="helpButton"
+    >
+
+        <div class="action-icon">
+            🆘
+        </div>
+
+        <div class="action-title">
+            HELP
+        </div>
+
+        <div class="action-subtitle">
+            Call my emergency contact
+        </div>
+
+    </button>
+
+
+
+    <!-- VOICE -->
 
     <div
         class="voice-panel"
@@ -573,10 +596,7 @@ input {
             💬
         </div>
 
-        <div
-            class="confirm-title"
-            id="confirmTitle"
-        >
+        <div class="confirm-title">
             Ready to send
         </div>
 
@@ -586,13 +606,11 @@ input {
         >
         </div>
 
-
         <div
             class="message-box"
             id="messageBox"
         >
         </div>
-
 
         <div class="confirm-buttons">
 
@@ -638,9 +656,7 @@ input {
             ⚙️ Family setup
         </summary>
 
-
         <div class="form">
-
 
             <label>
                 Granddaughter's name
@@ -654,7 +670,6 @@ input {
                     type="tel"
                 >
             </label>
-
 
 
             <label>
@@ -671,7 +686,6 @@ input {
             </label>
 
 
-
             <label>
                 Son's name
                 <input id="sonName">
@@ -684,7 +698,6 @@ input {
                     type="tel"
                 >
             </label>
-
 
 
             <label>
@@ -701,6 +714,19 @@ input {
             </label>
 
 
+            <label>
+                Emergency contact name
+                <input id="emergencyName">
+            </label>
+
+            <label>
+                Emergency contact phone
+                <input
+                    id="emergencyPhone"
+                    type="tel"
+                >
+            </label>
+
 
             <button
                 class="save"
@@ -712,7 +738,6 @@ input {
         </div>
 
     </details>
-
 
 </div>
 
@@ -744,7 +769,10 @@ const defaultContacts = {
     sonPhone: "",
 
     brotherName: "John",
-    brotherPhone: ""
+    brotherPhone: "",
+
+    emergencyName: "Emergency Contact",
+    emergencyPhone: ""
 
 };
 
@@ -766,6 +794,9 @@ const callButton =
 const textButton =
     document.getElementById("textButton");
 
+const helpButton =
+    document.getElementById("helpButton");
+
 const voicePanel =
     document.getElementById("voicePanel");
 
@@ -774,9 +805,6 @@ const voiceTitle =
 
 const voiceInstruction =
     document.getElementById("voiceInstruction");
-
-const voiceIcon =
-    document.getElementById("voiceIcon");
 
 const cancelVoice =
     document.getElementById("cancelVoice");
@@ -803,9 +831,13 @@ const toast =
     document.getElementById("toast");
 
 
+let recognition = null;
+let currentMode = null;
+
+
 
 /* =========================
-   RENDER CONTACTS
+   CONTACTS
 ========================= */
 
 function renderContacts() {
@@ -843,7 +875,6 @@ function renderContacts() {
 }
 
 
-
 function addContact(
     icon,
     name,
@@ -853,12 +884,10 @@ function addContact(
 
     if (!name) return;
 
-
     const button =
         document.createElement("button");
 
     button.className = "contact";
-
 
     button.innerHTML = `
 
@@ -884,13 +913,9 @@ function addContact(
 
     `;
 
-
     button.onclick = () => {
-
         callPerson(key);
-
     };
-
 
     contactsContainer.appendChild(button);
 
@@ -899,7 +924,7 @@ function addContact(
 
 
 /* =========================
-   CALL
+   DIRECT CALL
 ========================= */
 
 function callPerson(key) {
@@ -910,7 +935,6 @@ function callPerson(key) {
     const phone =
         contacts[key + "Phone"];
 
-
     if (!phone) {
 
         showToast(
@@ -918,9 +942,7 @@ function callPerson(key) {
         );
 
         return;
-
     }
-
 
     window.location.href =
         "tel:" + phone;
@@ -930,18 +952,51 @@ function callPerson(key) {
 
 
 /* =========================
-   VOICE RECOGNITION
+   HELP
+========================= */
+
+helpButton.onclick = () => {
+
+    const name =
+        contacts.emergencyName;
+
+    const phone =
+        contacts.emergencyPhone;
+
+    if (!phone) {
+
+        showToast(
+            "No emergency contact has been set up yet."
+        );
+
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            `Call ${name} for help?`
+        );
+
+
+    if (confirmed) {
+
+        window.location.href =
+            "tel:" + phone;
+
+    }
+
+};
+
+
+
+/* =========================
+   VOICE
 ========================= */
 
 const SpeechRecognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
-
-
-let currentMode = null;
-
-let recognition = null;
-
 
 
 function startListening(mode) {
@@ -953,12 +1008,10 @@ function startListening(mode) {
         );
 
         return;
-
     }
 
 
     currentMode = mode;
-
 
     voicePanel.classList.add("show");
 
@@ -990,7 +1043,6 @@ function startListening(mode) {
     recognition =
         new SpeechRecognition();
 
-
     recognition.lang = "en-CA";
 
     recognition.interimResults = false;
@@ -1006,7 +1058,9 @@ function startListening(mode) {
             .trim();
 
 
-        voicePanel.classList.remove("show");
+        voicePanel.classList.remove(
+            "show"
+        );
 
 
         if (currentMode === "call") {
@@ -1026,18 +1080,13 @@ function startListening(mode) {
 
     recognition.onerror = () => {
 
-        voicePanel.classList.remove("show");
+        voicePanel.classList.remove(
+            "show"
+        );
 
         showToast(
             "I didn't catch that. Please try again."
         );
-
-    };
-
-
-    recognition.onend = () => {
-
-        voiceIcon.textContent = "🎙️";
 
     };
 
@@ -1049,7 +1098,7 @@ function startListening(mode) {
 
 
 /* =========================
-   CALL COMMAND
+   CALL VOICE COMMAND
 ========================= */
 
 function processCall(spoken) {
@@ -1057,15 +1106,13 @@ function processCall(spoken) {
     const person =
         findPerson(spoken);
 
-
     if (!person) {
 
         showToast(
-            'I don\'t know who you mean. Try "Call my brother."'
+            'Try saying "Call my brother."'
         );
 
         return;
-
     }
 
 
@@ -1080,7 +1127,6 @@ function processCall(spoken) {
         );
 
         return;
-
     }
 
 
@@ -1109,7 +1155,6 @@ function processText(spoken) {
     const person =
         findPerson(spoken);
 
-
     if (!person) {
 
         showToast(
@@ -1117,7 +1162,6 @@ function processText(spoken) {
         );
 
         return;
-
     }
 
 
@@ -1135,7 +1179,6 @@ function processText(spoken) {
         );
 
         return;
-
     }
 
 
@@ -1150,28 +1193,26 @@ function processText(spoken) {
         );
 
         return;
-
     }
 
 
     confirmTo.textContent =
         "To " + person.name;
 
-
     messageBox.textContent =
         message;
 
 
-    confirmPanel.classList.add("show");
+    confirmPanel.classList.add(
+        "show"
+    );
 
 
     sendText.dataset.phone =
         phone;
 
-
     sendText.dataset.message =
         message;
-
 
     sendText.dataset.name =
         person.name;
@@ -1204,25 +1245,19 @@ function findPerson(text) {
         {
             key: "daughter",
             name: contacts.daughterName,
-            words: [
-                "daughter"
-            ]
+            words: ["daughter"]
         },
 
         {
             key: "son",
             name: contacts.sonName,
-            words: [
-                "son"
-            ]
+            words: ["son"]
         },
 
         {
             key: "brother",
             name: contacts.brotherName,
-            words: [
-                "brother"
-            ]
+            words: ["brother"]
         }
 
     ];
@@ -1266,7 +1301,7 @@ function findPerson(text) {
 
 
 /* =========================
-   EXTRACT TEXT MESSAGE
+   EXTRACT MESSAGE
 ========================= */
 
 function extractMessage(
@@ -1278,22 +1313,12 @@ function extractMessage(
         spoken.trim();
 
 
-    const lower =
-        message.toLowerCase();
-
-
-    const name =
-        person.name
-        ? person.name.toLowerCase()
-        : "";
-
-
-    if (name) {
+    if (person.name) {
 
         message =
             message.replace(
                 new RegExp(
-                    name,
+                    person.name,
                     "i"
                 ),
                 ""
@@ -1313,9 +1338,7 @@ function extractMessage(
         /^message /i,
 
         /^send a text to my /i,
-        /^send a text to /i,
-
-        /^send my /i
+        /^send a text to /i
 
     ];
 
@@ -1331,7 +1354,7 @@ function extractMessage(
     }
 
 
-    const relationshipWords = [
+    const relationships = [
 
         "granddaughter",
         "grand daughter",
@@ -1344,7 +1367,7 @@ function extractMessage(
 
     for (
         const relationship
-        of relationshipWords
+        of relationships
     ) {
 
         message =
@@ -1386,14 +1409,6 @@ sendText.onclick = () => {
     const message =
         sendText.dataset.message;
 
-    const name =
-        sendText.dataset.name;
-
-
-    /*
-       On a real phone this opens
-       the native Messages app.
-    */
 
     const smsURL =
         "sms:" +
@@ -1402,20 +1417,13 @@ sendText.onclick = () => {
         encodeURIComponent(message);
 
 
-    confirmPanel.classList.remove("show");
-
-
-    showToast(
-        `Opening Messages for ${name}…`
+    confirmPanel.classList.remove(
+        "show"
     );
 
 
-    setTimeout(() => {
-
-        window.location.href =
-            smsURL;
-
-    }, 500);
+    window.location.href =
+        smsURL;
 
 };
 
@@ -1476,68 +1484,38 @@ textButton.onclick = () => {
 document.getElementById("save").onclick =
 () => {
 
-    contacts = {
+    const fields = [
 
-        granddaughterName:
+        "granddaughterName",
+        "granddaughterPhone",
+
+        "daughterName",
+        "daughterPhone",
+
+        "sonName",
+        "sonPhone",
+
+        "brotherName",
+        "brotherPhone",
+
+        "emergencyName",
+        "emergencyPhone"
+
+    ];
+
+
+    contacts = {};
+
+
+    fields.forEach(field => {
+
+        contacts[field] =
             document
-            .getElementById(
-                "granddaughterName"
-            )
-            .value.trim(),
+            .getElementById(field)
+            .value
+            .trim();
 
-        granddaughterPhone:
-            document
-            .getElementById(
-                "granddaughterPhone"
-            )
-            .value.trim(),
-
-
-        daughterName:
-            document
-            .getElementById(
-                "daughterName"
-            )
-            .value.trim(),
-
-        daughterPhone:
-            document
-            .getElementById(
-                "daughterPhone"
-            )
-            .value.trim(),
-
-
-        sonName:
-            document
-            .getElementById(
-                "sonName"
-            )
-            .value.trim(),
-
-        sonPhone:
-            document
-            .getElementById(
-                "sonPhone"
-            )
-            .value.trim(),
-
-
-        brotherName:
-            document
-            .getElementById(
-                "brotherName"
-            )
-            .value.trim(),
-
-        brotherPhone:
-            document
-            .getElementById(
-                "brotherPhone"
-            )
-            .value.trim()
-
-    };
+    });
 
 
     localStorage.setItem(
@@ -1558,7 +1536,7 @@ document.getElementById("save").onclick =
 
 
 /* =========================
-   LOAD SETUP
+   LOAD CONTACTS
 ========================= */
 
 function loadSetup() {
@@ -1575,7 +1553,10 @@ function loadSetup() {
         "sonPhone",
 
         "brotherName",
-        "brotherPhone"
+        "brotherPhone",
+
+        "emergencyName",
+        "emergencyPhone"
 
     ];
 
@@ -1586,6 +1567,30 @@ function loadSetup() {
             contacts[field] || "";
 
     });
+
+}
+
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message) {
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove(
+            "show"
+        );
+
+    }, 3000);
 
 }
 
@@ -1618,30 +1623,6 @@ function escapeHTML(text) {
 
             }
         );
-
-}
-
-
-
-/* =========================
-   TOAST
-========================= */
-
-function showToast(message) {
-
-    toast.textContent =
-        message;
-
-    toast.classList.add("show");
-
-
-    setTimeout(() => {
-
-        toast.classList.remove(
-            "show"
-        );
-
-    }, 3000);
 
 }
 
