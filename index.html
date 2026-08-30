@@ -13,19 +13,23 @@
 
   <style>
 
-    /* =================================
-       GENERAL
-    ================================= */
+    /* =========================================
+       RESET
+    ========================================= */
 
     * {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
 
+    html,
     body {
       margin: 0;
-      min-height: 100vh;
+      padding: 0;
+      min-height: 100%;
+    }
 
+    body {
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -34,7 +38,7 @@
         sans-serif;
 
       background: #fff7f8;
-      color: #333333;
+      color: #333;
     }
 
     button,
@@ -43,14 +47,13 @@
     }
 
     a {
-      -webkit-user-select: none;
-      user-select: none;
+      text-decoration: none;
     }
 
 
-    /* =================================
-       APP
-    ================================= */
+    /* =========================================
+       MAIN APP
+    ========================================= */
 
     .app {
       width: 100%;
@@ -63,20 +66,21 @@
       padding: 12px 16px 28px;
 
       background: #fff7f8;
+
+      display: flex;
+      flex-direction: column;
     }
 
 
-    /* =================================
-       TOP BAR
-    ================================= */
+    /* =========================================
+       SETTINGS BUTTON
+    ========================================= */
 
     .top-bar {
-      height: 52px;
+      height: 54px;
 
       display: flex;
-
       align-items: center;
-
       justify-content: flex-end;
 
       margin-bottom: 8px;
@@ -87,59 +91,60 @@
       height: 48px;
 
       border: none;
-
       border-radius: 50%;
 
-      background: white;
+      background: #ffffff;
 
       color: #777;
 
       font-size: 25px;
 
       display: flex;
-
       align-items: center;
       justify-content: center;
 
       cursor: pointer;
 
       box-shadow:
-        0 3px 10px rgba(0,0,0,0.10);
+        0 3px 10px rgba(0, 0, 0, 0.10);
+
+      transition: transform 0.1s;
     }
 
     .settings-button:active {
-      transform: scale(0.92);
+      transform: scale(0.90);
     }
 
 
-    /* =================================
-       CONTACT LIST
-    ================================= */
+    /* =========================================
+       CONTACTS
+    ========================================= */
 
     .contacts {
       display: flex;
-
       flex-direction: column;
 
       gap: 14px;
+
+      flex: 1;
     }
 
 
-    /* =================================
+    /* =========================================
        CONTACT CARD
-    ================================= */
+    ========================================= */
 
     .contact-card {
-      background: white;
+      background: #ffffff;
 
       border-radius: 22px;
 
       padding: 18px;
 
-      border: 1px solid #f3dfe3;
+      border: 1px solid #f2dfe3;
 
       box-shadow:
-        0 4px 12px rgba(180, 100, 120, 0.08);
+        0 4px 12px rgba(170, 90, 110, 0.08);
     }
 
     .contact-name {
@@ -155,9 +160,9 @@
     }
 
 
-    /* =================================
-       CALL / TEXT
-    ================================= */
+    /* =========================================
+       CALL + TEXT
+    ========================================= */
 
     .contact-actions {
       display: grid;
@@ -171,43 +176,39 @@
     .text-button {
       min-height: 60px;
 
-      border: none;
-
       border-radius: 16px;
 
       display: flex;
-
       align-items: center;
-
       justify-content: center;
 
       gap: 8px;
-
-      text-decoration: none;
 
       font-size: 19px;
 
       font-weight: 750;
 
       cursor: pointer;
+
+      transition: transform 0.1s;
     }
 
     .call-button {
-      background: #65c98a;
+      background: #68c98b;
 
       color: white;
 
       box-shadow:
-        0 3px 7px rgba(60,170,100,0.18);
+        0 3px 7px rgba(60, 170, 100, 0.18);
     }
 
     .text-button {
-      background: #79a9e8;
+      background: #78a9e6;
 
       color: white;
 
       box-shadow:
-        0 3px 7px rgba(70,120,190,0.18);
+        0 3px 7px rgba(70, 120, 190, 0.18);
     }
 
     .call-button:active,
@@ -216,12 +217,33 @@
     }
 
 
-    /* =================================
-       HELP AREA
-    ================================= */
+    /* =========================================
+       EMPTY MESSAGE
+    ========================================= */
+
+    .empty-message {
+      background: #ffffff;
+
+      border-radius: 22px;
+
+      padding: 28px 18px;
+
+      text-align: center;
+
+      color: #999;
+
+      font-size: 17px;
+
+      border: 1px solid #f2dfe3;
+    }
+
+
+    /* =========================================
+       HELP
+    ========================================= */
 
     .help-area {
-      margin-top: 22px;
+      margin-top: 20px;
     }
 
     .help-button {
@@ -233,7 +255,7 @@
 
       border-radius: 23px;
 
-      background: #ef6b73;
+      background: #ed6871;
 
       color: white;
 
@@ -246,7 +268,9 @@
       cursor: pointer;
 
       box-shadow:
-        0 5px 14px rgba(220,80,90,0.25);
+        0 5px 14px rgba(220, 80, 90, 0.25);
+
+      transition: transform 0.1s;
     }
 
     .help-button:active {
@@ -254,9 +278,9 @@
     }
 
 
-    /* =================================
+    /* =========================================
        HELP MESSAGE
-    ================================= */
+    ========================================= */
 
     .help-message {
       display: none;
@@ -275,10 +299,12 @@
 
       line-height: 1.5;
 
-      border: 1px solid #f3dfe3;
+      color: #555;
+
+      border: 1px solid #f2dfe3;
 
       box-shadow:
-        0 3px 10px rgba(0,0,0,0.07);
+        0 3px 10px rgba(0, 0, 0, 0.07);
     }
 
     .help-message.visible {
@@ -286,13 +312,13 @@
     }
 
     .help-message strong {
-      color: #e0525c;
+      color: #df555e;
     }
 
 
-    /* =================================
+    /* =========================================
        SETTINGS OVERLAY
-    ================================= */
+    ========================================= */
 
     .settings-overlay {
       display: none;
@@ -303,12 +329,11 @@
 
       z-index: 100;
 
-      background: rgba(70,50,55,0.45);
+      background: rgba(70, 50, 55, 0.48);
 
       padding: 18px;
 
       align-items: center;
-
       justify-content: center;
     }
 
@@ -317,9 +342,9 @@
     }
 
 
-    /* =================================
+    /* =========================================
        SETTINGS PANEL
-    ================================= */
+    ========================================= */
 
     .settings-panel {
       width: 100%;
@@ -337,14 +362,18 @@
       padding: 22px;
 
       box-shadow:
-        0 12px 40px rgba(0,0,0,0.20);
+        0 12px 40px rgba(0, 0, 0, 0.20);
     }
+
+
+    /* =========================================
+       SETTINGS HEADER
+    ========================================= */
 
     .settings-header {
       display: flex;
 
       align-items: center;
-
       justify-content: space-between;
 
       margin-bottom: 18px;
@@ -376,9 +405,9 @@
     }
 
 
-    /* =================================
-       FAMILY MESSAGE
-    ================================= */
+    /* =========================================
+       FAMILY NOTICE
+    ========================================= */
 
     .family-notice {
       padding: 15px;
@@ -397,9 +426,9 @@
     }
 
 
-    /* =================================
-       ADD CONTACT
-    ================================= */
+    /* =========================================
+       ADD BUTTON
+    ========================================= */
 
     .add-button {
       width: 100%;
@@ -416,7 +445,7 @@
 
       color: white;
 
-      font-size: 17px;
+      font-size: 18px;
 
       font-weight: 750;
 
@@ -428,9 +457,9 @@
     }
 
 
-    /* =================================
-       MANAGE CONTACTS
-    ================================= */
+    /* =========================================
+       MANAGE CONTACT
+    ========================================= */
 
     .manage-contact {
       display: flex;
@@ -466,6 +495,11 @@
       color: #888;
     }
 
+
+    /* =========================================
+       EDIT / DELETE
+    ========================================= */
+
     .edit-button,
     .delete-button {
       min-height: 42px;
@@ -495,10 +529,15 @@
       color: #b64e57;
     }
 
+    .edit-button:active,
+    .delete-button:active {
+      transform: scale(0.96);
+    }
 
-    /* =================================
-       FORM
-    ================================= */
+
+    /* =========================================
+       CONTACT FORM
+    ========================================= */
 
     .form-area {
       display: none;
@@ -554,6 +593,11 @@
       border-color: #8b78d8;
     }
 
+
+    /* =========================================
+       FORM BUTTONS
+    ========================================= */
+
     .form-buttons {
       display: grid;
 
@@ -580,7 +624,7 @@
     }
 
     .save-button {
-      background: #65c98a;
+      background: #68c98b;
 
       color: white;
     }
@@ -592,28 +636,9 @@
     }
 
 
-    /* =================================
-       EMPTY
-    ================================= */
-
-    .empty-message {
-      padding: 30px 15px;
-
-      background: white;
-
-      border-radius: 20px;
-
-      text-align: center;
-
-      color: #888;
-
-      font-size: 17px;
-    }
-
-
-    /* =================================
+    /* =========================================
        SMALL PHONES
-    ================================= */
+    ========================================= */
 
     @media (max-width: 380px) {
 
@@ -644,8 +669,8 @@
       }
 
       .manage-contact-info {
-        flex-basis: 100%;
         width: 100%;
+        flex-basis: 100%;
       }
 
     }
@@ -658,14 +683,14 @@
 <body>
 
 
-  <!-- =====================================
-       MAIN DASHBOARD
-  ====================================== -->
+  <!-- =========================================
+       MAIN ELDERLY USER SCREEN
+  ========================================== -->
 
   <main class="app">
 
 
-    <!-- FAMILY SETTINGS GEAR -->
+    <!-- FAMILY SETTINGS -->
 
     <div class="top-bar">
 
@@ -708,7 +733,7 @@
         id="helpMessage"
       >
 
-        <strong>We're here to help. ❤️</strong>
+        <strong>We're here to help ❤️</strong>
 
         <br><br>
 
@@ -722,9 +747,10 @@
   </main>
 
 
-  <!-- =====================================
-       FAMILY SETTINGS
-  ====================================== -->
+
+  <!-- =========================================
+       FAMILY SETTINGS WINDOW
+  ========================================== -->
 
   <div
     class="settings-overlay"
@@ -733,6 +759,8 @@
 
     <div class="settings-panel">
 
+
+      <!-- HEADER -->
 
       <div class="settings-header">
 
@@ -744,12 +772,15 @@
           class="close-settings"
           type="button"
           onclick="closeSettings()"
+          aria-label="Close settings"
         >
           ✕
         </button>
 
       </div>
 
+
+      <!-- NOTICE -->
 
       <div class="family-notice">
 
@@ -760,6 +791,8 @@
       </div>
 
 
+      <!-- ADD CONTACT -->
+
       <button
         class="add-button"
         type="button"
@@ -768,6 +801,8 @@
         ＋ Add Contact
       </button>
 
+
+      <!-- CONTACT MANAGEMENT -->
 
       <div id="manageContactList">
       </div>
@@ -848,45 +883,32 @@
   </div>
 
 
+
   <script>
 
 
-    /* =====================================
+    /* =========================================
        CONTACTS
-    ====================================== */
+       
+       IMPORTANT:
+       The app starts with ZERO contacts.
+    ========================================== */
 
     let contacts =
       JSON.parse(
-        localStorage.getItem("familyConnectContacts")
-      ) || [
-
-        {
-          id: 1,
-          name: "Brian",
-          phone: "902-555-0101"
-        },
-
-        {
-          id: 2,
-          name: "Lisa",
-          phone: "902-555-0102"
-        },
-
-        {
-          id: 3,
-          name: "Mom",
-          phone: "902-555-0103"
-        }
-
-      ];
+        localStorage.getItem(
+          "familyConnectContacts"
+        )
+      ) || [];
 
 
     let editingId = null;
 
 
-    /* =====================================
-       SAVE
-    ====================================== */
+
+    /* =========================================
+       SAVE CONTACTS
+    ========================================== */
 
     function saveContacts() {
 
@@ -898,9 +920,10 @@
     }
 
 
-    /* =====================================
-       SHOW CONTACTS
-    ====================================== */
+
+    /* =========================================
+       DISPLAY CONTACTS ON MAIN SCREEN
+    ========================================== */
 
     function renderContacts() {
 
@@ -912,17 +935,22 @@
       list.innerHTML = "";
 
 
+      /* NO CONTACTS */
+
       if (contacts.length === 0) {
 
         list.innerHTML = `
           <div class="empty-message">
-            ❤️ No contacts yet.
+            Your family can add contacts here ❤️
           </div>
         `;
 
         return;
+
       }
 
+
+      /* CONTACTS */
 
       contacts.forEach(function(contact) {
 
@@ -942,6 +970,7 @@
 
           <div class="contact-actions">
 
+
             <a
               class="call-button"
               href="tel:${phoneForLink(contact.phone)}"
@@ -959,6 +988,7 @@
               💬 Text
             </a>
 
+
           </div>
 
         `;
@@ -971,9 +1001,10 @@
     }
 
 
-    /* =====================================
-       OPEN SETTINGS
-    ====================================== */
+
+    /* =========================================
+       OPEN FAMILY SETTINGS
+    ========================================== */
 
     function openSettings() {
 
@@ -986,9 +1017,10 @@
     }
 
 
-    /* =====================================
-       CLOSE SETTINGS
-    ====================================== */
+
+    /* =========================================
+       CLOSE FAMILY SETTINGS
+    ========================================== */
 
     function closeSettings() {
 
@@ -1001,9 +1033,10 @@
     }
 
 
-    /* =====================================
-       SHOW FAMILY CONTACTS
-    ====================================== */
+
+    /* =========================================
+       DISPLAY CONTACTS INSIDE SETTINGS
+    ========================================== */
 
     function renderManageContacts() {
 
@@ -1013,6 +1046,19 @@
         );
 
       list.innerHTML = "";
+
+
+      if (contacts.length === 0) {
+
+        list.innerHTML = `
+          <div class="empty-message">
+            No contacts have been added yet.
+          </div>
+        `;
+
+        return;
+
+      }
 
 
       contacts.forEach(function(contact) {
@@ -1066,9 +1112,10 @@
     }
 
 
-    /* =====================================
-       ADD CONTACT
-    ====================================== */
+
+    /* =========================================
+       SHOW ADD CONTACT FORM
+    ========================================== */
 
     function showContactForm() {
 
@@ -1107,9 +1154,10 @@
     }
 
 
-    /* =====================================
+
+    /* =========================================
        EDIT CONTACT
-    ====================================== */
+    ========================================== */
 
     function editContact(id) {
 
@@ -1149,12 +1197,18 @@
         .getElementById("formArea")
         .classList.add("visible");
 
+
+      document
+        .getElementById("nameInput")
+        .focus();
+
     }
 
 
-    /* =====================================
+
+    /* =========================================
        SAVE CONTACT
-    ====================================== */
+    ========================================== */
 
     function saveContact() {
 
@@ -1194,6 +1248,8 @@
       }
 
 
+      /* ADD */
+
       if (editingId === null) {
 
         contacts.push({
@@ -1207,6 +1263,9 @@
         });
 
       }
+
+
+      /* EDIT */
 
       else {
 
@@ -1240,9 +1299,10 @@
     }
 
 
-    /* =====================================
+
+    /* =========================================
        DELETE CONTACT
-    ====================================== */
+    ========================================== */
 
     function deleteContact(id) {
 
@@ -1259,9 +1319,9 @@
 
       const confirmed =
         confirm(
-          "Delete " +
+          "Are you sure you want to delete " +
           contact.name +
-          " from the contacts?"
+          "?"
         );
 
 
@@ -1285,24 +1345,37 @@
     }
 
 
-    /* =====================================
-       HIDE FORM
-    ====================================== */
+
+    /* =========================================
+       HIDE CONTACT FORM
+    ========================================== */
 
     function hideContactForm() {
 
       editingId = null;
 
+
       document
         .getElementById("formArea")
         .classList.remove("visible");
 
+
+      document
+        .getElementById("nameInput")
+        .value = "";
+
+
+      document
+        .getElementById("phoneInput")
+        .value = "";
+
     }
 
 
-    /* =====================================
-       HELP
-    ====================================== */
+
+    /* =========================================
+       HELP BUTTON
+    ========================================== */
 
     function showHelp() {
 
@@ -1311,6 +1384,7 @@
           "helpMessage"
         );
 
+
       message.classList.toggle(
         "visible"
       );
@@ -1318,9 +1392,10 @@
     }
 
 
-    /* =====================================
+
+    /* =========================================
        PHONE NUMBER
-    ====================================== */
+    ========================================== */
 
     function phoneForLink(phone) {
 
@@ -1332,9 +1407,10 @@
     }
 
 
-    /* =====================================
+
+    /* =========================================
        SAFE TEXT
-    ====================================== */
+    ========================================== */
 
     function escapeHtml(text) {
 
@@ -1348,11 +1424,10 @@
     }
 
 
-    /* =====================================
-       START
-    ====================================== */
 
-    saveContacts();
+    /* =========================================
+       START APP
+    ========================================== */
 
     renderContacts();
 
