@@ -8,9 +8,10 @@
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
   >
 
-  <title>My Contacts</title>
+  <title>Emergency Contacts</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
@@ -18,175 +19,249 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f4f6f8;
-      color: #1f2937;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
     }
 
     .app {
+      width: 100%;
       max-width: 600px;
-      margin: 0 auto;
       min-height: 100vh;
+      margin: 0 auto;
+      background: #f3f4f6;
       padding-bottom: 30px;
     }
 
-    /* HEADER */
+
+    /* =========================
+       HEADER
+    ========================= */
 
     header {
       background: white;
-      padding: 18px;
-      border-bottom: 1px solid #e5e7eb;
+      padding: 16px;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
+      border-bottom: 1px solid #e5e7eb;
     }
-
-    .header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .title {
-      font-size: 25px;
-      font-weight: 700;
-      margin: 0;
-    }
-
-    /* RED HELP BUTTON */
 
     .help-button {
+      width: 100%;
+      min-height: 72px;
+
       border: none;
+      border-radius: 18px;
+
       background: #dc2626;
       color: white;
-      font-size: 18px;
-      font-weight: 700;
-      padding: 14px 20px;
-      border-radius: 14px;
-      min-height: 52px;
+
+      font-size: 26px;
+      font-weight: 800;
+
       cursor: pointer;
-      box-shadow: 0 3px 8px rgba(220, 38, 38, 0.3);
+
+      box-shadow:
+        0 4px 10px rgba(220, 38, 38, 0.30);
     }
 
     .help-button:active {
-      transform: scale(0.96);
+      transform: scale(0.97);
     }
 
-    /* HELP BOX */
+
+    /* =========================
+       HELP PANEL
+    ========================= */
 
     .help-box {
       display: none;
-      margin: 16px 16px 0;
-      padding: 18px;
+
+      margin: 16px;
+
+      padding: 20px;
+
       background: white;
+
       border-radius: 18px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+      box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.08);
     }
 
     .help-box h2 {
-      margin-top: 0;
-      font-size: 20px;
+      margin: 0 0 10px;
+
+      font-size: 22px;
     }
 
     .help-box p {
+      margin: 8px 0;
+
       line-height: 1.5;
+
       color: #4b5563;
     }
 
     .close-help {
-      margin-top: 8px;
       width: 100%;
-      min-height: 46px;
+
+      min-height: 50px;
+
+      margin-top: 14px;
+
       border: none;
+
       border-radius: 12px;
+
       background: #e5e7eb;
+
+      color: #374151;
+
+      font-size: 17px;
+
       font-weight: 700;
-      font-size: 16px;
+
       cursor: pointer;
     }
 
-    /* CONTACTS */
+
+    /* =========================
+       CONTACT AREA
+    ========================= */
 
     .contacts {
       padding: 16px;
     }
 
+    .contacts-heading {
+      margin: 4px 0 14px;
+
+      text-align: center;
+
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+
+    /* =========================
+       CONTACT CARD
+    ========================= */
+
     .contact {
       background: white;
+
       border-radius: 18px;
-      margin-bottom: 12px;
+
+      margin-bottom: 14px;
+
       padding: 16px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.06);
     }
 
     .contact-top {
       display: flex;
+
       align-items: center;
+
       gap: 14px;
+
       margin-bottom: 14px;
     }
 
     .avatar {
-      width: 50px;
-      height: 50px;
+      width: 52px;
+      height: 52px;
+
+      flex-shrink: 0;
+
       border-radius: 50%;
+
       background: #e5e7eb;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      font-weight: 700;
-      flex-shrink: 0;
+
+      font-size: 21px;
+
+      font-weight: 800;
     }
 
     .contact-info {
-      min-width: 0;
       flex: 1;
+
+      min-width: 0;
     }
 
     .contact-name {
-      font-size: 19px;
+      margin: 0 0 4px;
+
+      font-size: 20px;
+
       font-weight: 700;
-      margin-bottom: 3px;
     }
 
     .contact-number {
-      font-size: 14px;
+      margin: 0;
+
+      font-size: 15px;
+
       color: #6b7280;
     }
 
-    /* CALL / TEXT */
+
+    /* =========================
+       CALL / TEXT BUTTONS
+    ========================= */
 
     .actions {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 10px;
+
       margin-bottom: 10px;
     }
 
     .action-button {
-      min-height: 50px;
+      min-height: 52px;
+
       border: none;
+
       border-radius: 13px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       gap: 7px;
+
+      text-decoration: none;
+
+      font-size: 17px;
+
+      font-weight: 700;
+
+      cursor: pointer;
     }
 
     .call-button {
       background: #16a34a;
+
       color: white;
     }
 
     .text-button {
       background: #2563eb;
+
       color: white;
     }
 
@@ -194,94 +269,168 @@
       transform: scale(0.97);
     }
 
-    /* EDIT / DELETE */
+
+    /* =========================
+       EDIT / DELETE
+    ========================= */
 
     .manage-buttons {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 10px;
     }
 
     .edit-button,
     .delete-button {
-      min-height: 42px;
+      min-height: 44px;
+
       border: none;
+
       border-radius: 11px;
-      font-size: 14px;
+
+      font-size: 15px;
+
       font-weight: 700;
+
       cursor: pointer;
     }
 
     .edit-button {
       background: #f1f5f9;
+
       color: #334155;
     }
 
     .delete-button {
       background: #fee2e2;
+
       color: #b91c1c;
     }
 
-    /* ADD CONTACT */
+    .edit-button:active,
+    .delete-button:active {
+      transform: scale(0.97);
+    }
+
+
+    /* =========================
+       ADD CONTACT
+    ========================= */
 
     .add-contact-button {
       width: 100%;
-      min-height: 54px;
+
+      min-height: 58px;
+
+      margin-top: 2px;
+
       border: none;
+
       border-radius: 15px;
+
       background: #111827;
+
       color: white;
-      font-size: 17px;
+
+      font-size: 18px;
+
       font-weight: 700;
+
       cursor: pointer;
-      margin-top: 4px;
     }
 
     .add-contact-button:active {
       transform: scale(0.98);
     }
 
-    /* MODAL */
+
+    /* =========================
+       EMPTY CONTACT LIST
+    ========================= */
+
+    .empty {
+      background: white;
+
+      border-radius: 18px;
+
+      padding: 30px 20px;
+
+      margin-bottom: 14px;
+
+      text-align: center;
+
+      color: #6b7280;
+    }
+
+
+    /* =========================
+       MODAL
+    ========================= */
 
     .modal {
       display: none;
+
       position: fixed;
+
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+
       z-index: 100;
+
+      background: rgba(0, 0, 0, 0.50);
+
       padding: 20px;
+
       align-items: center;
+
       justify-content: center;
     }
 
     .modal-content {
       width: 100%;
+
       max-width: 500px;
+
       background: white;
+
       border-radius: 20px;
+
       padding: 22px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+      box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.25);
     }
 
-    .modal-content h2 {
-      margin-top: 0;
-      font-size: 23px;
+    .modal-title {
+      margin: 0 0 18px;
+
+      font-size: 24px;
     }
 
     .form-label {
       display: block;
-      font-size: 14px;
+
+      margin: 14px 0 6px;
+
+      font-size: 15px;
+
       font-weight: 700;
-      margin: 15px 0 6px;
     }
 
     .form-input {
       width: 100%;
-      min-height: 50px;
-      border: 1px solid #d1d5db;
-      border-radius: 12px;
+
+      min-height: 52px;
+
       padding: 0 14px;
+
+      border: 1px solid #d1d5db;
+
+      border-radius: 12px;
+
       font-size: 17px;
+
       outline: none;
     }
 
@@ -291,50 +440,56 @@
 
     .modal-buttons {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 10px;
+
       margin-top: 20px;
     }
 
     .save-button,
     .cancel-button {
-      min-height: 50px;
+      min-height: 52px;
+
       border: none;
+
       border-radius: 12px;
-      font-size: 16px;
+
+      font-size: 17px;
+
       font-weight: 700;
+
       cursor: pointer;
     }
 
     .save-button {
       background: #16a34a;
+
       color: white;
     }
 
     .cancel-button {
       background: #e5e7eb;
+
       color: #374151;
     }
 
-    /* EMPTY STATE */
 
-    .empty {
-      text-align: center;
-      padding: 35px 15px;
-      color: #6b7280;
-    }
-
-    /* SMALL PHONES */
+    /* =========================
+       SMALL PHONES
+    ========================= */
 
     @media (max-width: 380px) {
 
-      .title {
-        font-size: 22px;
+      .help-button {
+        font-size: 23px;
+
+        min-height: 68px;
       }
 
-      .help-button {
-        font-size: 16px;
-        padding: 13px 16px;
+      .contacts {
+        padding: 12px;
       }
 
       .contact {
@@ -342,59 +497,66 @@
       }
 
       .action-button {
-        font-size: 15px;
+        font-size: 16px;
       }
     }
+
   </style>
 </head>
+
 
 <body>
 
   <div class="app">
 
-    <!-- HEADER -->
+
+    <!-- =========================
+         HELP BUTTON
+    ========================= -->
 
     <header>
 
-      <div class="header-row">
-
-        <h1 class="title">
-          My Contacts
-        </h1>
-
-        <button
-          class="help-button"
-          type="button"
-          onclick="toggleHelp()"
-        >
-          Help
-        </button>
-
-      </div>
+      <button
+        class="help-button"
+        type="button"
+        onclick="toggleHelp()"
+      >
+        🆘 HELP
+      </button>
 
     </header>
 
 
-    <!-- HELP -->
+    <!-- =========================
+         HELP INFORMATION
+    ========================= -->
 
-    <div class="help-box" id="helpBox">
+    <div
+      class="help-box"
+      id="helpBox"
+    >
 
       <h2>Need Help?</h2>
 
       <p>
         Choose a contact below and tap
         <strong>Call</strong>
-        to phone them or
-        <strong>Text</strong>
-        to send them a message.
+        to phone them.
       </p>
 
       <p>
-        You can also add, edit, or delete contacts at any time.
+        Tap
+        <strong>Text</strong>
+        to send them a text message.
+      </p>
+
+      <p>
+        You can add, edit, or delete contacts whenever you want.
       </p>
 
       <button
         class="close-help"
+        type="button"
         onclick="toggleHelp()"
       >
         Close
@@ -403,14 +565,24 @@
     </div>
 
 
-    <!-- CONTACT LIST -->
+    <!-- =========================
+         CONTACTS
+    ========================= -->
 
     <main class="contacts">
 
+      <h1 class="contacts-heading">
+        Emergency Contacts
+      </h1>
+
       <div id="contactList"></div>
+
+
+      <!-- ADD CONTACT -->
 
       <button
         class="add-contact-button"
+        type="button"
         onclick="openAddContact()"
       >
         ＋ Add Contact
@@ -421,7 +593,9 @@
   </div>
 
 
-  <!-- ADD / EDIT MODAL -->
+  <!-- =========================
+       ADD / EDIT CONTACT WINDOW
+  ========================= -->
 
   <div
     class="modal"
@@ -430,11 +604,18 @@
 
     <div class="modal-content">
 
-      <h2 id="modalTitle">
+      <h2
+        class="modal-title"
+        id="modalTitle"
+      >
         Add Contact
       </h2>
 
-      <label class="form-label">
+
+      <label
+        class="form-label"
+        for="nameInput"
+      >
         Name
       </label>
 
@@ -446,7 +627,11 @@
         autocomplete="name"
       >
 
-      <label class="form-label">
+
+      <label
+        class="form-label"
+        for="phoneInput"
+      >
         Phone Number
       </label>
 
@@ -458,10 +643,12 @@
         autocomplete="tel"
       >
 
+
       <div class="modal-buttons">
 
         <button
           class="cancel-button"
+          type="button"
           onclick="closeModal()"
         >
           Cancel
@@ -469,6 +656,7 @@
 
         <button
           class="save-button"
+          type="button"
           onclick="saveContact()"
         >
           Save
@@ -483,50 +671,57 @@
 
   <script>
 
-    /* --------------------------------
-       CONTACT DATA
-    -------------------------------- */
 
-    let contacts = JSON.parse(
-      localStorage.getItem("myContacts")
-    ) || [
-      {
-        id: Date.now(),
-        name: "Brian",
-        phone: "902-555-0101"
-      },
-      {
-        id: Date.now() + 1,
-        name: "Lisa",
-        phone: "902-555-0102"
-      },
-      {
-        id: Date.now() + 2,
-        name: "Mom",
-        phone: "902-555-0103"
-      }
-    ];
+    /* =========================
+       CONTACT DATA
+    ========================= */
+
+    let contacts =
+      JSON.parse(
+        localStorage.getItem("emergencyContacts")
+      ) || [
+
+        {
+          id: 1,
+          name: "Brian",
+          phone: "902-555-0101"
+        },
+
+        {
+          id: 2,
+          name: "Lisa",
+          phone: "902-555-0102"
+        },
+
+        {
+          id: 3,
+          name: "Mom",
+          phone: "902-555-0103"
+        }
+
+      ];
+
 
     let editingId = null;
 
 
-    /* --------------------------------
+    /* =========================
        SAVE CONTACTS
-    -------------------------------- */
+    ========================= */
 
     function saveContacts() {
 
       localStorage.setItem(
-        "myContacts",
+        "emergencyContacts",
         JSON.stringify(contacts)
       );
 
     }
 
 
-    /* --------------------------------
+    /* =========================
        DISPLAY CONTACTS
-    -------------------------------- */
+    ========================= */
 
     function renderContacts() {
 
@@ -535,12 +730,13 @@
 
       list.innerHTML = "";
 
+
       if (contacts.length === 0) {
 
         list.innerHTML = `
           <div class="empty">
-            <p><strong>No contacts yet.</strong></p>
-            <p>Tap "Add Contact" to get started.</p>
+            <strong>No contacts yet.</strong>
+            <p>Tap "Add Contact" below.</p>
           </div>
         `;
 
@@ -548,19 +744,19 @@
       }
 
 
-      contacts.forEach(contact => {
+      contacts.forEach(function(contact) {
+
+        const card =
+          document.createElement("div");
+
+        card.className = "contact";
+
 
         const firstLetter =
           contact.name
             .trim()
             .charAt(0)
             .toUpperCase();
-
-
-        const card =
-          document.createElement("div");
-
-        card.className = "contact";
 
 
         card.innerHTML = `
@@ -592,8 +788,9 @@
               class="action-button call-button"
               href="tel:${phoneForLink(contact.phone)}"
             >
-              ☎ Call
+              ☎️ Call
             </a>
+
 
             <a
               class="action-button text-button"
@@ -609,13 +806,16 @@
 
             <button
               class="edit-button"
+              type="button"
               onclick="editContact(${contact.id})"
             >
               ✏️ Edit
             </button>
 
+
             <button
               class="delete-button"
+              type="button"
               onclick="deleteContact(${contact.id})"
             >
               🗑️ Delete
@@ -633,29 +833,35 @@
     }
 
 
-    /* --------------------------------
+    /* =========================
        ADD CONTACT
-    -------------------------------- */
+    ========================= */
 
     function openAddContact() {
 
       editingId = null;
 
+
       document.getElementById("modalTitle")
         .textContent = "Add Contact";
+
 
       document.getElementById("nameInput")
         .value = "";
 
+
       document.getElementById("phoneInput")
         .value = "";
+
 
       document.getElementById("contactModal")
         .style.display = "flex";
 
-      setTimeout(() => {
 
-        document.getElementById("nameInput")
+      setTimeout(function() {
+
+        document
+          .getElementById("nameInput")
           .focus();
 
       }, 100);
@@ -663,27 +869,37 @@
     }
 
 
-    /* --------------------------------
+    /* =========================
        EDIT CONTACT
-    -------------------------------- */
+    ========================= */
 
     function editContact(id) {
 
       const contact =
-        contacts.find(c => c.id === id);
+        contacts.find(function(c) {
+
+          return c.id === id;
+
+        });
+
 
       if (!contact) return;
 
+
       editingId = id;
+
 
       document.getElementById("modalTitle")
         .textContent = "Edit Contact";
 
+
       document.getElementById("nameInput")
         .value = contact.name;
 
+
       document.getElementById("phoneInput")
         .value = contact.phone;
+
 
       document.getElementById("contactModal")
         .style.display = "flex";
@@ -691,19 +907,24 @@
     }
 
 
-    /* --------------------------------
-       SAVE ADD / EDIT
-    -------------------------------- */
+    /* =========================
+       SAVE CONTACT
+    ========================= */
 
     function saveContact() {
 
       const name =
-        document.getElementById("nameInput")
-          .value.trim();
+        document
+          .getElementById("nameInput")
+          .value
+          .trim();
+
 
       const phone =
-        document.getElementById("phoneInput")
-          .value.trim();
+        document
+          .getElementById("phoneInput")
+          .value
+          .trim();
 
 
       if (!name) {
@@ -724,6 +945,8 @@
       }
 
 
+      /* ADD */
+
       if (editingId === null) {
 
         contacts.push({
@@ -736,10 +959,20 @@
 
         });
 
-      } else {
+      }
+
+
+      /* EDIT */
+
+      else {
 
         const contact =
-          contacts.find(c => c.id === editingId);
+          contacts.find(function(c) {
+
+            return c.id === editingId;
+
+          });
+
 
         if (contact) {
 
@@ -761,21 +994,28 @@
     }
 
 
-    /* --------------------------------
+    /* =========================
        DELETE CONTACT
-    -------------------------------- */
+    ========================= */
 
     function deleteContact(id) {
 
       const contact =
-        contacts.find(c => c.id === id);
+        contacts.find(function(c) {
+
+          return c.id === id;
+
+        });
+
 
       if (!contact) return;
 
 
       const confirmed =
         confirm(
-          `Delete ${contact.name} from your contacts?`
+          "Delete " +
+          contact.name +
+          " from your contacts?"
         );
 
 
@@ -783,7 +1023,12 @@
 
 
       contacts =
-        contacts.filter(c => c.id !== id);
+        contacts.filter(function(c) {
+
+          return c.id !== id;
+
+        });
+
 
       saveContacts();
 
@@ -792,9 +1037,9 @@
     }
 
 
-    /* --------------------------------
+    /* =========================
        CLOSE MODAL
-    -------------------------------- */
+    ========================= */
 
     function closeModal() {
 
@@ -804,14 +1049,15 @@
     }
 
 
-    /* --------------------------------
-       HELP
-    -------------------------------- */
+    /* =========================
+       HELP BUTTON
+    ========================= */
 
     function toggleHelp() {
 
       const helpBox =
         document.getElementById("helpBox");
+
 
       if (
         helpBox.style.display === "block"
@@ -819,7 +1065,9 @@
 
         helpBox.style.display = "none";
 
-      } else {
+      }
+
+      else {
 
         helpBox.style.display = "block";
 
@@ -828,9 +1076,9 @@
     }
 
 
-    /* --------------------------------
-       PHONE LINK
-    -------------------------------- */
+    /* =========================
+       PHONE NUMBER
+    ========================= */
 
     function phoneForLink(phone) {
 
@@ -842,9 +1090,9 @@
     }
 
 
-    /* --------------------------------
-       SECURITY / DISPLAY
-    -------------------------------- */
+    /* =========================
+       SAFE TEXT
+    ========================= */
 
     function escapeHtml(text) {
 
@@ -858,9 +1106,9 @@
     }
 
 
-    /* --------------------------------
+    /* =========================
        START APP
-    -------------------------------- */
+    ========================= */
 
     saveContacts();
 
