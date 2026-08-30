@@ -34,7 +34,7 @@
 
     header {
       background: white;
-      padding: 18px 18px 16px;
+      padding: 18px;
       border-bottom: 1px solid #e5e7eb;
       position: sticky;
       top: 0;
@@ -45,6 +45,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
     }
 
     .title {
@@ -53,23 +54,59 @@
       margin: 0;
     }
 
+    /* RED HELP BUTTON */
+
     .help-button {
       border: none;
-      background: #2563eb;
+      background: #dc2626;
       color: white;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
-      padding: 12px 18px;
+      padding: 14px 20px;
       border-radius: 14px;
-      min-height: 44px;
+      min-height: 52px;
       cursor: pointer;
+      box-shadow: 0 3px 8px rgba(220, 38, 38, 0.3);
     }
 
     .help-button:active {
       transform: scale(0.96);
     }
 
-    /* CONTACT LIST */
+    /* HELP BOX */
+
+    .help-box {
+      display: none;
+      margin: 16px 16px 0;
+      padding: 18px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .help-box h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .help-box p {
+      line-height: 1.5;
+      color: #4b5563;
+    }
+
+    .close-help {
+      margin-top: 8px;
+      width: 100%;
+      min-height: 46px;
+      border: none;
+      border-radius: 12px;
+      background: #e5e7eb;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* CONTACTS */
 
     .contacts {
       padding: 16px;
@@ -119,12 +156,13 @@
       color: #6b7280;
     }
 
-    /* ACTION BUTTONS */
+    /* CALL / TEXT */
 
     .actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
+      margin-bottom: 10px;
     }
 
     .action-button {
@@ -156,43 +194,147 @@
       transform: scale(0.97);
     }
 
-    /* HELP BOX */
+    /* EDIT / DELETE */
 
-    .help-box {
-      display: none;
-      margin: 0 16px 16px;
-      padding: 18px;
-      background: white;
-      border-radius: 18px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    .manage-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
-    .help-box h2 {
-      margin-top: 0;
-      font-size: 20px;
+    .edit-button,
+    .delete-button {
+      min-height: 42px;
+      border: none;
+      border-radius: 11px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    .help-box p {
-      line-height: 1.5;
-      color: #4b5563;
+    .edit-button {
+      background: #f1f5f9;
+      color: #334155;
     }
 
-    .close-help {
-      margin-top: 8px;
+    .delete-button {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    /* ADD CONTACT */
+
+    .add-contact-button {
       width: 100%;
-      min-height: 46px;
+      min-height: 54px;
+      border: none;
+      border-radius: 15px;
+      background: #111827;
+      color: white;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    .add-contact-button:active {
+      transform: scale(0.98);
+    }
+
+    /* MODAL */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 100;
+      padding: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      font-size: 23px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin: 15px 0 6px;
+    }
+
+    .form-input {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 0 14px;
+      font-size: 17px;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: #2563eb;
+    }
+
+    .modal-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .save-button,
+    .cancel-button {
+      min-height: 50px;
       border: none;
       border-radius: 12px;
-      background: #e5e7eb;
-      font-weight: 700;
       font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .save-button {
+      background: #16a34a;
+      color: white;
+    }
+
+    .cancel-button {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    /* EMPTY STATE */
+
+    .empty {
+      text-align: center;
+      padding: 35px 15px;
+      color: #6b7280;
     }
 
     /* SMALL PHONES */
 
     @media (max-width: 380px) {
+
       .title {
         font-size: 22px;
+      }
+
+      .help-button {
+        font-size: 16px;
+        padding: 13px 16px;
       }
 
       .contact {
@@ -213,20 +355,23 @@
     <!-- HEADER -->
 
     <header>
+
       <div class="header-row">
 
-        <h1 class="title">My Contacts</h1>
+        <h1 class="title">
+          My Contacts
+        </h1>
 
         <button
           class="help-button"
           type="button"
           onclick="toggleHelp()"
-          aria-label="Open help"
         >
           Help
         </button>
 
       </div>
+
     </header>
 
 
@@ -237,13 +382,19 @@
       <h2>Need Help?</h2>
 
       <p>
-        Choose a contact below and tap <strong>Call</strong> to phone them
-        or <strong>Text</strong> to send them a message.
+        Choose a contact below and tap
+        <strong>Call</strong>
+        to phone them or
+        <strong>Text</strong>
+        to send them a message.
+      </p>
+
+      <p>
+        You can also add, edit, or delete contacts at any time.
       </p>
 
       <button
         class="close-help"
-        type="button"
         onclick="toggleHelp()"
       >
         Close
@@ -252,168 +403,468 @@
     </div>
 
 
-    <!-- CONTACTS -->
+    <!-- CONTACT LIST -->
 
     <main class="contacts">
 
-      <!-- CONTACT 1 -->
+      <div id="contactList"></div>
 
-      <div class="contact">
-
-        <div class="contact-top">
-
-          <div class="avatar">
-            B
-          </div>
-
-          <div class="contact-info">
-
-            <div class="contact-name">
-              Brian
-            </div>
-
-            <div class="contact-number">
-              902-555-0101
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="actions">
-
-          <a
-            class="action-button call-button"
-            href="tel:+19025550101"
-            aria-label="Call Brian"
-          >
-            ☎ Call
-          </a>
-
-          <a
-            class="action-button text-button"
-            href="sms:+19025550101"
-            aria-label="Text Brian"
-          >
-            💬 Text
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- CONTACT 2 -->
-
-      <div class="contact">
-
-        <div class="contact-top">
-
-          <div class="avatar">
-            L
-          </div>
-
-          <div class="contact-info">
-
-            <div class="contact-name">
-              Lisa
-            </div>
-
-            <div class="contact-number">
-              902-555-0102
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="actions">
-
-          <a
-            class="action-button call-button"
-            href="tel:+19025550102"
-            aria-label="Call Lisa"
-          >
-            ☎ Call
-          </a>
-
-          <a
-            class="action-button text-button"
-            href="sms:+19025550102"
-            aria-label="Text Lisa"
-          >
-            💬 Text
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- CONTACT 3 -->
-
-      <div class="contact">
-
-        <div class="contact-top">
-
-          <div class="avatar">
-            M
-          </div>
-
-          <div class="contact-info">
-
-            <div class="contact-name">
-              Mom
-            </div>
-
-            <div class="contact-number">
-              902-555-0103
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="actions">
-
-          <a
-            class="action-button call-button"
-            href="tel:+19025550103"
-            aria-label="Call Mom"
-          >
-            ☎ Call
-          </a>
-
-          <a
-            class="action-button text-button"
-            href="sms:+19025550103"
-            aria-label="Text Mom"
-          >
-            💬 Text
-          </a>
-
-        </div>
-
-      </div>
+      <button
+        class="add-contact-button"
+        onclick="openAddContact()"
+      >
+        ＋ Add Contact
+      </button>
 
     </main>
 
   </div>
 
 
+  <!-- ADD / EDIT MODAL -->
+
+  <div
+    class="modal"
+    id="contactModal"
+  >
+
+    <div class="modal-content">
+
+      <h2 id="modalTitle">
+        Add Contact
+      </h2>
+
+      <label class="form-label">
+        Name
+      </label>
+
+      <input
+        class="form-input"
+        id="nameInput"
+        type="text"
+        placeholder="Contact name"
+        autocomplete="name"
+      >
+
+      <label class="form-label">
+        Phone Number
+      </label>
+
+      <input
+        class="form-input"
+        id="phoneInput"
+        type="tel"
+        placeholder="902-555-1234"
+        autocomplete="tel"
+      >
+
+      <div class="modal-buttons">
+
+        <button
+          class="cancel-button"
+          onclick="closeModal()"
+        >
+          Cancel
+        </button>
+
+        <button
+          class="save-button"
+          onclick="saveContact()"
+        >
+          Save
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
   <script>
+
+    /* --------------------------------
+       CONTACT DATA
+    -------------------------------- */
+
+    let contacts = JSON.parse(
+      localStorage.getItem("myContacts")
+    ) || [
+      {
+        id: Date.now(),
+        name: "Brian",
+        phone: "902-555-0101"
+      },
+      {
+        id: Date.now() + 1,
+        name: "Lisa",
+        phone: "902-555-0102"
+      },
+      {
+        id: Date.now() + 2,
+        name: "Mom",
+        phone: "902-555-0103"
+      }
+    ];
+
+    let editingId = null;
+
+
+    /* --------------------------------
+       SAVE CONTACTS
+    -------------------------------- */
+
+    function saveContacts() {
+
+      localStorage.setItem(
+        "myContacts",
+        JSON.stringify(contacts)
+      );
+
+    }
+
+
+    /* --------------------------------
+       DISPLAY CONTACTS
+    -------------------------------- */
+
+    function renderContacts() {
+
+      const list =
+        document.getElementById("contactList");
+
+      list.innerHTML = "";
+
+      if (contacts.length === 0) {
+
+        list.innerHTML = `
+          <div class="empty">
+            <p><strong>No contacts yet.</strong></p>
+            <p>Tap "Add Contact" to get started.</p>
+          </div>
+        `;
+
+        return;
+      }
+
+
+      contacts.forEach(contact => {
+
+        const firstLetter =
+          contact.name
+            .trim()
+            .charAt(0)
+            .toUpperCase();
+
+
+        const card =
+          document.createElement("div");
+
+        card.className = "contact";
+
+
+        card.innerHTML = `
+
+          <div class="contact-top">
+
+            <div class="avatar">
+              ${escapeHtml(firstLetter)}
+            </div>
+
+            <div class="contact-info">
+
+              <div class="contact-name">
+                ${escapeHtml(contact.name)}
+              </div>
+
+              <div class="contact-number">
+                ${escapeHtml(contact.phone)}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="actions">
+
+            <a
+              class="action-button call-button"
+              href="tel:${phoneForLink(contact.phone)}"
+            >
+              ☎ Call
+            </a>
+
+            <a
+              class="action-button text-button"
+              href="sms:${phoneForLink(contact.phone)}"
+            >
+              💬 Text
+            </a>
+
+          </div>
+
+
+          <div class="manage-buttons">
+
+            <button
+              class="edit-button"
+              onclick="editContact(${contact.id})"
+            >
+              ✏️ Edit
+            </button>
+
+            <button
+              class="delete-button"
+              onclick="deleteContact(${contact.id})"
+            >
+              🗑️ Delete
+            </button>
+
+          </div>
+
+        `;
+
+
+        list.appendChild(card);
+
+      });
+
+    }
+
+
+    /* --------------------------------
+       ADD CONTACT
+    -------------------------------- */
+
+    function openAddContact() {
+
+      editingId = null;
+
+      document.getElementById("modalTitle")
+        .textContent = "Add Contact";
+
+      document.getElementById("nameInput")
+        .value = "";
+
+      document.getElementById("phoneInput")
+        .value = "";
+
+      document.getElementById("contactModal")
+        .style.display = "flex";
+
+      setTimeout(() => {
+
+        document.getElementById("nameInput")
+          .focus();
+
+      }, 100);
+
+    }
+
+
+    /* --------------------------------
+       EDIT CONTACT
+    -------------------------------- */
+
+    function editContact(id) {
+
+      const contact =
+        contacts.find(c => c.id === id);
+
+      if (!contact) return;
+
+      editingId = id;
+
+      document.getElementById("modalTitle")
+        .textContent = "Edit Contact";
+
+      document.getElementById("nameInput")
+        .value = contact.name;
+
+      document.getElementById("phoneInput")
+        .value = contact.phone;
+
+      document.getElementById("contactModal")
+        .style.display = "flex";
+
+    }
+
+
+    /* --------------------------------
+       SAVE ADD / EDIT
+    -------------------------------- */
+
+    function saveContact() {
+
+      const name =
+        document.getElementById("nameInput")
+          .value.trim();
+
+      const phone =
+        document.getElementById("phoneInput")
+          .value.trim();
+
+
+      if (!name) {
+
+        alert("Please enter a name.");
+
+        return;
+
+      }
+
+
+      if (!phone) {
+
+        alert("Please enter a phone number.");
+
+        return;
+
+      }
+
+
+      if (editingId === null) {
+
+        contacts.push({
+
+          id: Date.now(),
+
+          name: name,
+
+          phone: phone
+
+        });
+
+      } else {
+
+        const contact =
+          contacts.find(c => c.id === editingId);
+
+        if (contact) {
+
+          contact.name = name;
+
+          contact.phone = phone;
+
+        }
+
+      }
+
+
+      saveContacts();
+
+      renderContacts();
+
+      closeModal();
+
+    }
+
+
+    /* --------------------------------
+       DELETE CONTACT
+    -------------------------------- */
+
+    function deleteContact(id) {
+
+      const contact =
+        contacts.find(c => c.id === id);
+
+      if (!contact) return;
+
+
+      const confirmed =
+        confirm(
+          `Delete ${contact.name} from your contacts?`
+        );
+
+
+      if (!confirmed) return;
+
+
+      contacts =
+        contacts.filter(c => c.id !== id);
+
+      saveContacts();
+
+      renderContacts();
+
+    }
+
+
+    /* --------------------------------
+       CLOSE MODAL
+    -------------------------------- */
+
+    function closeModal() {
+
+      document.getElementById("contactModal")
+        .style.display = "none";
+
+    }
+
+
+    /* --------------------------------
+       HELP
+    -------------------------------- */
 
     function toggleHelp() {
 
-      const helpBox = document.getElementById("helpBox");
+      const helpBox =
+        document.getElementById("helpBox");
 
-      if (helpBox.style.display === "block") {
+      if (
+        helpBox.style.display === "block"
+      ) {
+
         helpBox.style.display = "none";
+
       } else {
+
         helpBox.style.display = "block";
+
       }
 
     }
+
+
+    /* --------------------------------
+       PHONE LINK
+    -------------------------------- */
+
+    function phoneForLink(phone) {
+
+      return phone.replace(
+        /[^0-9+]/g,
+        ""
+      );
+
+    }
+
+
+    /* --------------------------------
+       SECURITY / DISPLAY
+    -------------------------------- */
+
+    function escapeHtml(text) {
+
+      const div =
+        document.createElement("div");
+
+      div.textContent = text;
+
+      return div.innerHTML;
+
+    }
+
+
+    /* --------------------------------
+       START APP
+    -------------------------------- */
+
+    saveContacts();
+
+    renderContacts();
 
   </script>
 
