@@ -13,9 +13,9 @@
 
   <style>
 
-    /* ==============================
-       BASIC
-    ============================== */
+    /* =================================
+       GENERAL
+    ================================= */
 
     * {
       box-sizing: border-box;
@@ -33,20 +33,24 @@
         Arial,
         sans-serif;
 
-      background: #f3f4f6;
-      color: #111827;
+      background: #fff7f8;
+      color: #333333;
     }
 
     button,
-    a,
     input {
       font-family: inherit;
     }
 
+    a {
+      -webkit-user-select: none;
+      user-select: none;
+    }
 
-    /* ==============================
+
+    /* =================================
        APP
-    ============================== */
+    ================================= */
 
     .app {
       width: 100%;
@@ -56,15 +60,15 @@
 
       margin: 0 auto;
 
-      padding: 18px 16px 30px;
+      padding: 12px 16px 28px;
 
-      background: #f3f4f6;
+      background: #fff7f8;
     }
 
 
-    /* ==============================
+    /* =================================
        TOP BAR
-    ============================== */
+    ================================= */
 
     .top-bar {
       height: 52px;
@@ -72,6 +76,7 @@
       display: flex;
 
       align-items: center;
+
       justify-content: flex-end;
 
       margin-bottom: 8px;
@@ -82,70 +87,77 @@
       height: 48px;
 
       border: none;
+
       border-radius: 50%;
 
       background: white;
 
-      color: #374151;
+      color: #777;
 
-      font-size: 27px;
+      font-size: 25px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
       cursor: pointer;
 
       box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.12);
+        0 3px 10px rgba(0,0,0,0.10);
     }
 
     .settings-button:active {
-      transform: scale(0.93);
+      transform: scale(0.92);
     }
 
 
-    /* ==============================
+    /* =================================
        CONTACT LIST
-    ============================== */
+    ================================= */
 
     .contacts {
       display: flex;
+
       flex-direction: column;
 
       gap: 14px;
     }
 
 
-    /* ==============================
+    /* =================================
        CONTACT CARD
-    ============================== */
+    ================================= */
 
     .contact-card {
       background: white;
 
-      border-radius: 18px;
+      border-radius: 22px;
 
       padding: 18px;
 
+      border: 1px solid #f3dfe3;
+
       box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.07);
+        0 4px 12px rgba(180, 100, 120, 0.08);
     }
 
     .contact-name {
       margin: 0 0 14px;
 
-      font-size: 24px;
+      text-align: center;
+
+      font-size: 25px;
 
       font-weight: 750;
 
-      color: #111827;
+      color: #3f3f46;
     }
 
 
-    /* ==============================
+    /* =================================
        CALL / TEXT
-    ============================== */
+    ================================= */
 
     .contact-actions {
       display: grid;
@@ -157,15 +169,16 @@
 
     .call-button,
     .text-button {
-      min-height: 58px;
+      min-height: 60px;
 
       border: none;
 
-      border-radius: 14px;
+      border-radius: 16px;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
       gap: 8px;
@@ -180,13 +193,21 @@
     }
 
     .call-button {
-      background: #16a34a;
+      background: #65c98a;
+
       color: white;
+
+      box-shadow:
+        0 3px 7px rgba(60,170,100,0.18);
     }
 
     .text-button {
-      background: #2563eb;
+      background: #79a9e8;
+
       color: white;
+
+      box-shadow:
+        0 3px 7px rgba(70,120,190,0.18);
     }
 
     .call-button:active,
@@ -195,9 +216,9 @@
     }
 
 
-    /* ==============================
-       HELP
-    ============================== */
+    /* =================================
+       HELP AREA
+    ================================= */
 
     .help-area {
       margin-top: 22px;
@@ -206,17 +227,17 @@
     .help-button {
       width: 100%;
 
-      min-height: 82px;
+      min-height: 88px;
 
       border: none;
 
-      border-radius: 20px;
+      border-radius: 23px;
 
-      background: #dc2626;
+      background: #ef6b73;
 
       color: white;
 
-      font-size: 30px;
+      font-size: 31px;
 
       font-weight: 850;
 
@@ -225,7 +246,7 @@
       cursor: pointer;
 
       box-shadow:
-        0 5px 12px rgba(220, 38, 38, 0.30);
+        0 5px 14px rgba(220,80,90,0.25);
     }
 
     .help-button:active {
@@ -233,9 +254,9 @@
     }
 
 
-    /* ==============================
+    /* =================================
        HELP MESSAGE
-    ============================== */
+    ================================= */
 
     .help-message {
       display: none;
@@ -246,7 +267,7 @@
 
       background: white;
 
-      border-radius: 16px;
+      border-radius: 18px;
 
       text-align: center;
 
@@ -254,8 +275,10 @@
 
       line-height: 1.5;
 
+      border: 1px solid #f3dfe3;
+
       box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.08);
+        0 3px 10px rgba(0,0,0,0.07);
     }
 
     .help-message.visible {
@@ -263,13 +286,13 @@
     }
 
     .help-message strong {
-      color: #dc2626;
+      color: #e0525c;
     }
 
 
-    /* ==============================
+    /* =================================
        SETTINGS OVERLAY
-    ============================== */
+    ================================= */
 
     .settings-overlay {
       display: none;
@@ -280,11 +303,12 @@
 
       z-index: 100;
 
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(70,50,55,0.45);
 
-      padding: 20px;
+      padding: 18px;
 
       align-items: center;
+
       justify-content: center;
     }
 
@@ -293,42 +317,45 @@
     }
 
 
-    /* ==============================
+    /* =================================
        SETTINGS PANEL
-    ============================== */
+    ================================= */
 
     .settings-panel {
       width: 100%;
 
       max-width: 500px;
 
-      max-height: 90vh;
+      max-height: 92vh;
 
       overflow-y: auto;
 
-      background: white;
+      background: #fffafa;
 
-      border-radius: 22px;
+      border-radius: 25px;
 
       padding: 22px;
 
       box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.25);
+        0 12px 40px rgba(0,0,0,0.20);
     }
 
     .settings-header {
       display: flex;
 
       align-items: center;
+
       justify-content: space-between;
 
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .settings-title {
       margin: 0;
 
       font-size: 25px;
+
+      color: #444;
     }
 
     .close-settings {
@@ -339,28 +366,30 @@
 
       border-radius: 50%;
 
-      background: #f3f4f6;
+      background: #f1e8ea;
 
-      font-size: 22px;
+      color: #555;
+
+      font-size: 20px;
 
       cursor: pointer;
     }
 
 
-    /* ==============================
-       FAMILY NOTICE
-    ============================== */
+    /* =================================
+       FAMILY MESSAGE
+    ================================= */
 
     .family-notice {
-      padding: 14px;
+      padding: 15px;
 
       margin-bottom: 18px;
 
-      border-radius: 13px;
+      border-radius: 15px;
 
-      background: #eff6ff;
+      background: #fff0f3;
 
-      color: #1e40af;
+      color: #7d4a53;
 
       font-size: 15px;
 
@@ -368,47 +397,51 @@
     }
 
 
-    /* ==============================
-       ADD BUTTON
-    ============================== */
+    /* =================================
+       ADD CONTACT
+    ================================= */
 
     .add-button {
       width: 100%;
 
-      min-height: 54px;
+      min-height: 55px;
 
       margin-bottom: 18px;
 
       border: none;
 
-      border-radius: 13px;
+      border-radius: 15px;
 
-      background: #111827;
+      background: #8b78d8;
 
       color: white;
 
       font-size: 17px;
 
-      font-weight: 700;
+      font-weight: 750;
 
       cursor: pointer;
     }
 
+    .add-button:active {
+      transform: scale(0.98);
+    }
 
-    /* ==============================
-       MANAGEMENT CONTACT
-    ============================== */
+
+    /* =================================
+       MANAGE CONTACTS
+    ================================= */
 
     .manage-contact {
       display: flex;
 
       align-items: center;
 
-      gap: 10px;
+      gap: 9px;
 
       padding: 14px 0;
 
-      border-top: 1px solid #e5e7eb;
+      border-top: 1px solid #eadfe2;
     }
 
     .manage-contact-info {
@@ -422,13 +455,15 @@
 
       font-weight: 700;
 
-      margin-bottom: 3px;
+      color: #444;
     }
 
     .manage-phone {
+      margin-top: 3px;
+
       font-size: 14px;
 
-      color: #6b7280;
+      color: #888;
     }
 
     .edit-button,
@@ -439,7 +474,7 @@
 
       border: none;
 
-      border-radius: 10px;
+      border-radius: 11px;
 
       font-size: 14px;
 
@@ -449,21 +484,21 @@
     }
 
     .edit-button {
-      background: #e5e7eb;
+      background: #eeeaf9;
 
-      color: #374151;
+      color: #6657a3;
     }
 
     .delete-button {
-      background: #fee2e2;
+      background: #fde4e6;
 
-      color: #b91c1c;
+      color: #b64e57;
     }
 
 
-    /* ==============================
-       CONTACT FORM
-    ============================== */
+    /* =================================
+       FORM
+    ================================= */
 
     .form-area {
       display: none;
@@ -472,7 +507,7 @@
 
       padding-top: 18px;
 
-      border-top: 1px solid #e5e7eb;
+      border-top: 1px solid #eadfe2;
     }
 
     .form-area.visible {
@@ -483,6 +518,8 @@
       margin: 0 0 16px;
 
       font-size: 21px;
+
+      color: #444;
     }
 
     .form-label {
@@ -502,9 +539,9 @@
 
       padding: 0 14px;
 
-      border: 1px solid #d1d5db;
+      border: 1px solid #d9ced1;
 
-      border-radius: 12px;
+      border-radius: 13px;
 
       background: white;
 
@@ -514,7 +551,7 @@
     }
 
     .form-input:focus {
-      border-color: #2563eb;
+      border-color: #8b78d8;
     }
 
     .form-buttons {
@@ -529,13 +566,13 @@
 
     .save-button,
     .cancel-button {
-      min-height: 50px;
+      min-height: 52px;
 
       border: none;
 
-      border-radius: 12px;
+      border-radius: 13px;
 
-      font-size: 16px;
+      font-size: 17px;
 
       font-weight: 700;
 
@@ -543,40 +580,40 @@
     }
 
     .save-button {
-      background: #16a34a;
+      background: #65c98a;
 
       color: white;
     }
 
     .cancel-button {
-      background: #e5e7eb;
+      background: #e9e4e5;
 
-      color: #374151;
+      color: #555;
     }
 
 
-    /* ==============================
-       EMPTY STATE
-    ============================== */
+    /* =================================
+       EMPTY
+    ================================= */
 
     .empty-message {
       padding: 30px 15px;
 
       background: white;
 
-      border-radius: 18px;
+      border-radius: 20px;
 
       text-align: center;
 
-      color: #6b7280;
+      color: #888;
 
       font-size: 17px;
     }
 
 
-    /* ==============================
+    /* =================================
        SMALL PHONES
-    ============================== */
+    ================================= */
 
     @media (max-width: 380px) {
 
@@ -590,7 +627,7 @@
       }
 
       .contact-name {
-        font-size: 22px;
+        font-size: 23px;
       }
 
       .call-button,
@@ -607,8 +644,8 @@
       }
 
       .manage-contact-info {
-        width: 100%;
         flex-basis: 100%;
+        width: 100%;
       }
 
     }
@@ -622,13 +659,13 @@
 
 
   <!-- =====================================
-       ELDERLY USER DASHBOARD
+       MAIN DASHBOARD
   ====================================== -->
 
   <main class="app">
 
 
-    <!-- SETTINGS GEAR -->
+    <!-- FAMILY SETTINGS GEAR -->
 
     <div class="top-bar">
 
@@ -665,16 +702,17 @@
         🆘 HELP
       </button>
 
+
       <div
         class="help-message"
         id="helpMessage"
       >
 
-        <strong>Need help?</strong>
+        <strong>We're here to help. ❤️</strong>
 
         <br><br>
 
-        Choose someone above to call or text.
+        Choose a person above to call or text.
 
       </div>
 
@@ -696,19 +734,16 @@
     <div class="settings-panel">
 
 
-      <!-- SETTINGS HEADER -->
-
       <div class="settings-header">
 
         <h2 class="settings-title">
-          Family Settings
+          ⚙️ Family Settings
         </h2>
 
         <button
           class="close-settings"
           type="button"
           onclick="closeSettings()"
-          aria-label="Close settings"
         >
           ✕
         </button>
@@ -716,18 +751,14 @@
       </div>
 
 
-      <!-- NOTICE -->
-
       <div class="family-notice">
 
-        This area is for family members or caregivers.
-        Changes made here will update the contacts shown
+        ❤️ This area is for family members or
+        caregivers. Contacts added here will appear
         on the main screen.
 
       </div>
 
-
-      <!-- ADD -->
 
       <button
         class="add-button"
@@ -738,13 +769,11 @@
       </button>
 
 
-      <!-- CONTACT MANAGEMENT -->
-
       <div id="manageContactList">
       </div>
 
 
-      <!-- FORM -->
+      <!-- CONTACT FORM -->
 
       <div
         class="form-area"
@@ -806,7 +835,7 @@
             type="button"
             onclick="saveContact()"
           >
-            Save
+            Save ❤️
           </button>
 
         </div>
@@ -823,12 +852,12 @@
 
 
     /* =====================================
-       CONTACT DATA
+       CONTACTS
     ====================================== */
 
     let contacts =
       JSON.parse(
-        localStorage.getItem("familyContacts")
+        localStorage.getItem("familyConnectContacts")
       ) || [
 
         {
@@ -862,7 +891,7 @@
     function saveContacts() {
 
       localStorage.setItem(
-        "familyContacts",
+        "familyConnectContacts",
         JSON.stringify(contacts)
       );
 
@@ -870,7 +899,7 @@
 
 
     /* =====================================
-       DISPLAY MAIN DASHBOARD
+       SHOW CONTACTS
     ====================================== */
 
     function renderContacts() {
@@ -887,7 +916,7 @@
 
         list.innerHTML = `
           <div class="empty-message">
-            No contacts have been added yet.
+            ❤️ No contacts yet.
           </div>
         `;
 
@@ -910,6 +939,7 @@
             ${escapeHtml(contact.name)}
           </h2>
 
+
           <div class="contact-actions">
 
             <a
@@ -919,6 +949,7 @@
             >
               ☎️ Call
             </a>
+
 
             <a
               class="text-button"
@@ -971,7 +1002,7 @@
 
 
     /* =====================================
-       DISPLAY FAMILY CONTACT LIST
+       SHOW FAMILY CONTACTS
     ====================================== */
 
     function renderManageContacts() {
@@ -982,18 +1013,6 @@
         );
 
       list.innerHTML = "";
-
-
-      if (contacts.length === 0) {
-
-        list.innerHTML = `
-          <div class="empty-message">
-            No contacts yet.
-          </div>
-        `;
-
-        return;
-      }
 
 
       contacts.forEach(function(contact) {
@@ -1048,7 +1067,7 @@
 
 
     /* =====================================
-       SHOW ADD FORM
+       ADD CONTACT
     ====================================== */
 
     function showContactForm() {
@@ -1134,7 +1153,7 @@
 
 
     /* =====================================
-       SAVE ADD / EDIT
+       SAVE CONTACT
     ====================================== */
 
     function saveContact() {
@@ -1156,7 +1175,7 @@
       if (!name) {
 
         alert(
-          "Please enter the contact's name."
+          "Please enter a name."
         );
 
         return;
@@ -1167,15 +1186,13 @@
       if (!phone) {
 
         alert(
-          "Please enter the contact's phone number."
+          "Please enter a phone number."
         );
 
         return;
 
       }
 
-
-      /* ADD NEW */
 
       if (editingId === null) {
 
@@ -1190,9 +1207,6 @@
         });
 
       }
-
-
-      /* EDIT EXISTING */
 
       else {
 
@@ -1227,7 +1241,7 @@
 
 
     /* =====================================
-       DELETE
+       DELETE CONTACT
     ====================================== */
 
     function deleteContact(id) {
@@ -1245,9 +1259,9 @@
 
       const confirmed =
         confirm(
-          "Are you sure you want to delete " +
+          "Delete " +
           contact.name +
-          "?"
+          " from the contacts?"
         );
 
 
@@ -1272,13 +1286,12 @@
 
 
     /* =====================================
-       HIDE CONTACT FORM
+       HIDE FORM
     ====================================== */
 
     function hideContactForm() {
 
       editingId = null;
-
 
       document
         .getElementById("formArea")
@@ -1306,7 +1319,7 @@
 
 
     /* =====================================
-       PHONE LINK
+       PHONE NUMBER
     ====================================== */
 
     function phoneForLink(phone) {
@@ -1320,7 +1333,7 @@
 
 
     /* =====================================
-       SAFE DISPLAY
+       SAFE TEXT
     ====================================== */
 
     function escapeHtml(text) {
@@ -1336,13 +1349,12 @@
 
 
     /* =====================================
-       START APP
+       START
     ====================================== */
 
     saveContacts();
 
     renderContacts();
-
 
   </script>
 
