@@ -2,680 +2,563 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-  >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-  <title>Family Connect</title>
+<title>Family Connect</title>
 
-  <style>
+<style>
 
-    /* =========================================
-       RESET
-    ========================================= */
+* {
+  box-sizing: border-box;
+}
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
-    }
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
 
-    body {
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+  background: #fff5f7;
+  color: #333;
+}
 
-      background: #fff7f8;
-      color: #333;
-    }
 
-    button,
-    input {
-      font-family: inherit;
-    }
+/* =========================
+   APP
+========================= */
 
-    a {
-      text-decoration: none;
-    }
+.app {
+  width: 100%;
+  max-width: 600px;
 
+  min-height: 100vh;
 
-    /* =========================================
-       MAIN APP
-    ========================================= */
+  margin: 0 auto;
 
-    .app {
-      width: 100%;
-      max-width: 600px;
+  padding: 12px 16px 25px;
+}
 
-      min-height: 100vh;
 
-      margin: 0 auto;
+/* =========================
+   SETTINGS
+========================= */
 
-      padding: 12px 16px 28px;
+.top-bar {
+  height: 55px;
 
-      background: #fff7f8;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-      display: flex;
-      flex-direction: column;
-    }
+.settings-button {
+  width: 48px;
+  height: 48px;
 
+  border: 0;
+  border-radius: 50%;
 
-    /* =========================================
-       SETTINGS BUTTON
-    ========================================= */
+  background: white;
 
-    .top-bar {
-      height: 54px;
+  font-size: 25px;
 
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
+  box-shadow:
+    0 3px 10px rgba(0,0,0,0.10);
 
-      margin-bottom: 8px;
-    }
+  cursor: pointer;
+}
 
-    .settings-button {
-      width: 48px;
-      height: 48px;
 
-      border: none;
-      border-radius: 50%;
+/* =========================
+   CONTACTS
+========================= */
 
-      background: #ffffff;
+.contacts {
+  display: flex;
 
-      color: #777;
+  flex-direction: column;
 
-      font-size: 25px;
+  gap: 14px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  margin-top: 5px;
+}
 
-      cursor: pointer;
 
-      box-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.10);
+/* =========================
+   CONTACT CARD
+========================= */
 
-      transition: transform 0.1s;
-    }
+.contact-card {
+  background: white;
 
-    .settings-button:active {
-      transform: scale(0.90);
-    }
+  border-radius: 22px;
 
+  padding: 18px;
 
-    /* =========================================
-       CONTACTS
-    ========================================= */
+  border: 1px solid #f0dfe3;
 
-    .contacts {
-      display: flex;
-      flex-direction: column;
+  box-shadow:
+    0 4px 12px rgba(180,90,110,0.08);
+}
 
-      gap: 14px;
+.contact-name {
+  margin: 0 0 14px;
 
-      flex: 1;
-    }
+  text-align: center;
 
+  font-size: 25px;
 
-    /* =========================================
-       CONTACT CARD
-    ========================================= */
+  font-weight: 750;
 
-    .contact-card {
-      background: #ffffff;
+  color: #404047;
+}
 
-      border-radius: 22px;
 
-      padding: 18px;
+/* =========================
+   BUTTONS
+========================= */
 
-      border: 1px solid #f2dfe3;
+.contact-actions {
+  display: grid;
 
-      box-shadow:
-        0 4px 12px rgba(170, 90, 110, 0.08);
-    }
+  grid-template-columns: 1fr 1fr;
 
-    .contact-name {
-      margin: 0 0 14px;
+  gap: 12px;
+}
 
-      text-align: center;
+.call-button,
+.text-button {
+  min-height: 60px;
 
-      font-size: 25px;
+  border-radius: 16px;
 
-      font-weight: 750;
+  display: flex;
 
-      color: #3f3f46;
-    }
+  align-items: center;
+  justify-content: center;
 
+  text-decoration: none;
 
-    /* =========================================
-       CALL + TEXT
-    ========================================= */
+  font-size: 19px;
 
-    .contact-actions {
-      display: grid;
+  font-weight: 750;
 
-      grid-template-columns: 1fr 1fr;
+  color: white;
+}
 
-      gap: 12px;
-    }
+.call-button {
+  background: #68c98b;
+}
 
-    .call-button,
-    .text-button {
-      min-height: 60px;
+.text-button {
+  background: #78a9e6;
+}
 
-      border-radius: 16px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+/* =========================
+   EMPTY
+========================= */
 
-      gap: 8px;
+.empty-message {
+  background: white;
 
-      font-size: 19px;
+  border-radius: 22px;
 
-      font-weight: 750;
+  padding: 25px 18px;
 
-      cursor: pointer;
+  text-align: center;
 
-      transition: transform 0.1s;
-    }
+  color: #999;
 
-    .call-button {
-      background: #68c98b;
+  font-size: 17px;
 
-      color: white;
+  border: 1px solid #f0dfe3;
+}
 
-      box-shadow:
-        0 3px 7px rgba(60, 170, 100, 0.18);
-    }
 
-    .text-button {
-      background: #78a9e6;
+/* =========================
+   HELP
+========================= */
 
-      color: white;
+.help-area {
+  margin-top: 24px;
 
-      box-shadow:
-        0 3px 7px rgba(70, 120, 190, 0.18);
-    }
+  width: 100%;
+}
 
-    .call-button:active,
-    .text-button:active {
-      transform: scale(0.97);
-    }
+.help-button {
+  display: block;
 
+  width: 100%;
 
-    /* =========================================
-       EMPTY MESSAGE
-    ========================================= */
+  min-height: 92px;
 
-    .empty-message {
-      background: #ffffff;
+  border: none;
 
-      border-radius: 22px;
+  border-radius: 24px;
 
-      padding: 28px 18px;
+  background: #ed6871;
 
-      text-align: center;
+  color: white;
 
-      color: #999;
+  font-size: 31px;
 
-      font-size: 17px;
+  font-weight: 850;
 
-      border: 1px solid #f2dfe3;
-    }
+  box-shadow:
+    0 6px 15px rgba(220,80,90,0.28);
 
+  cursor: pointer;
+}
 
-    /* =========================================
-       HELP
-    ========================================= */
+.help-button:active {
+  transform: scale(0.97);
+}
 
-    .help-area {
-      margin-top: 20px;
-    }
 
-    .help-button {
-      width: 100%;
+/* =========================
+   HELP MESSAGE
+========================= */
 
-      min-height: 88px;
+.help-message {
+  display: none;
 
-      border: none;
+  margin-top: 12px;
 
-      border-radius: 23px;
+  padding: 18px;
 
-      background: #ed6871;
+  background: white;
 
-      color: white;
+  border-radius: 18px;
 
-      font-size: 31px;
+  text-align: center;
 
-      font-weight: 850;
+  font-size: 17px;
 
-      letter-spacing: 0.5px;
+  line-height: 1.5;
 
-      cursor: pointer;
+  border: 1px solid #f0dfe3;
+}
 
-      box-shadow:
-        0 5px 14px rgba(220, 80, 90, 0.25);
+.help-message.show {
+  display: block;
+}
 
-      transition: transform 0.1s;
-    }
+.help-message strong {
+  color: #df555e;
+}
 
-    .help-button:active {
-      transform: scale(0.97);
-    }
 
+/* =========================
+   SETTINGS OVERLAY
+========================= */
 
-    /* =========================================
-       HELP MESSAGE
-    ========================================= */
+.settings-overlay {
+  display: none;
 
-    .help-message {
-      display: none;
+  position: fixed;
 
-      margin-top: 12px;
+  inset: 0;
 
-      padding: 18px;
+  z-index: 999;
 
-      background: white;
+  background: rgba(50,40,45,0.50);
 
-      border-radius: 18px;
+  padding: 16px;
 
-      text-align: center;
+  align-items: center;
 
-      font-size: 17px;
+  justify-content: center;
+}
 
-      line-height: 1.5;
+.settings-overlay.show {
+  display: flex;
+}
 
-      color: #555;
 
-      border: 1px solid #f2dfe3;
+/* =========================
+   SETTINGS PANEL
+========================= */
 
-      box-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.07);
-    }
+.settings-panel {
+  width: 100%;
 
-    .help-message.visible {
-      display: block;
-    }
+  max-width: 500px;
 
-    .help-message strong {
-      color: #df555e;
-    }
+  max-height: 92vh;
 
+  overflow-y: auto;
 
-    /* =========================================
-       SETTINGS OVERLAY
-    ========================================= */
+  background: #fffafa;
 
-    .settings-overlay {
-      display: none;
+  border-radius: 25px;
 
-      position: fixed;
+  padding: 22px;
 
-      inset: 0;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.22);
+}
 
-      z-index: 100;
 
-      background: rgba(70, 50, 55, 0.48);
+/* =========================
+   HEADER
+========================= */
 
-      padding: 18px;
+.settings-header {
+  display: flex;
 
-      align-items: center;
-      justify-content: center;
-    }
+  align-items: center;
 
-    .settings-overlay.visible {
-      display: flex;
-    }
+  justify-content: space-between;
 
+  margin-bottom: 18px;
+}
 
-    /* =========================================
-       SETTINGS PANEL
-    ========================================= */
+.settings-title {
+  margin: 0;
 
-    .settings-panel {
-      width: 100%;
+  font-size: 25px;
+}
 
-      max-width: 500px;
+.close-button {
+  width: 44px;
+  height: 44px;
 
-      max-height: 92vh;
+  border: none;
 
-      overflow-y: auto;
+  border-radius: 50%;
 
-      background: #fffafa;
+  background: #eee7e9;
 
-      border-radius: 25px;
+  font-size: 20px;
 
-      padding: 22px;
+  cursor: pointer;
+}
 
-      box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.20);
-    }
 
+/* =========================
+   NOTICE
+========================= */
 
-    /* =========================================
-       SETTINGS HEADER
-    ========================================= */
+.family-notice {
+  padding: 15px;
 
-    .settings-header {
-      display: flex;
+  margin-bottom: 18px;
 
-      align-items: center;
-      justify-content: space-between;
+  border-radius: 15px;
 
-      margin-bottom: 18px;
-    }
+  background: #fff0f3;
 
-    .settings-title {
-      margin: 0;
+  color: #744c54;
 
-      font-size: 25px;
+  font-size: 15px;
 
-      color: #444;
-    }
+  line-height: 1.45;
+}
 
-    .close-settings {
-      width: 44px;
-      height: 44px;
 
-      border: none;
+/* =========================
+   ADD
+========================= */
 
-      border-radius: 50%;
+.add-button {
+  width: 100%;
 
-      background: #f1e8ea;
+  min-height: 56px;
 
-      color: #555;
+  border: none;
 
-      font-size: 20px;
+  border-radius: 15px;
 
-      cursor: pointer;
-    }
+  background: #8b78d8;
 
+  color: white;
 
-    /* =========================================
-       FAMILY NOTICE
-    ========================================= */
+  font-size: 18px;
 
-    .family-notice {
-      padding: 15px;
+  font-weight: 750;
 
-      margin-bottom: 18px;
+  cursor: pointer;
+}
 
-      border-radius: 15px;
 
-      background: #fff0f3;
+/* =========================
+   MANAGE LIST
+========================= */
 
-      color: #7d4a53;
+.manage-list {
+  margin-top: 16px;
+}
 
-      font-size: 15px;
+.manage-contact {
+  display: flex;
 
-      line-height: 1.45;
-    }
+  align-items: center;
 
+  gap: 8px;
 
-    /* =========================================
-       ADD BUTTON
-    ========================================= */
+  padding: 15px 0;
 
-    .add-button {
-      width: 100%;
+  border-top: 1px solid #eadfe2;
+}
 
-      min-height: 55px;
+.manage-info {
+  flex: 1;
+}
 
-      margin-bottom: 18px;
+.manage-name {
+  font-size: 17px;
 
-      border: none;
+  font-weight: 700;
+}
 
-      border-radius: 15px;
+.manage-phone {
+  margin-top: 3px;
 
-      background: #8b78d8;
+  font-size: 14px;
 
-      color: white;
+  color: #888;
+}
 
-      font-size: 18px;
+.edit-button,
+.delete-button {
+  min-height: 42px;
 
-      font-weight: 750;
+  padding: 8px 11px;
 
-      cursor: pointer;
-    }
+  border: none;
 
-    .add-button:active {
-      transform: scale(0.98);
-    }
+  border-radius: 10px;
 
+  font-size: 14px;
 
-    /* =========================================
-       MANAGE CONTACT
-    ========================================= */
+  font-weight: 700;
 
-    .manage-contact {
-      display: flex;
+  cursor: pointer;
+}
 
-      align-items: center;
+.edit-button {
+  background: #eeeafa;
 
-      gap: 9px;
+  color: #6657a3;
+}
 
-      padding: 14px 0;
+.delete-button {
+  background: #fde4e6;
 
-      border-top: 1px solid #eadfe2;
-    }
+  color: #b64e57;
+}
 
-    .manage-contact-info {
-      flex: 1;
 
-      min-width: 0;
-    }
+/* =========================
+   FORM
+========================= */
 
-    .manage-name {
-      font-size: 17px;
+.form {
+  display: none;
 
-      font-weight: 700;
+  margin-top: 20px;
 
-      color: #444;
-    }
+  padding-top: 20px;
 
-    .manage-phone {
-      margin-top: 3px;
+  border-top: 1px solid #eadfe2;
+}
 
-      font-size: 14px;
+.form.show {
+  display: block;
+}
 
-      color: #888;
-    }
+.form h3 {
+  margin: 0 0 15px;
 
+  font-size: 21px;
+}
 
-    /* =========================================
-       EDIT / DELETE
-    ========================================= */
+.form label {
+  display: block;
 
-    .edit-button,
-    .delete-button {
-      min-height: 42px;
+  margin: 13px 0 6px;
 
-      padding: 8px 12px;
+  font-size: 15px;
 
-      border: none;
+  font-weight: 700;
+}
 
-      border-radius: 11px;
+.form input {
+  width: 100%;
 
-      font-size: 14px;
+  height: 52px;
 
-      font-weight: 700;
+  padding: 0 14px;
 
-      cursor: pointer;
-    }
+  border: 1px solid #d8ced1;
 
-    .edit-button {
-      background: #eeeaf9;
+  border-radius: 13px;
 
-      color: #6657a3;
-    }
+  background: white;
 
-    .delete-button {
-      background: #fde4e6;
+  font-size: 17px;
 
-      color: #b64e57;
-    }
+  outline: none;
+}
 
-    .edit-button:active,
-    .delete-button:active {
-      transform: scale(0.96);
-    }
 
+/* =========================
+   FORM BUTTONS
+========================= */
 
-    /* =========================================
-       CONTACT FORM
-    ========================================= */
+.form-buttons {
+  display: grid;
 
-    .form-area {
-      display: none;
+  grid-template-columns: 1fr 1fr;
 
-      margin-top: 18px;
+  gap: 10px;
 
-      padding-top: 18px;
+  margin-top: 18px;
+}
 
-      border-top: 1px solid #eadfe2;
-    }
+.save-button,
+.cancel-button {
+  min-height: 52px;
 
-    .form-area.visible {
-      display: block;
-    }
+  border: none;
 
-    .form-title {
-      margin: 0 0 16px;
+  border-radius: 13px;
 
-      font-size: 21px;
+  font-size: 17px;
 
-      color: #444;
-    }
+  font-weight: 700;
 
-    .form-label {
-      display: block;
+  cursor: pointer;
+}
 
-      margin: 13px 0 6px;
+.save-button {
+  background: #68c98b;
 
-      font-size: 15px;
+  color: white;
+}
 
-      font-weight: 700;
-    }
+.cancel-button {
+  background: #e9e4e5;
 
-    .form-input {
-      width: 100%;
+  color: #555;
+}
 
-      min-height: 52px;
-
-      padding: 0 14px;
-
-      border: 1px solid #d9ced1;
-
-      border-radius: 13px;
-
-      background: white;
-
-      font-size: 17px;
-
-      outline: none;
-    }
-
-    .form-input:focus {
-      border-color: #8b78d8;
-    }
-
-
-    /* =========================================
-       FORM BUTTONS
-    ========================================= */
-
-    .form-buttons {
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 10px;
-
-      margin-top: 18px;
-    }
-
-    .save-button,
-    .cancel-button {
-      min-height: 52px;
-
-      border: none;
-
-      border-radius: 13px;
-
-      font-size: 17px;
-
-      font-weight: 700;
-
-      cursor: pointer;
-    }
-
-    .save-button {
-      background: #68c98b;
-
-      color: white;
-    }
-
-    .cancel-button {
-      background: #e9e4e5;
-
-      color: #555;
-    }
-
-
-    /* =========================================
-       SMALL PHONES
-    ========================================= */
-
-    @media (max-width: 380px) {
-
-      .app {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-
-      .contact-card {
-        padding: 15px;
-      }
-
-      .contact-name {
-        font-size: 23px;
-      }
-
-      .call-button,
-      .text-button {
-        font-size: 17px;
-      }
-
-      .help-button {
-        font-size: 27px;
-      }
-
-      .manage-contact {
-        flex-wrap: wrap;
-      }
-
-      .manage-contact-info {
-        width: 100%;
-        flex-basis: 100%;
-      }
-
-    }
-
-  </style>
+</style>
 
 </head>
 
@@ -683,755 +566,748 @@
 <body>
 
 
-  <!-- =========================================
-       MAIN ELDERLY USER SCREEN
-  ========================================== -->
+<!-- =================================
+     MAIN SCREEN
+================================= -->
 
-  <main class="app">
-
-
-    <!-- FAMILY SETTINGS -->
-
-    <div class="top-bar">
-
-      <button
-        class="settings-button"
-        type="button"
-        onclick="openSettings()"
-        aria-label="Family settings"
-      >
-        ⚙️
-      </button>
-
-    </div>
+<main class="app">
 
 
-    <!-- CONTACTS -->
+  <!-- SETTINGS -->
 
-    <section
-      class="contacts"
-      id="contactList"
+  <div class="top-bar">
+
+    <button
+      class="settings-button"
+      onclick="openSettings()"
     >
-    </section>
+      ⚙️
+    </button>
+
+  </div>
 
 
-    <!-- HELP -->
-
-    <div class="help-area">
-
-      <button
-        class="help-button"
-        type="button"
-        onclick="showHelp()"
-      >
-        🆘 HELP
-      </button>
-
-
-      <div
-        class="help-message"
-        id="helpMessage"
-      >
-
-        <strong>We're here to help ❤️</strong>
-
-        <br><br>
-
-        Choose a person above to call or text.
-
-      </div>
-
-    </div>
-
-
-  </main>
-
-
-
-  <!-- =========================================
-       FAMILY SETTINGS WINDOW
-  ========================================== -->
+  <!-- CONTACTS -->
 
   <div
-    class="settings-overlay"
-    id="settingsOverlay"
-  >
-
-    <div class="settings-panel">
+    class="contacts"
+    id="contactList"
+  ></div>
 
 
-      <!-- HEADER -->
+  <!-- HELP -->
 
-      <div class="settings-header">
+  <div class="help-area">
 
-        <h2 class="settings-title">
-          ⚙️ Family Settings
-        </h2>
-
-        <button
-          class="close-settings"
-          type="button"
-          onclick="closeSettings()"
-          aria-label="Close settings"
-        >
-          ✕
-        </button>
-
-      </div>
+    <button
+      class="help-button"
+      onclick="toggleHelp()"
+    >
+      🆘 HELP
+    </button>
 
 
-      <!-- NOTICE -->
+    <div
+      class="help-message"
+      id="helpMessage"
+    >
 
-      <div class="family-notice">
+      <strong>We're here to help ❤️</strong>
 
-        ❤️ This area is for family members or
-        caregivers. Contacts added here will appear
-        on the main screen.
+      <br><br>
 
-      </div>
-
-
-      <!-- ADD CONTACT -->
-
-      <button
-        class="add-button"
-        type="button"
-        onclick="showContactForm()"
-      >
-        ＋ Add Contact
-      </button>
-
-
-      <!-- CONTACT MANAGEMENT -->
-
-      <div id="manageContactList">
-      </div>
-
-
-      <!-- CONTACT FORM -->
-
-      <div
-        class="form-area"
-        id="formArea"
-      >
-
-        <h3
-          class="form-title"
-          id="formTitle"
-        >
-          Add Contact
-        </h3>
-
-
-        <label
-          class="form-label"
-          for="nameInput"
-        >
-          Name
-        </label>
-
-        <input
-          class="form-input"
-          id="nameInput"
-          type="text"
-          placeholder="For example: Susan"
-          autocomplete="name"
-        >
-
-
-        <label
-          class="form-label"
-          for="phoneInput"
-        >
-          Phone Number
-        </label>
-
-        <input
-          class="form-input"
-          id="phoneInput"
-          type="tel"
-          placeholder="902-555-1234"
-          autocomplete="tel"
-        >
-
-
-        <div class="form-buttons">
-
-          <button
-            class="cancel-button"
-            type="button"
-            onclick="hideContactForm()"
-          >
-            Cancel
-          </button>
-
-          <button
-            class="save-button"
-            type="button"
-            onclick="saveContact()"
-          >
-            Save ❤️
-          </button>
-
-        </div>
-
-      </div>
-
+      Your family can add contacts using
+      the ⚙️ button above.
 
     </div>
 
   </div>
 
 
-
-  <script>
-
-
-    /* =========================================
-       CONTACTS
-       
-       IMPORTANT:
-       The app starts with ZERO contacts.
-    ========================================== */
-
-    let contacts =
-      JSON.parse(
-        localStorage.getItem(
-          "familyConnectContacts"
-        )
-      ) || [];
-
-
-    let editingId = null;
+</main>
 
 
 
-    /* =========================================
-       SAVE CONTACTS
-    ========================================== */
+<!-- =================================
+     FAMILY SETTINGS
+================================= -->
 
-    function saveContacts() {
+<div
+  class="settings-overlay"
+  id="settingsOverlay"
+>
 
-      localStorage.setItem(
-        "familyConnectContacts",
-        JSON.stringify(contacts)
-      );
+  <div class="settings-panel">
+
+
+    <div class="settings-header">
+
+      <h2 class="settings-title">
+        ⚙️ Family Settings
+      </h2>
+
+      <button
+        class="close-button"
+        onclick="closeSettings()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+
+    <div class="family-notice">
+
+      ❤️ This area is for family members
+      or caregivers.
+
+      <br><br>
+
+      Add the people you want displayed
+      on the main screen.
+
+    </div>
+
+
+    <button
+      class="add-button"
+      onclick="showAddForm()"
+    >
+      ＋ Add Contact
+    </button>
+
+
+    <div
+      class="manage-list"
+      id="manageList"
+    ></div>
+
+
+    <!-- FORM -->
+
+    <div
+      class="form"
+      id="contactForm"
+    >
+
+      <h3 id="formTitle">
+        Add Contact
+      </h3>
+
+
+      <label for="nameInput">
+        Name
+      </label>
+
+      <input
+        id="nameInput"
+        type="text"
+        placeholder="First name"
+      >
+
+
+      <label for="phoneInput">
+        Phone Number
+      </label>
+
+      <input
+        id="phoneInput"
+        type="tel"
+        placeholder="902-555-1234"
+      >
+
+
+      <div class="form-buttons">
+
+        <button
+          class="cancel-button"
+          onclick="cancelForm()"
+        >
+          Cancel
+        </button>
+
+        <button
+          class="save-button"
+          onclick="saveContact()"
+        >
+          Save ❤️
+        </button>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================
+   IMPORTANT
+   
+   NEW STORAGE KEY
+   
+   This deliberately does NOT use the old
+   storage key, so old contacts such as
+   Brian cannot be loaded.
+========================================= */
+
+const STORAGE_KEY =
+  "familyConnectContacts_v2";
+
+
+/* =========================================
+   START WITH EMPTY CONTACTS
+========================================= */
+
+let contacts = [];
+
+
+/* =========================================
+   LOAD ONLY OUR NEW CONTACT LIST
+========================================= */
+
+try {
+
+  const saved =
+    localStorage.getItem(STORAGE_KEY);
+
+  if (saved) {
+
+    const parsed =
+      JSON.parse(saved);
+
+    if (Array.isArray(parsed)) {
+
+      contacts = parsed;
 
     }
 
+  }
+
+} catch (error) {
+
+  contacts = [];
+
+}
 
 
-    /* =========================================
-       DISPLAY CONTACTS ON MAIN SCREEN
-    ========================================== */
-
-    function renderContacts() {
-
-      const list =
-        document.getElementById(
-          "contactList"
-        );
-
-      list.innerHTML = "";
+let editingId = null;
 
 
-      /* NO CONTACTS */
+/* =========================================
+   SAVE
+========================================= */
 
-      if (contacts.length === 0) {
+function saveToStorage() {
 
-        list.innerHTML = `
-          <div class="empty-message">
-            Your family can add contacts here ❤️
-          </div>
-        `;
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(contacts)
+  );
 
-        return;
-
-      }
-
-
-      /* CONTACTS */
-
-      contacts.forEach(function(contact) {
-
-        const card =
-          document.createElement("article");
-
-        card.className =
-          "contact-card";
+}
 
 
-        card.innerHTML = `
+/* =========================================
+   MAIN CONTACT DISPLAY
+========================================= */
 
-          <h2 class="contact-name">
-            ${escapeHtml(contact.name)}
-          </h2>
+function renderContacts() {
 
+  const list =
+    document.getElementById(
+      "contactList"
+    );
 
-          <div class="contact-actions">
-
-
-            <a
-              class="call-button"
-              href="tel:${phoneForLink(contact.phone)}"
-              aria-label="Call ${escapeHtml(contact.name)}"
-            >
-              ☎️ Call
-            </a>
+  list.innerHTML = "";
 
 
-            <a
-              class="text-button"
-              href="sms:${phoneForLink(contact.phone)}"
-              aria-label="Text ${escapeHtml(contact.name)}"
-            >
-              💬 Text
-            </a>
+  /* EMPTY */
+
+  if (contacts.length === 0) {
+
+    list.innerHTML = `
+
+      <div class="empty-message">
+
+        Your family can add contacts
+        using the ⚙️ button above.
+
+      </div>
+
+    `;
+
+    return;
+  }
 
 
-          </div>
+  /* CONTACTS */
 
-        `;
+  contacts.forEach(function(contact) {
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "contact-card";
 
 
-        list.appendChild(card);
+    card.innerHTML = `
+
+      <h2 class="contact-name">
+
+        ${escapeHTML(contact.name)}
+
+      </h2>
+
+
+      <div class="contact-actions">
+
+        <a
+          class="call-button"
+          href="tel:${phoneNumber(contact.phone)}"
+        >
+          ☎️ Call
+        </a>
+
+
+        <a
+          class="text-button"
+          href="sms:${phoneNumber(contact.phone)}"
+        >
+          💬 Text
+        </a>
+
+      </div>
+
+    `;
+
+
+    list.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================
+   OPEN SETTINGS
+========================================= */
+
+function openSettings() {
+
+  renderManageList();
+
+  document
+    .getElementById(
+      "settingsOverlay"
+    )
+    .classList.add("show");
+
+}
+
+
+/* =========================================
+   CLOSE SETTINGS
+========================================= */
+
+function closeSettings() {
+
+  cancelForm();
+
+  document
+    .getElementById(
+      "settingsOverlay"
+    )
+    .classList.remove("show");
+
+}
+
+
+/* =========================================
+   MANAGEMENT LIST
+========================================= */
+
+function renderManageList() {
+
+  const list =
+    document.getElementById(
+      "manageList"
+    );
+
+  list.innerHTML = "";
+
+
+  if (contacts.length === 0) {
+
+    list.innerHTML = `
+
+      <div class="empty-message">
+
+        No contacts have been added yet.
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  contacts.forEach(function(contact) {
+
+    const row =
+      document.createElement("div");
+
+    row.className =
+      "manage-contact";
+
+
+    row.innerHTML = `
+
+      <div class="manage-info">
+
+        <div class="manage-name">
+
+          ${escapeHTML(contact.name)}
+
+        </div>
+
+        <div class="manage-phone">
+
+          ${escapeHTML(contact.phone)}
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="edit-button"
+        onclick="editContact(${contact.id})"
+      >
+        ✏️ Edit
+      </button>
+
+
+      <button
+        class="delete-button"
+        onclick="deleteContact(${contact.id})"
+      >
+        🗑️ Delete
+      </button>
+
+    `;
+
+
+    list.appendChild(row);
+
+  });
+
+}
+
+
+/* =========================================
+   ADD FORM
+========================================= */
+
+function showAddForm() {
+
+  editingId = null;
+
+
+  document
+    .getElementById("formTitle")
+    .textContent =
+    "Add Contact";
+
+
+  document
+    .getElementById("nameInput")
+    .value = "";
+
+
+  document
+    .getElementById("phoneInput")
+    .value = "";
+
+
+  document
+    .getElementById("contactForm")
+    .classList.add("show");
+
+
+  document
+    .getElementById("nameInput")
+    .focus();
+
+}
+
+
+/* =========================================
+   EDIT
+========================================= */
+
+function editContact(id) {
+
+  const contact =
+    contacts.find(function(item) {
+
+      return item.id === id;
+
+    });
+
+
+  if (!contact) return;
+
+
+  editingId = id;
+
+
+  document
+    .getElementById("formTitle")
+    .textContent =
+    "Edit Contact";
+
+
+  document
+    .getElementById("nameInput")
+    .value =
+    contact.name;
+
+
+  document
+    .getElementById("phoneInput")
+    .value =
+    contact.phone;
+
+
+  document
+    .getElementById("contactForm")
+    .classList.add("show");
+
+}
+
+
+/* =========================================
+   SAVE CONTACT
+========================================= */
+
+function saveContact() {
+
+  const name =
+    document
+      .getElementById("nameInput")
+      .value
+      .trim();
+
+
+  const phone =
+    document
+      .getElementById("phoneInput")
+      .value
+      .trim();
+
+
+  if (!name) {
+
+    alert(
+      "Please enter a name."
+    );
+
+    return;
+  }
+
+
+  if (!phone) {
+
+    alert(
+      "Please enter a phone number."
+    );
+
+    return;
+  }
+
+
+  /* NEW CONTACT */
+
+  if (editingId === null) {
+
+    contacts.push({
+
+      id: Date.now(),
+
+      name: name,
+
+      phone: phone
+
+    });
+
+  }
+
+
+  /* EDIT CONTACT */
+
+  else {
+
+    const contact =
+      contacts.find(function(item) {
+
+        return item.id === editingId;
 
       });
 
-    }
 
+    if (contact) {
 
+      contact.name = name;
 
-    /* =========================================
-       OPEN FAMILY SETTINGS
-    ========================================== */
-
-    function openSettings() {
-
-      renderManageContacts();
-
-      document
-        .getElementById("settingsOverlay")
-        .classList.add("visible");
+      contact.phone = phone;
 
     }
 
+  }
 
 
-    /* =========================================
-       CLOSE FAMILY SETTINGS
-    ========================================== */
+  saveToStorage();
 
-    function closeSettings() {
+  renderContacts();
 
-      hideContactForm();
+  renderManageList();
 
-      document
-        .getElementById("settingsOverlay")
-        .classList.remove("visible");
+  cancelForm();
 
-    }
+}
 
 
+/* =========================================
+   DELETE
+========================================= */
 
-    /* =========================================
-       DISPLAY CONTACTS INSIDE SETTINGS
-    ========================================== */
+function deleteContact(id) {
 
-    function renderManageContacts() {
+  const contact =
+    contacts.find(function(item) {
 
-      const list =
-        document.getElementById(
-          "manageContactList"
-        );
+      return item.id === id;
 
-      list.innerHTML = "";
+    });
 
 
-      if (contacts.length === 0) {
+  if (!contact) return;
 
-        list.innerHTML = `
-          <div class="empty-message">
-            No contacts have been added yet.
-          </div>
-        `;
 
-        return;
+  const confirmed =
+    confirm(
+      "Delete " +
+      contact.name +
+      "?"
+    );
 
-      }
 
+  if (!confirmed) return;
 
-      contacts.forEach(function(contact) {
 
-        const row =
-          document.createElement("div");
+  contacts =
+    contacts.filter(function(item) {
 
-        row.className =
-          "manage-contact";
+      return item.id !== id;
 
+    });
 
-        row.innerHTML = `
 
-          <div class="manage-contact-info">
+  saveToStorage();
 
-            <div class="manage-name">
-              ${escapeHtml(contact.name)}
-            </div>
+  renderContacts();
 
-            <div class="manage-phone">
-              ${escapeHtml(contact.phone)}
-            </div>
+  renderManageList();
 
-          </div>
+}
 
 
-          <button
-            class="edit-button"
-            type="button"
-            onclick="editContact(${contact.id})"
-          >
-            ✏️ Edit
-          </button>
+/* =========================================
+   CANCEL FORM
+========================================= */
 
+function cancelForm() {
 
-          <button
-            class="delete-button"
-            type="button"
-            onclick="deleteContact(${contact.id})"
-          >
-            🗑️ Delete
-          </button>
+  editingId = null;
 
-        `;
 
+  document
+    .getElementById("contactForm")
+    .classList.remove("show");
 
-        list.appendChild(row);
 
-      });
+  document
+    .getElementById("nameInput")
+    .value = "";
 
-    }
 
+  document
+    .getElementById("phoneInput")
+    .value = "";
 
+}
 
-    /* =========================================
-       SHOW ADD CONTACT FORM
-    ========================================== */
 
-    function showContactForm() {
+/* =========================================
+   HELP
+========================================= */
 
-      editingId = null;
+function toggleHelp() {
 
+  document
+    .getElementById("helpMessage")
+    .classList.toggle("show");
 
-      document
-        .getElementById("formTitle")
-        .textContent =
-        "Add Contact";
+}
 
 
-      document
-        .getElementById("nameInput")
-        .value = "";
+/* =========================================
+   PHONE
+========================================= */
 
+function phoneNumber(phone) {
 
-      document
-        .getElementById("phoneInput")
-        .value = "";
+  return phone.replace(
+    /[^0-9+]/g,
+    ""
+  );
 
+}
 
-      document
-        .getElementById("formArea")
-        .classList.add("visible");
 
+/* =========================================
+   SAFE HTML
+========================================= */
 
-      setTimeout(function() {
+function escapeHTML(text) {
 
-        document
-          .getElementById("nameInput")
-          .focus();
+  const div =
+    document.createElement("div");
 
-      }, 100);
+  div.textContent = text;
 
-    }
+  return div.innerHTML;
 
+}
 
 
-    /* =========================================
-       EDIT CONTACT
-    ========================================== */
+/* =========================================
+   START
+========================================= */
 
-    function editContact(id) {
+renderContacts();
 
-      const contact =
-        contacts.find(function(item) {
 
-          return item.id === id;
-
-        });
-
-
-      if (!contact) return;
-
-
-      editingId = id;
-
-
-      document
-        .getElementById("formTitle")
-        .textContent =
-        "Edit Contact";
-
-
-      document
-        .getElementById("nameInput")
-        .value =
-        contact.name;
-
-
-      document
-        .getElementById("phoneInput")
-        .value =
-        contact.phone;
-
-
-      document
-        .getElementById("formArea")
-        .classList.add("visible");
-
-
-      document
-        .getElementById("nameInput")
-        .focus();
-
-    }
-
-
-
-    /* =========================================
-       SAVE CONTACT
-    ========================================== */
-
-    function saveContact() {
-
-      const name =
-        document
-          .getElementById("nameInput")
-          .value
-          .trim();
-
-
-      const phone =
-        document
-          .getElementById("phoneInput")
-          .value
-          .trim();
-
-
-      if (!name) {
-
-        alert(
-          "Please enter a name."
-        );
-
-        return;
-
-      }
-
-
-      if (!phone) {
-
-        alert(
-          "Please enter a phone number."
-        );
-
-        return;
-
-      }
-
-
-      /* ADD */
-
-      if (editingId === null) {
-
-        contacts.push({
-
-          id: Date.now(),
-
-          name: name,
-
-          phone: phone
-
-        });
-
-      }
-
-
-      /* EDIT */
-
-      else {
-
-        const contact =
-          contacts.find(function(item) {
-
-            return item.id === editingId;
-
-          });
-
-
-        if (contact) {
-
-          contact.name = name;
-
-          contact.phone = phone;
-
-        }
-
-      }
-
-
-      saveContacts();
-
-      renderContacts();
-
-      renderManageContacts();
-
-      hideContactForm();
-
-    }
-
-
-
-    /* =========================================
-       DELETE CONTACT
-    ========================================== */
-
-    function deleteContact(id) {
-
-      const contact =
-        contacts.find(function(item) {
-
-          return item.id === id;
-
-        });
-
-
-      if (!contact) return;
-
-
-      const confirmed =
-        confirm(
-          "Are you sure you want to delete " +
-          contact.name +
-          "?"
-        );
-
-
-      if (!confirmed) return;
-
-
-      contacts =
-        contacts.filter(function(item) {
-
-          return item.id !== id;
-
-        });
-
-
-      saveContacts();
-
-      renderContacts();
-
-      renderManageContacts();
-
-    }
-
-
-
-    /* =========================================
-       HIDE CONTACT FORM
-    ========================================== */
-
-    function hideContactForm() {
-
-      editingId = null;
-
-
-      document
-        .getElementById("formArea")
-        .classList.remove("visible");
-
-
-      document
-        .getElementById("nameInput")
-        .value = "";
-
-
-      document
-        .getElementById("phoneInput")
-        .value = "";
-
-    }
-
-
-
-    /* =========================================
-       HELP BUTTON
-    ========================================== */
-
-    function showHelp() {
-
-      const message =
-        document.getElementById(
-          "helpMessage"
-        );
-
-
-      message.classList.toggle(
-        "visible"
-      );
-
-    }
-
-
-
-    /* =========================================
-       PHONE NUMBER
-    ========================================== */
-
-    function phoneForLink(phone) {
-
-      return phone.replace(
-        /[^0-9+]/g,
-        ""
-      );
-
-    }
-
-
-
-    /* =========================================
-       SAFE TEXT
-    ========================================== */
-
-    function escapeHtml(text) {
-
-      const div =
-        document.createElement("div");
-
-      div.textContent = text;
-
-      return div.innerHTML;
-
-    }
-
-
-
-    /* =========================================
-       START APP
-    ========================================== */
-
-    renderContacts();
-
-  </script>
+</script>
 
 </body>
 
