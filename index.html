@@ -1,7 +1,9 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -11,10 +13,16 @@
 
 <title>Family Connect</title>
 
+
 <style>
+
+/* =====================================================
+   GENERAL
+===================================================== */
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -37,9 +45,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    APP
-========================= */
+===================================================== */
 
 .app {
   width: 100%;
@@ -47,15 +55,15 @@ body {
 
   min-height: 100vh;
 
-  margin: 0 auto;
+  margin: auto;
 
   padding: 12px 16px 25px;
 }
 
 
-/* =========================
-   SETTINGS
-========================= */
+/* =====================================================
+   TOP BAR
+===================================================== */
 
 .top-bar {
   height: 55px;
@@ -65,27 +73,28 @@ body {
   align-items: center;
 }
 
+
 .settings-button {
   width: 48px;
   height: 48px;
 
-  border: 0;
+  border: none;
   border-radius: 50%;
 
   background: white;
 
   font-size: 25px;
 
+  cursor: pointer;
+
   box-shadow:
     0 3px 10px rgba(0,0,0,0.10);
-
-  cursor: pointer;
 }
 
 
-/* =========================
-   CONTACTS
-========================= */
+/* =====================================================
+   CONTACT LIST
+===================================================== */
 
 .contacts {
   display: flex;
@@ -93,14 +102,12 @@ body {
   flex-direction: column;
 
   gap: 14px;
-
-  margin-top: 5px;
 }
 
 
-/* =========================
+/* =====================================================
    CONTACT CARD
-========================= */
+===================================================== */
 
 .contact-card {
   background: white;
@@ -115,6 +122,7 @@ body {
     0 4px 12px rgba(180,90,110,0.08);
 }
 
+
 .contact-name {
   margin: 0 0 14px;
 
@@ -123,14 +131,12 @@ body {
   font-size: 25px;
 
   font-weight: 750;
-
-  color: #404047;
 }
 
 
-/* =========================
-   BUTTONS
-========================= */
+/* =====================================================
+   CALL / TEXT
+===================================================== */
 
 .contact-actions {
   display: grid;
@@ -140,15 +146,20 @@ body {
   gap: 12px;
 }
 
+
 .call-button,
 .text-button {
+
   min-height: 60px;
+
+  border: none;
 
   border-radius: 16px;
 
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   text-decoration: none;
@@ -157,21 +168,27 @@ body {
 
   font-weight: 750;
 
-  color: white;
+  cursor: pointer;
 }
+
 
 .call-button {
   background: #68c98b;
+
+  color: white;
 }
+
 
 .text-button {
   background: #78a9e6;
+
+  color: white;
 }
 
 
-/* =========================
+/* =====================================================
    EMPTY
-========================= */
+===================================================== */
 
 .empty-message {
   background: white;
@@ -190,19 +207,16 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    HELP
-========================= */
+===================================================== */
 
 .help-area {
   margin-top: 24px;
-
-  width: 100%;
 }
 
-.help-button {
-  display: block;
 
+.help-button {
   width: 100%;
 
   min-height: 92px;
@@ -225,14 +239,6 @@ body {
   cursor: pointer;
 }
 
-.help-button:active {
-  transform: scale(0.97);
-}
-
-
-/* =========================
-   HELP MESSAGE
-========================= */
 
 .help-message {
   display: none;
@@ -247,54 +253,49 @@ body {
 
   text-align: center;
 
-  font-size: 17px;
-
   line-height: 1.5;
-
-  border: 1px solid #f0dfe3;
 }
+
 
 .help-message.show {
   display: block;
 }
 
-.help-message strong {
-  color: #df555e;
-}
 
+/* =====================================================
+   MODAL BACKGROUND
+===================================================== */
 
-/* =========================
-   SETTINGS OVERLAY
-========================= */
-
-.settings-overlay {
+.modal {
   display: none;
 
   position: fixed;
 
   inset: 0;
 
-  z-index: 999;
+  z-index: 1000;
 
-  background: rgba(50,40,45,0.50);
+  background: rgba(40,30,35,0.50);
 
-  padding: 16px;
+  padding: 15px;
 
   align-items: center;
 
   justify-content: center;
 }
 
-.settings-overlay.show {
+
+.modal.show {
   display: flex;
 }
 
 
-/* =========================
+/* =====================================================
    SETTINGS PANEL
-========================= */
+===================================================== */
 
 .settings-panel {
+
   width: 100%;
 
   max-width: 500px;
@@ -314,11 +315,8 @@ body {
 }
 
 
-/* =========================
-   HEADER
-========================= */
+.modal-header {
 
-.settings-header {
   display: flex;
 
   align-items: center;
@@ -328,13 +326,17 @@ body {
   margin-bottom: 18px;
 }
 
-.settings-title {
+
+.modal-title {
+
   margin: 0;
 
   font-size: 25px;
 }
 
+
 .close-button {
+
   width: 44px;
   height: 44px;
 
@@ -350,32 +352,12 @@ body {
 }
 
 
-/* =========================
-   NOTICE
-========================= */
-
-.family-notice {
-  padding: 15px;
-
-  margin-bottom: 18px;
-
-  border-radius: 15px;
-
-  background: #fff0f3;
-
-  color: #744c54;
-
-  font-size: 15px;
-
-  line-height: 1.45;
-}
-
-
-/* =========================
-   ADD
-========================= */
+/* =====================================================
+   ADD CONTACT
+===================================================== */
 
 .add-button {
+
   width: 100%;
 
   min-height: 56px;
@@ -396,15 +378,12 @@ body {
 }
 
 
-/* =========================
-   MANAGE LIST
-========================= */
-
-.manage-list {
-  margin-top: 16px;
-}
+/* =====================================================
+   MANAGE CONTACTS
+===================================================== */
 
 .manage-contact {
+
   display: flex;
 
   align-items: center;
@@ -413,62 +392,73 @@ body {
 
   padding: 15px 0;
 
-  border-top: 1px solid #eadfe2;
+  border-bottom: 1px solid #eadfe2;
 }
 
+
 .manage-info {
+
   flex: 1;
 }
 
+
 .manage-name {
-  font-size: 17px;
 
   font-weight: 700;
+
+  font-size: 17px;
 }
 
+
 .manage-phone {
-  margin-top: 3px;
+
+  color: #888;
 
   font-size: 14px;
 
-  color: #888;
+  margin-top: 3px;
 }
+
 
 .edit-button,
 .delete-button {
-  min-height: 42px;
 
-  padding: 8px 11px;
+  min-height: 42px;
 
   border: none;
 
   border-radius: 10px;
 
-  font-size: 14px;
+  padding: 8px 11px;
 
   font-weight: 700;
 
   cursor: pointer;
 }
 
+
 .edit-button {
+
   background: #eeeafa;
 
   color: #6657a3;
 }
 
+
 .delete-button {
+
   background: #fde4e6;
 
   color: #b64e57;
 }
 
 
-/* =========================
+/* =====================================================
    FORM
-========================= */
+===================================================== */
 
 .form {
+
   display: none;
 
   margin-top: 20px;
@@ -478,27 +468,24 @@ body {
   border-top: 1px solid #eadfe2;
 }
 
+
 .form.show {
   display: block;
 }
 
-.form h3 {
-  margin: 0 0 15px;
-
-  font-size: 21px;
-}
 
 .form label {
+
   display: block;
 
-  margin: 13px 0 6px;
-
-  font-size: 15px;
+  margin: 12px 0 6px;
 
   font-weight: 700;
 }
 
+
 .form input {
+
   width: 100%;
 
   height: 52px;
@@ -509,19 +496,14 @@ body {
 
   border-radius: 13px;
 
-  background: white;
-
   font-size: 17px;
 
-  outline: none;
+  background: white;
 }
 
 
-/* =========================
-   FORM BUTTONS
-========================= */
-
 .form-buttons {
+
   display: grid;
 
   grid-template-columns: 1fr 1fr;
@@ -531,8 +513,10 @@ body {
   margin-top: 18px;
 }
 
+
 .save-button,
 .cancel-button {
+
   min-height: 52px;
 
   border: none;
@@ -546,17 +530,224 @@ body {
   cursor: pointer;
 }
 
+
 .save-button {
+
   background: #68c98b;
 
   color: white;
 }
 
+
 .cancel-button {
+
   background: #e9e4e5;
 
   color: #555;
 }
+
+
+/* =====================================================
+   TEXT THREAD
+===================================================== */
+
+.thread-panel {
+
+  width: 100%;
+
+  max-width: 600px;
+
+  height: 90vh;
+
+  background: #fffafa;
+
+  border-radius: 25px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.25);
+}
+
+
+/* =====================================================
+   THREAD HEADER
+===================================================== */
+
+.thread-header {
+
+  min-height: 70px;
+
+  padding: 10px 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  background: white;
+
+  border-bottom: 1px solid #eee2e5;
+}
+
+
+.back-button {
+
+  width: 45px;
+  height: 45px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #f1e9eb;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+
+.thread-name {
+
+  font-size: 22px;
+
+  font-weight: 750;
+}
+
+
+/* =====================================================
+   MESSAGES
+===================================================== */
+
+.messages {
+
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: 18px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+.message {
+
+  max-width: 78%;
+
+  padding: 12px 15px;
+
+  border-radius: 18px;
+
+  font-size: 17px;
+
+  line-height: 1.4;
+
+  word-wrap: break-word;
+}
+
+
+.message.me {
+
+  align-self: flex-end;
+
+  background: #78a9e6;
+
+  color: white;
+
+  border-bottom-right-radius: 5px;
+}
+
+
+.message.contact {
+
+  align-self: flex-start;
+
+  background: #eee8ea;
+
+  color: #333;
+
+  border-bottom-left-radius: 5px;
+}
+
+
+.message-time {
+
+  font-size: 11px;
+
+  opacity: 0.65;
+
+  margin-top: 4px;
+}
+
+
+/* =====================================================
+   MESSAGE INPUT
+===================================================== */
+
+.message-input-area {
+
+  display: flex;
+
+  gap: 8px;
+
+  padding: 12px;
+
+  background: white;
+
+  border-top: 1px solid #eee2e5;
+}
+
+
+.message-input {
+
+  flex: 1;
+
+  min-width: 0;
+
+  height: 52px;
+
+  border: 1px solid #d8ced1;
+
+  border-radius: 18px;
+
+  padding: 0 15px;
+
+  font-size: 17px;
+
+  outline: none;
+}
+
+
+.send-button {
+
+  width: 58px;
+
+  height: 52px;
+
+  border: none;
+
+  border-radius: 18px;
+
+  background: #68c98b;
+
+  color: white;
+
+  font-size: 23px;
+
+  cursor: pointer;
+}
+
 
 </style>
 
@@ -566,14 +757,12 @@ body {
 <body>
 
 
-<!-- =================================
-     MAIN SCREEN
-================================= -->
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
 <main class="app">
 
-
-  <!-- SETTINGS -->
 
   <div class="top-bar">
 
@@ -587,15 +776,11 @@ body {
   </div>
 
 
-  <!-- CONTACTS -->
-
   <div
     class="contacts"
     id="contactList"
   ></div>
 
-
-  <!-- HELP -->
 
   <div class="help-area">
 
@@ -617,7 +802,7 @@ body {
       <br><br>
 
       Your family can add contacts using
-      the ⚙️ button above.
+      the ⚙️ button.
 
     </div>
 
@@ -628,21 +813,21 @@ body {
 
 
 
-<!-- =================================
-     FAMILY SETTINGS
-================================= -->
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
 
 <div
-  class="settings-overlay"
-  id="settingsOverlay"
+  class="modal"
+  id="settingsModal"
 >
 
   <div class="settings-panel">
 
 
-    <div class="settings-header">
+    <div class="modal-header">
 
-      <h2 class="settings-title">
+      <h2 class="modal-title">
         ⚙️ Family Settings
       </h2>
 
@@ -656,19 +841,6 @@ body {
     </div>
 
 
-    <div class="family-notice">
-
-      ❤️ This area is for family members
-      or caregivers.
-
-      <br><br>
-
-      Add the people you want displayed
-      on the main screen.
-
-    </div>
-
-
     <button
       class="add-button"
       onclick="showAddForm()"
@@ -677,13 +849,8 @@ body {
     </button>
 
 
-    <div
-      class="manage-list"
-      id="manageList"
-    ></div>
+    <div id="manageList"></div>
 
-
-    <!-- FORM -->
 
     <div
       class="form"
@@ -695,18 +862,18 @@ body {
       </h3>
 
 
-      <label for="nameInput">
+      <label>
         Name
       </label>
 
       <input
         id="nameInput"
         type="text"
-        placeholder="First name"
+        placeholder="Name"
       >
 
 
-      <label for="phoneInput">
+      <label>
         Phone Number
       </label>
 
@@ -726,6 +893,7 @@ body {
           Cancel
         </button>
 
+
         <button
           class="save-button"
           onclick="saveContact()"
@@ -744,79 +912,212 @@ body {
 
 
 
+<!-- =====================================================
+     TEXT THREAD
+===================================================== -->
+
+<div
+  class="modal"
+  id="threadModal"
+>
+
+  <div class="thread-panel">
+
+
+    <div class="thread-header">
+
+      <button
+        class="back-button"
+        onclick="closeThread()"
+      >
+        ←
+      </button>
+
+
+      <div
+        class="thread-name"
+        id="threadName"
+      >
+        Text
+      </div>
+
+    </div>
+
+
+    <div
+      class="messages"
+      id="messages"
+    ></div>
+
+
+    <div class="message-input-area">
+
+      <input
+        class="message-input"
+        id="messageInput"
+        type="text"
+        placeholder="Type a message..."
+        autocomplete="off"
+      >
+
+
+      <button
+        class="send-button"
+        onclick="sendMessage()"
+      >
+        ➤
+      </button>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
 <script>
 
+/* =====================================================
+   SUPABASE
+===================================================== */
 
-/* =========================================
-   IMPORTANT
-   
-   NEW STORAGE KEY
-   
-   This deliberately does NOT use the old
-   storage key, so old contacts such as
-   Brian cannot be loaded.
-========================================= */
-
-const STORAGE_KEY =
-  "familyConnectContacts_v2";
+const SUPABASE_URL =
+  "https://jjxycvkmikagnivxdxdd.supabase.co";
 
 
-/* =========================================
-   START WITH EMPTY CONTACTS
-========================================= */
+const SUPABASE_KEY =
+  "sb_publishable_gFuE_3Y3I6vs-Ib9Je4mkw_FXlD8wjX";
+
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+const CONTACT_STORAGE =
+  "familyConnectContacts_v3";
+
 
 let contacts = [];
 
+let currentContact = null;
 
-/* =========================================
-   LOAD ONLY OUR NEW CONTACT LIST
-========================================= */
+let currentConversation = null;
+
+let realtimeChannel = null;
+
+
+/* =====================================================
+   LOAD CONTACTS
+===================================================== */
 
 try {
 
   const saved =
-    localStorage.getItem(STORAGE_KEY);
+    localStorage.getItem(
+      CONTACT_STORAGE
+    );
 
   if (saved) {
 
-    const parsed =
+    contacts =
       JSON.parse(saved);
-
-    if (Array.isArray(parsed)) {
-
-      contacts = parsed;
-
-    }
 
   }
 
-} catch (error) {
+} catch {
 
   contacts = [];
 
 }
 
 
-let editingId = null;
+/* =====================================================
+   SAVE CONTACTS
+===================================================== */
 
-
-/* =========================================
-   SAVE
-========================================= */
-
-function saveToStorage() {
+function saveContacts() {
 
   localStorage.setItem(
-    STORAGE_KEY,
+    CONTACT_STORAGE,
     JSON.stringify(contacts)
   );
 
 }
 
 
-/* =========================================
-   MAIN CONTACT DISPLAY
-========================================= */
+/* =====================================================
+   SUPABASE REQUEST
+===================================================== */
+
+async function supabaseRequest(
+  table,
+  options = {}
+) {
+
+  const url =
+    SUPABASE_URL +
+    "/rest/v1/" +
+    table;
+
+
+  const response =
+    await fetch(url, {
+
+      method:
+        options.method || "GET",
+
+      headers: {
+
+        "apikey":
+          SUPABASE_KEY,
+
+        "Authorization":
+          "Bearer " +
+          SUPABASE_KEY,
+
+        "Content-Type":
+          "application/json",
+
+        "Prefer":
+          options.prefer ||
+          "return=representation"
+
+      },
+
+      body:
+        options.body
+          ? JSON.stringify(options.body)
+          : undefined
+
+    });
+
+
+  if (!response.ok) {
+
+    const error =
+      await response.text();
+
+    throw new Error(error);
+
+  }
+
+
+  const text =
+    await response.text();
+
+
+  return text
+    ? JSON.parse(text)
+    : [];
+
+}
+
+
+/* =====================================================
+   RENDER CONTACTS
+===================================================== */
 
 function renderContacts() {
 
@@ -828,8 +1129,6 @@ function renderContacts() {
   list.innerHTML = "";
 
 
-  /* EMPTY */
-
   if (contacts.length === 0) {
 
     list.innerHTML = `
@@ -837,7 +1136,7 @@ function renderContacts() {
       <div class="empty-message">
 
         Your family can add contacts
-        using the ⚙️ button above.
+        using the ⚙️ button.
 
       </div>
 
@@ -847,12 +1146,13 @@ function renderContacts() {
   }
 
 
-  /* CONTACTS */
-
-  contacts.forEach(function(contact) {
+  contacts.forEach(contact => {
 
     const card =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     card.className =
       "contact-card";
@@ -877,12 +1177,12 @@ function renderContacts() {
         </a>
 
 
-        <a
+        <button
           class="text-button"
-          href="sms:${phoneNumber(contact.phone)}"
+          onclick="openThread('${contact.id}')"
         >
           💬 Text
-        </a>
+        </button>
 
       </div>
 
@@ -896,9 +1196,9 @@ function renderContacts() {
 }
 
 
-/* =========================================
-   OPEN SETTINGS
-========================================= */
+/* =====================================================
+   SETTINGS
+===================================================== */
 
 function openSettings() {
 
@@ -906,16 +1206,12 @@ function openSettings() {
 
   document
     .getElementById(
-      "settingsOverlay"
+      "settingsModal"
     )
     .classList.add("show");
 
 }
 
-
-/* =========================================
-   CLOSE SETTINGS
-========================================= */
 
 function closeSettings() {
 
@@ -923,16 +1219,16 @@ function closeSettings() {
 
   document
     .getElementById(
-      "settingsOverlay"
+      "settingsModal"
     )
     .classList.remove("show");
 
 }
 
 
-/* =========================================
-   MANAGEMENT LIST
-========================================= */
+/* =====================================================
+   MANAGE CONTACTS
+===================================================== */
 
 function renderManageList() {
 
@@ -950,20 +1246,24 @@ function renderManageList() {
 
       <div class="empty-message">
 
-        No contacts have been added yet.
+        No contacts yet.
 
       </div>
 
     `;
 
     return;
+
   }
 
 
-  contacts.forEach(function(contact) {
+  contacts.forEach(contact => {
 
     const row =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     row.className =
       "manage-contact";
@@ -979,6 +1279,7 @@ function renderManageList() {
 
         </div>
 
+
         <div class="manage-phone">
 
           ${escapeHTML(contact.phone)}
@@ -990,7 +1291,7 @@ function renderManageList() {
 
       <button
         class="edit-button"
-        onclick="editContact(${contact.id})"
+        onclick="editContact('${contact.id}')"
       >
         ✏️ Edit
       </button>
@@ -998,7 +1299,7 @@ function renderManageList() {
 
       <button
         class="delete-button"
-        onclick="deleteContact(${contact.id})"
+        onclick="deleteContact('${contact.id}')"
       >
         🗑️ Delete
       </button>
@@ -1013,9 +1314,9 @@ function renderManageList() {
 }
 
 
-/* =========================================
-   ADD FORM
-========================================= */
+/* =====================================================
+   ADD
+===================================================== */
 
 function showAddForm() {
 
@@ -1042,26 +1343,22 @@ function showAddForm() {
     .getElementById("contactForm")
     .classList.add("show");
 
-
-  document
-    .getElementById("nameInput")
-    .focus();
-
 }
 
 
-/* =========================================
+/* =====================================================
    EDIT
-========================================= */
+===================================================== */
+
+let editingId = null;
+
 
 function editContact(id) {
 
   const contact =
-    contacts.find(function(item) {
-
-      return item.id === id;
-
-    });
+    contacts.find(
+      c => String(c.id) === String(id)
+    );
 
 
   if (!contact) return;
@@ -1095,73 +1392,64 @@ function editContact(id) {
 }
 
 
-/* =========================================
-   SAVE CONTACT
-========================================= */
+/* =====================================================
+   SAVE
+===================================================== */
 
 function saveContact() {
 
   const name =
     document
-      .getElementById("nameInput")
+      .getElementById(
+        "nameInput"
+      )
       .value
       .trim();
 
 
   const phone =
     document
-      .getElementById("phoneInput")
+      .getElementById(
+        "phoneInput"
+      )
       .value
       .trim();
 
 
-  if (!name) {
+  if (!name || !phone) {
 
     alert(
-      "Please enter a name."
+      "Please enter a name and phone number."
     );
 
     return;
+
   }
 
-
-  if (!phone) {
-
-    alert(
-      "Please enter a phone number."
-    );
-
-    return;
-  }
-
-
-  /* NEW CONTACT */
 
   if (editingId === null) {
 
     contacts.push({
 
-      id: Date.now(),
+      id:
+        crypto.randomUUID(),
 
-      name: name,
+      name,
 
-      phone: phone
+      phone
 
     });
 
   }
 
-
-  /* EDIT CONTACT */
-
   else {
 
     const contact =
-      contacts.find(function(item) {
-
-        return item.id === editingId;
-
-      });
+      contacts.find(
+        c =>
+          String(c.id) ===
+          String(editingId)
+      );
 
 
     if (contact) {
@@ -1175,7 +1463,7 @@ function saveContact() {
   }
 
 
-  saveToStorage();
+  saveContacts();
 
   renderContacts();
 
@@ -1186,43 +1474,45 @@ function saveContact() {
 }
 
 
-/* =========================================
+/* =====================================================
    DELETE
-========================================= */
+===================================================== */
 
 function deleteContact(id) {
 
   const contact =
-    contacts.find(function(item) {
-
-      return item.id === id;
-
-    });
+    contacts.find(
+      c =>
+        String(c.id) ===
+        String(id)
+    );
 
 
   if (!contact) return;
 
 
-  const confirmed =
-    confirm(
+  if (
+    !confirm(
       "Delete " +
       contact.name +
       "?"
-    );
+    )
+  ) {
 
+    return;
 
-  if (!confirmed) return;
+  }
 
 
   contacts =
-    contacts.filter(function(item) {
+    contacts.filter(
+      c =>
+        String(c.id) !==
+        String(id)
+    );
 
-      return item.id !== id;
 
-    });
-
-
-  saveToStorage();
+  saveContacts();
 
   renderContacts();
 
@@ -1231,9 +1521,9 @@ function deleteContact(id) {
 }
 
 
-/* =========================================
+/* =====================================================
    CANCEL FORM
-========================================= */
+===================================================== */
 
 function cancelForm() {
 
@@ -1241,38 +1531,445 @@ function cancelForm() {
 
 
   document
-    .getElementById("contactForm")
+    .getElementById(
+      "contactForm"
+    )
     .classList.remove("show");
-
-
-  document
-    .getElementById("nameInput")
-    .value = "";
-
-
-  document
-    .getElementById("phoneInput")
-    .value = "";
 
 }
 
 
-/* =========================================
+/* =====================================================
+   OPEN THREAD
+===================================================== */
+
+async function openThread(contactId) {
+
+  const contact =
+    contacts.find(
+      c =>
+        String(c.id) ===
+        String(contactId)
+    );
+
+
+  if (!contact) return;
+
+
+  currentContact =
+    contact;
+
+
+  document
+    .getElementById(
+      "threadName"
+    )
+    .textContent =
+    contact.name;
+
+
+  document
+    .getElementById(
+      "threadModal"
+    )
+    .classList.add("show");
+
+
+  document
+    .getElementById(
+      "messages"
+    )
+    .innerHTML =
+    "<div class='empty-message'>Loading...</div>";
+
+
+  try {
+
+    await getConversation();
+
+    await loadMessages();
+
+    subscribeToMessages();
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+    document
+      .getElementById(
+        "messages"
+      )
+      .innerHTML = `
+
+        <div class="empty-message">
+
+          Couldn't load messages yet.
+
+          <br><br>
+
+          ${escapeHTML(error.message)}
+
+        </div>
+
+      `;
+
+  }
+
+}
+
+
+/* =====================================================
+   GET / CREATE CONVERSATION
+===================================================== */
+
+async function getConversation() {
+
+  let result =
+    await supabaseRequest(
+      "conversations?contact_id=eq." +
+      currentContact.supabase_id +
+      "&select=*"
+    );
+
+
+  if (
+    !result ||
+    result.length === 0
+  ) {
+
+    result =
+      await supabaseRequest(
+        "conversations",
+        {
+
+          method: "POST",
+
+          body: {
+
+            contact_id:
+              currentContact.supabase_id
+
+          }
+
+        }
+      );
+
+  }
+
+
+  currentConversation =
+    result[0];
+
+}
+
+
+/* =====================================================
+   LOAD MESSAGES
+===================================================== */
+
+async function loadMessages() {
+
+  const result =
+    await supabaseRequest(
+
+      "messages" +
+      "?conversation_id=eq." +
+      currentConversation.id +
+      "&select=*" +
+      "&order=created_at.asc"
+
+    );
+
+
+  renderMessages(result);
+
+}
+
+
+/* =====================================================
+   DISPLAY MESSAGES
+===================================================== */
+
+function renderMessages(messages) {
+
+  const container =
+    document.getElementById(
+      "messages"
+    );
+
+
+  container.innerHTML = "";
+
+
+  if (!messages.length) {
+
+    container.innerHTML = `
+
+      <div class="empty-message">
+
+        No messages yet.
+
+        <br><br>
+
+        Say hello! ❤️
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  messages.forEach(message => {
+
+    const bubble =
+      document.createElement(
+        "div"
+      );
+
+
+    bubble.className =
+      "message " +
+      (
+        message.sender === "me"
+          ? "me"
+          : "contact"
+      );
+
+
+    const time =
+      new Date(
+        message.created_at
+      ).toLocaleTimeString(
+        [],
+        {
+          hour: "numeric",
+          minute: "2-digit"
+        }
+      );
+
+
+    bubble.innerHTML = `
+
+      <div>
+
+        ${escapeHTML(message.message)}
+
+      </div>
+
+
+      <div class="message-time">
+
+        ${time}
+
+      </div>
+
+    `;
+
+
+    container.appendChild(
+      bubble
+    );
+
+  });
+
+
+  container.scrollTop =
+    container.scrollHeight;
+
+}
+
+
+/* =====================================================
+   SEND MESSAGE
+===================================================== */
+
+async function sendMessage() {
+
+  const input =
+    document.getElementById(
+      "messageInput"
+    );
+
+
+  const text =
+    input.value.trim();
+
+
+  if (!text) return;
+
+
+  if (!currentConversation) {
+
+    alert(
+      "The conversation isn't ready yet."
+    );
+
+    return;
+
+  }
+
+
+  input.value = "";
+
+
+  try {
+
+    await supabaseRequest(
+      "messages",
+      {
+
+        method: "POST",
+
+        body: {
+
+          conversation_id:
+            currentConversation.id,
+
+          sender:
+            "me",
+
+          message:
+            text
+
+        }
+
+      }
+    );
+
+
+    await loadMessages();
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+    alert(
+      "Message couldn't be saved."
+    );
+
+    input.value = text;
+
+  }
+
+}
+
+
+/* =====================================================
+   REALTIME
+===================================================== */
+
+function subscribeToMessages() {
+
+  /*
+    Supabase Realtime normally requires the
+    JavaScript client library.
+
+    For this first version we use polling below.
+  */
+
+  if (realtimeChannel) {
+
+    clearInterval(
+      realtimeChannel
+    );
+
+  }
+
+
+  realtimeChannel =
+    setInterval(
+      async function() {
+
+        if (
+          currentConversation &&
+          document
+            .getElementById(
+              "threadModal"
+            )
+            .classList
+            .contains("show")
+        ) {
+
+          try {
+
+            await loadMessages();
+
+          }
+
+          catch {
+
+          }
+
+        }
+
+      },
+      3000
+    );
+
+}
+
+
+/* =====================================================
+   CLOSE THREAD
+===================================================== */
+
+function closeThread() {
+
+  if (realtimeChannel) {
+
+    clearInterval(
+      realtimeChannel
+    );
+
+    realtimeChannel =
+      null;
+
+  }
+
+
+  currentConversation =
+    null;
+
+  currentContact =
+    null;
+
+
+  document
+    .getElementById(
+      "threadModal"
+    )
+    .classList
+    .remove("show");
+
+}
+
+
+/* =====================================================
    HELP
-========================================= */
+===================================================== */
 
 function toggleHelp() {
 
   document
-    .getElementById("helpMessage")
-    .classList.toggle("show");
+    .getElementById(
+      "helpMessage"
+    )
+    .classList
+    .toggle("show");
 
 }
 
 
-/* =========================================
+/* =====================================================
    PHONE
-========================================= */
+===================================================== */
 
 function phoneNumber(phone) {
 
@@ -1284,27 +1981,56 @@ function phoneNumber(phone) {
 }
 
 
-/* =========================================
+/* =====================================================
    SAFE HTML
-========================================= */
+===================================================== */
 
 function escapeHTML(text) {
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
-  div.textContent = text;
+  div.textContent =
+    text;
 
   return div.innerHTML;
 
 }
 
 
-/* =========================================
+/* =====================================================
    START
-========================================= */
+===================================================== */
 
 renderContacts();
+
+
+/* =====================================================
+   ENTER KEY SENDS MESSAGE
+===================================================== */
+
+document
+  .getElementById(
+    "messageInput"
+  )
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key === "Enter"
+      ) {
+
+        event.preventDefault();
+
+        sendMessage();
+
+      }
+
+    }
+  );
 
 
 </script>
@@ -1312,3 +2038,4 @@ renderContacts();
 </body>
 
 </html>
+```
