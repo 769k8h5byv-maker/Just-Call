@@ -17,7 +17,7 @@
 <style>
 
 /* =====================================================
-   GENERAL
+   BASIC
 ===================================================== */
 
 * {
@@ -33,6 +33,7 @@ body {
 }
 
 body {
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -41,44 +42,53 @@ body {
     sans-serif;
 
   background: #fff5f7;
+
   color: #333;
 }
 
 
 /* =====================================================
-   APP
+   MAIN APP
 ===================================================== */
 
 .app {
+
   width: 100%;
+
   max-width: 600px;
 
   min-height: 100vh;
 
-  margin: auto;
+  margin: 0 auto;
 
   padding: 12px 16px 25px;
 }
 
 
 /* =====================================================
-   TOP BAR
+   SETTINGS
 ===================================================== */
 
 .top-bar {
+
   height: 55px;
 
   display: flex;
+
   justify-content: flex-end;
+
   align-items: center;
 }
 
 
 .settings-button {
+
   width: 48px;
+
   height: 48px;
 
   border: none;
+
   border-radius: 50%;
 
   background: white;
@@ -93,10 +103,11 @@ body {
 
 
 /* =====================================================
-   CONTACT LIST
+   CONTACTS
 ===================================================== */
 
 .contacts {
+
   display: flex;
 
   flex-direction: column;
@@ -110,6 +121,7 @@ body {
 ===================================================== */
 
 .contact-card {
+
   background: white;
 
   border-radius: 22px;
@@ -124,6 +136,7 @@ body {
 
 
 .contact-name {
+
   margin: 0 0 14px;
 
   text-align: center;
@@ -131,14 +144,17 @@ body {
   font-size: 25px;
 
   font-weight: 750;
+
+  color: #404047;
 }
 
 
 /* =====================================================
-   CALL / TEXT
+   CALL + TEXT
 ===================================================== */
 
 .contact-actions {
+
   display: grid;
 
   grid-template-columns: 1fr 1fr;
@@ -173,6 +189,7 @@ body {
 
 
 .call-button {
+
   background: #68c98b;
 
   color: white;
@@ -180,6 +197,7 @@ body {
 
 
 .text-button {
+
   background: #78a9e6;
 
   color: white;
@@ -187,10 +205,11 @@ body {
 
 
 /* =====================================================
-   EMPTY
+   EMPTY CONTACTS
 ===================================================== */
 
 .empty-message {
+
   background: white;
 
   border-radius: 22px;
@@ -212,18 +231,22 @@ body {
 ===================================================== */
 
 .help-area {
+
   margin-top: 24px;
+
+  padding-bottom: 10px;
 }
 
 
 .help-button {
+
   width: 100%;
 
-  min-height: 92px;
+  min-height: 95px;
 
   border: none;
 
-  border-radius: 24px;
+  border-radius: 25px;
 
   background: #ed6871;
 
@@ -240,7 +263,14 @@ body {
 }
 
 
+.help-button:active {
+
+  transform: scale(0.97);
+}
+
+
 .help-message {
+
   display: none;
 
   margin-top: 12px;
@@ -258,15 +288,17 @@ body {
 
 
 .help-message.show {
+
   display: block;
 }
 
 
 /* =====================================================
-   MODAL BACKGROUND
+   MODALS
 ===================================================== */
 
 .modal {
+
   display: none;
 
   position: fixed;
@@ -275,7 +307,8 @@ body {
 
   z-index: 1000;
 
-  background: rgba(40,30,35,0.50);
+  background:
+    rgba(40,30,35,0.50);
 
   padding: 15px;
 
@@ -286,6 +319,7 @@ body {
 
 
 .modal.show {
+
   display: flex;
 }
 
@@ -338,6 +372,7 @@ body {
 .close-button {
 
   width: 44px;
+
   height: 44px;
 
   border: none;
@@ -353,7 +388,29 @@ body {
 
 
 /* =====================================================
-   ADD CONTACT
+   FAMILY NOTICE
+===================================================== */
+
+.family-notice {
+
+  padding: 15px;
+
+  margin-bottom: 18px;
+
+  border-radius: 15px;
+
+  background: #fff0f3;
+
+  color: #744c54;
+
+  font-size: 15px;
+
+  line-height: 1.45;
+}
+
+
+/* =====================================================
+   ADD CONTACT BUTTON
 ===================================================== */
 
 .add-button {
@@ -382,6 +439,12 @@ body {
    MANAGE CONTACTS
 ===================================================== */
 
+.manage-list {
+
+  margin-top: 16px;
+}
+
+
 .manage-contact {
 
   display: flex;
@@ -392,7 +455,7 @@ body {
 
   padding: 15px 0;
 
-  border-bottom: 1px solid #eadfe2;
+  border-top: 1px solid #eadfe2;
 }
 
 
@@ -404,19 +467,19 @@ body {
 
 .manage-name {
 
-  font-weight: 700;
-
   font-size: 17px;
+
+  font-weight: 700;
 }
 
 
 .manage-phone {
 
-  color: #888;
+  margin-top: 3px;
 
   font-size: 14px;
 
-  margin-top: 3px;
+  color: #888;
 }
 
 
@@ -425,11 +488,13 @@ body {
 
   min-height: 42px;
 
+  padding: 8px 11px;
+
   border: none;
 
   border-radius: 10px;
 
-  padding: 8px 11px;
+  font-size: 14px;
 
   font-weight: 700;
 
@@ -454,7 +519,7 @@ body {
 
 
 /* =====================================================
-   FORM
+   CONTACT FORM
 ===================================================== */
 
 .form {
@@ -470,7 +535,16 @@ body {
 
 
 .form.show {
+
   display: block;
+}
+
+
+.form h3 {
+
+  margin: 0 0 15px;
+
+  font-size: 21px;
 }
 
 
@@ -478,7 +552,9 @@ body {
 
   display: block;
 
-  margin: 12px 0 6px;
+  margin: 13px 0 6px;
+
+  font-size: 15px;
 
   font-weight: 700;
 }
@@ -496,9 +572,11 @@ body {
 
   border-radius: 13px;
 
+  background: white;
+
   font-size: 17px;
 
-  background: white;
+  outline: none;
 }
 
 
@@ -599,6 +677,7 @@ body {
 .back-button {
 
   width: 45px;
+
   height: 45px;
 
   border: none;
@@ -758,7 +837,7 @@ body {
 
 
 <!-- =====================================================
-     DASHBOARD
+     MAIN DASHBOARD
 ===================================================== -->
 
 <main class="app">
@@ -769,6 +848,7 @@ body {
     <button
       class="settings-button"
       onclick="openSettings()"
+      aria-label="Family settings"
     >
       ⚙️
     </button>
@@ -797,12 +877,14 @@ body {
       id="helpMessage"
     >
 
-      <strong>We're here to help ❤️</strong>
+      <strong>
+        We're here to help ❤️
+      </strong>
 
       <br><br>
 
-      Your family can add contacts using
-      the ⚙️ button.
+      Your family can manage contacts
+      using the ⚙️ button.
 
     </div>
 
@@ -814,7 +896,7 @@ body {
 
 
 <!-- =====================================================
-     SETTINGS
+     SETTINGS MODAL
 ===================================================== -->
 
 <div
@@ -831,12 +913,26 @@ body {
         ⚙️ Family Settings
       </h2>
 
+
       <button
         class="close-button"
         onclick="closeSettings()"
       >
         ✕
       </button>
+
+    </div>
+
+
+    <div class="family-notice">
+
+      ❤️ This area is for family members
+      or caregivers.
+
+      <br><br>
+
+      Add the people you want displayed
+      on the main screen.
 
     </div>
 
@@ -849,8 +945,13 @@ body {
     </button>
 
 
-    <div id="manageList"></div>
+    <div
+      class="manage-list"
+      id="manageList"
+    ></div>
 
+
+    <!-- CONTACT FORM -->
 
     <div
       class="form"
@@ -862,20 +963,22 @@ body {
       </h3>
 
 
-      <label>
+      <label for="nameInput">
         Name
       </label>
+
 
       <input
         id="nameInput"
         type="text"
-        placeholder="Name"
+        placeholder="First name"
       >
 
 
-      <label>
+      <label for="phoneInput">
         Phone Number
       </label>
+
 
       <input
         id="phoneInput"
@@ -913,7 +1016,7 @@ body {
 
 
 <!-- =====================================================
-     TEXT THREAD
+     TEXT THREAD MODAL
 ===================================================== -->
 
 <div
@@ -952,6 +1055,7 @@ body {
 
     <div class="message-input-area">
 
+
       <input
         class="message-input"
         id="messageInput"
@@ -968,6 +1072,7 @@ body {
         ➤
       </button>
 
+
     </div>
 
 
@@ -980,7 +1085,7 @@ body {
 <script>
 
 /* =====================================================
-   SUPABASE
+   SUPABASE CONNECTION
 ===================================================== */
 
 const SUPABASE_URL =
@@ -992,20 +1097,22 @@ const SUPABASE_KEY =
 
 
 /* =====================================================
-   STORAGE
+   LOCAL STORAGE
 ===================================================== */
 
 const CONTACT_STORAGE =
-  "familyConnectContacts_v3";
+  "familyConnectContacts_v4";
 
 
 let contacts = [];
+
+let editingId = null;
 
 let currentContact = null;
 
 let currentConversation = null;
 
-let realtimeChannel = null;
+let messageTimer = null;
 
 
 /* =====================================================
@@ -1019,6 +1126,7 @@ try {
       CONTACT_STORAGE
     );
 
+
   if (saved) {
 
     contacts =
@@ -1026,7 +1134,8 @@ try {
 
   }
 
-} catch {
+}
+catch (error) {
 
   contacts = [];
 
@@ -1034,10 +1143,10 @@ try {
 
 
 /* =====================================================
-   SAVE CONTACTS
+   SAVE LOCAL CONTACTS
 ===================================================== */
 
-function saveContacts() {
+function saveContactsLocally() {
 
   localStorage.setItem(
     CONTACT_STORAGE,
@@ -1052,54 +1161,59 @@ function saveContacts() {
 ===================================================== */
 
 async function supabaseRequest(
-  table,
+  endpoint,
   options = {}
 ) {
 
-  const url =
-    SUPABASE_URL +
-    "/rest/v1/" +
-    table;
-
-
   const response =
-    await fetch(url, {
+    await fetch(
+      SUPABASE_URL +
+      "/rest/v1/" +
+      endpoint,
+      {
 
-      method:
-        options.method || "GET",
+        method:
+          options.method ||
+          "GET",
 
-      headers: {
+        headers: {
 
-        "apikey":
-          SUPABASE_KEY,
+          "apikey":
+            SUPABASE_KEY,
 
-        "Authorization":
-          "Bearer " +
-          SUPABASE_KEY,
+          "Authorization":
+            "Bearer " +
+            SUPABASE_KEY,
 
-        "Content-Type":
-          "application/json",
+          "Content-Type":
+            "application/json",
 
-        "Prefer":
-          options.prefer ||
-          "return=representation"
+          "Prefer":
+            options.prefer ||
+            "return=representation"
 
-      },
+        },
 
-      body:
-        options.body
-          ? JSON.stringify(options.body)
-          : undefined
+        body:
+          options.body
+            ? JSON.stringify(
+                options.body
+              )
+            : undefined
 
-    });
+      }
+    );
 
 
   if (!response.ok) {
 
-    const error =
+    const errorText =
       await response.text();
 
-    throw new Error(error);
+    throw new Error(
+      errorText ||
+      "Supabase request failed."
+    );
 
   }
 
@@ -1116,7 +1230,7 @@ async function supabaseRequest(
 
 
 /* =====================================================
-   RENDER CONTACTS
+   RENDER DASHBOARD
 ===================================================== */
 
 function renderContacts() {
@@ -1126,10 +1240,14 @@ function renderContacts() {
       "contactList"
     );
 
+
   list.innerHTML = "";
 
 
-  if (contacts.length === 0) {
+  if (
+    !contacts ||
+    contacts.length === 0
+  ) {
 
     list.innerHTML = `
 
@@ -1143,66 +1261,76 @@ function renderContacts() {
     `;
 
     return;
+
   }
 
 
-  contacts.forEach(contact => {
+  contacts.forEach(
+    function(contact) {
 
-    const card =
-      document.createElement(
-        "div"
-      );
-
-
-    card.className =
-      "contact-card";
+      const card =
+        document.createElement(
+          "div"
+        );
 
 
-    card.innerHTML = `
-
-      <h2 class="contact-name">
-
-        ${escapeHTML(contact.name)}
-
-      </h2>
+      card.className =
+        "contact-card";
 
 
-      <div class="contact-actions">
+      card.innerHTML = `
 
-        <a
-          class="call-button"
-          href="tel:${phoneNumber(contact.phone)}"
+        <h2 class="contact-name">
+
+          ${escapeHTML(
+            contact.name
+          )}
+
+        </h2>
+
+
+        <div
+          class="contact-actions"
         >
-          ☎️ Call
-        </a>
+
+          <a
+            class="call-button"
+            href="tel:${phoneNumber(
+              contact.phone
+            )}"
+          >
+            ☎️ Call
+          </a>
 
 
-        <button
-          class="text-button"
-          onclick="openThread('${contact.id}')"
-        >
-          💬 Text
-        </button>
+          <button
+            class="text-button"
+            onclick="openThread('${contact.id}')"
+          >
+            💬 Text
+          </button>
 
-      </div>
+        </div>
 
-    `;
+      `;
 
 
-    list.appendChild(card);
+      list.appendChild(card);
 
-  });
+    }
+  );
 
 }
 
 
 /* =====================================================
-   SETTINGS
+   OPEN SETTINGS
 ===================================================== */
 
 function openSettings() {
 
   renderManageList();
+
 
   document
     .getElementById(
@@ -1213,9 +1341,14 @@ function openSettings() {
 }
 
 
+/* =====================================================
+   CLOSE SETTINGS
+===================================================== */
+
 function closeSettings() {
 
   cancelForm();
+
 
   document
     .getElementById(
@@ -1237,14 +1370,21 @@ function renderManageList() {
       "manageList"
     );
 
+
   list.innerHTML = "";
 
 
-  if (contacts.length === 0) {
+  if (
+    !contacts ||
+    contacts.length === 0
+  ) {
 
     list.innerHTML = `
 
-      <div class="empty-message">
+      <div
+        class="empty-message"
+        style="margin-top:15px;"
+      >
 
         No contacts yet.
 
@@ -1257,65 +1397,71 @@ function renderManageList() {
   }
 
 
-  contacts.forEach(contact => {
+  contacts.forEach(
+    function(contact) {
 
-    const row =
-      document.createElement(
-        "div"
-      );
-
-
-    row.className =
-      "manage-contact";
+      const row =
+        document.createElement(
+          "div"
+        );
 
 
-    row.innerHTML = `
+      row.className =
+        "manage-contact";
 
-      <div class="manage-info">
 
-        <div class="manage-name">
+      row.innerHTML = `
 
-          ${escapeHTML(contact.name)}
+        <div class="manage-info">
+
+          <div class="manage-name">
+
+            ${escapeHTML(
+              contact.name
+            )}
+
+          </div>
+
+
+          <div class="manage-phone">
+
+            ${escapeHTML(
+              contact.phone
+            )}
+
+          </div>
 
         </div>
 
 
-        <div class="manage-phone">
-
-          ${escapeHTML(contact.phone)}
-
-        </div>
-
-      </div>
-
-
-      <button
-        class="edit-button"
-        onclick="editContact('${contact.id}')"
-      >
-        ✏️ Edit
-      </button>
+        <button
+          class="edit-button"
+          onclick="editContact('${contact.id}')"
+        >
+          ✏️ Edit
+        </button>
 
 
-      <button
-        class="delete-button"
-        onclick="deleteContact('${contact.id}')"
-      >
-        🗑️ Delete
-      </button>
+        <button
+          class="delete-button"
+          onclick="deleteContact('${contact.id}')"
+        >
+          🗑️ Delete
+        </button>
 
-    `;
+      `;
 
 
-    list.appendChild(row);
+      list.appendChild(row);
 
-  });
+    }
+  );
 
 }
 
 
 /* =====================================================
-   ADD
+   ADD CONTACT FORM
 ===================================================== */
 
 function showAddForm() {
@@ -1324,40 +1470,65 @@ function showAddForm() {
 
 
   document
-    .getElementById("formTitle")
+    .getElementById(
+      "formTitle"
+    )
     .textContent =
     "Add Contact";
 
 
   document
-    .getElementById("nameInput")
+    .getElementById(
+      "nameInput"
+    )
     .value = "";
 
 
   document
-    .getElementById("phoneInput")
+    .getElementById(
+      "phoneInput"
+    )
     .value = "";
 
 
   document
-    .getElementById("contactForm")
-    .classList.add("show");
+    .getElementById(
+      "contactForm"
+    )
+    .classList
+    .add("show");
+
+
+  setTimeout(
+    function() {
+
+      document
+        .getElementById(
+          "nameInput"
+        )
+        .focus();
+
+    },
+    100
+  );
 
 }
 
 
 /* =====================================================
-   EDIT
+   EDIT CONTACT
 ===================================================== */
-
-let editingId = null;
-
 
 function editContact(id) {
 
   const contact =
     contacts.find(
-      c => String(c.id) === String(id)
+      function(c) {
+
+        return String(c.id) ===
+          String(id);
+
+      }
     );
 
 
@@ -1368,35 +1539,44 @@ function editContact(id) {
 
 
   document
-    .getElementById("formTitle")
+    .getElementById(
+      "formTitle"
+    )
     .textContent =
     "Edit Contact";
 
 
   document
-    .getElementById("nameInput")
+    .getElementById(
+      "nameInput"
+    )
     .value =
     contact.name;
 
 
   document
-    .getElementById("phoneInput")
+    .getElementById(
+      "phoneInput"
+    )
     .value =
     contact.phone;
 
 
   document
-    .getElementById("contactForm")
-    .classList.add("show");
+    .getElementById(
+      "contactForm"
+    )
+    .classList
+    .add("show");
 
 }
 
 
 /* =====================================================
-   SAVE
+   SAVE CONTACT
 ===================================================== */
 
-function saveContact() {
+async function saveContact() {
 
   const name =
     document
@@ -1416,10 +1596,10 @@ function saveContact() {
       .trim();
 
 
-  if (!name || !phone) {
+  if (!name) {
 
     alert(
-      "Please enter a name and phone number."
+      "Please enter a name."
     );
 
     return;
@@ -1427,96 +1607,330 @@ function saveContact() {
   }
 
 
-  if (editingId === null) {
+  if (!phone) {
 
-    contacts.push({
+    alert(
+      "Please enter a phone number."
+    );
 
-      id:
-        crypto.randomUUID(),
-
-      name,
-
-      phone
-
-    });
+    return;
 
   }
 
-  else {
 
-    const contact =
-      contacts.find(
-        c =>
-          String(c.id) ===
-          String(editingId)
+  /* =================================================
+     NEW CONTACT
+  ================================================= */
+
+  if (editingId === null) {
+
+    try {
+
+      const result =
+        await supabaseRequest(
+          "contacts",
+          {
+
+            method:
+              "POST",
+
+            body: {
+
+              name:
+                name,
+
+              phone:
+                phone
+
+            }
+
+          }
+        );
+
+
+      if (
+        !result ||
+        !result[0]
+      ) {
+
+        throw new Error(
+          "Supabase did not return the new contact."
+        );
+
+      }
+
+
+      const newContact =
+        result[0];
+
+
+      contacts.push({
+
+        id:
+          crypto.randomUUID(),
+
+        supabase_id:
+          newContact.id,
+
+        name:
+          name,
+
+        phone:
+          phone
+
+      });
+
+
+      saveContactsLocally();
+
+      renderContacts();
+
+      renderManageList();
+
+      cancelForm();
+
+
+      alert(
+        name +
+        " has been added! ❤️"
       );
-
-
-    if (contact) {
-
-      contact.name = name;
-
-      contact.phone = phone;
 
     }
 
+    catch (error) {
+
+      console.error(error);
+
+
+      alert(
+        "Couldn't save the contact.\n\n" +
+        error.message
+      );
+
+    }
+
+
+    return;
+
   }
 
 
-  saveContacts();
+  /* =================================================
+     EDIT EXISTING CONTACT
+  ================================================= */
 
-  renderContacts();
+  const contact =
+    contacts.find(
+      function(c) {
 
-  renderManageList();
+        return String(c.id) ===
+          String(editingId);
 
-  cancelForm();
+      }
+    );
+
+
+  if (!contact) {
+
+    alert(
+      "Contact not found."
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    if (
+      contact.supabase_id
+    ) {
+
+      await supabaseRequest(
+
+        "contacts?id=eq." +
+        contact.supabase_id,
+
+        {
+
+          method:
+            "PATCH",
+
+          body: {
+
+            name:
+              name,
+
+            phone:
+              phone
+
+          }
+
+        }
+
+      );
+
+    }
+
+    else {
+
+      const result =
+        await supabaseRequest(
+          "contacts",
+          {
+
+            method:
+              "POST",
+
+            body: {
+
+              name:
+                name,
+
+              phone:
+                phone
+
+            }
+
+          }
+        );
+
+
+      contact.supabase_id =
+        result[0].id;
+
+    }
+
+
+    contact.name =
+      name;
+
+
+    contact.phone =
+      phone;
+
+
+    saveContactsLocally();
+
+    renderContacts();
+
+    renderManageList();
+
+    cancelForm();
+
+
+    alert(
+      "Contact updated! ❤️"
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+
+    alert(
+      "Couldn't update the contact.\n\n" +
+      error.message
+    );
+
+  }
 
 }
 
 
 /* =====================================================
-   DELETE
+   DELETE CONTACT
 ===================================================== */
 
-function deleteContact(id) {
+async function deleteContact(id) {
 
   const contact =
     contacts.find(
-      c =>
-        String(c.id) ===
-        String(id)
+      function(c) {
+
+        return String(c.id) ===
+          String(id);
+
+      }
     );
 
 
   if (!contact) return;
 
 
-  if (
-    !confirm(
+  const confirmed =
+    confirm(
       "Delete " +
       contact.name +
       "?"
-    )
-  ) {
-
-    return;
-
-  }
-
-
-  contacts =
-    contacts.filter(
-      c =>
-        String(c.id) !==
-        String(id)
     );
 
 
-  saveContacts();
+  if (!confirmed) return;
 
-  renderContacts();
 
-  renderManageList();
+  try {
+
+    if (
+      contact.supabase_id
+    ) {
+
+      await supabaseRequest(
+
+        "contacts?id=eq." +
+        contact.supabase_id,
+
+        {
+
+          method:
+            "DELETE"
+
+        }
+
+      );
+
+    }
+
+
+    contacts =
+      contacts.filter(
+        function(c) {
+
+          return String(c.id) !==
+            String(id);
+
+        }
+      );
+
+
+    saveContactsLocally();
+
+    renderContacts();
+
+    renderManageList();
+
+
+    alert(
+      contact.name +
+      " was deleted."
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+
+    alert(
+      "Couldn't delete the contact.\n\n" +
+      error.message
+    );
+
+  }
 
 }
 
@@ -1534,26 +1948,59 @@ function cancelForm() {
     .getElementById(
       "contactForm"
     )
-    .classList.remove("show");
+    .classList
+    .remove("show");
+
+
+  document
+    .getElementById(
+      "nameInput"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "phoneInput"
+    )
+    .value = "";
 
 }
 
 
 /* =====================================================
-   OPEN THREAD
+   OPEN TEXT THREAD
 ===================================================== */
 
-async function openThread(contactId) {
+async function openThread(
+  contactId
+) {
 
   const contact =
     contacts.find(
-      c =>
-        String(c.id) ===
-        String(contactId)
+      function(c) {
+
+        return String(c.id) ===
+          String(contactId);
+
+      }
     );
 
 
   if (!contact) return;
+
+
+  if (
+    !contact.supabase_id
+  ) {
+
+    alert(
+      "This contact needs to be saved again before texting."
+    );
+
+    return;
+
+  }
 
 
   currentContact =
@@ -1572,15 +2019,23 @@ async function openThread(contactId) {
     .getElementById(
       "threadModal"
     )
-    .classList.add("show");
+    .classList
+    .add("show");
 
 
   document
     .getElementById(
       "messages"
     )
-    .innerHTML =
-    "<div class='empty-message'>Loading...</div>";
+    .innerHTML = `
+
+      <div class="empty-message">
+
+        Loading conversation...
+
+      </div>
+
+    `;
 
 
   try {
@@ -1589,13 +2044,14 @@ async function openThread(contactId) {
 
     await loadMessages();
 
-    subscribeToMessages();
+    startMessageRefresh();
 
   }
 
   catch (error) {
 
     console.error(error);
+
 
     document
       .getElementById(
@@ -1605,11 +2061,13 @@ async function openThread(contactId) {
 
         <div class="empty-message">
 
-          Couldn't load messages yet.
+          Couldn't load the conversation.
 
           <br><br>
 
-          ${escapeHTML(error.message)}
+          ${escapeHTML(
+            error.message
+          )}
 
         </div>
 
@@ -1621,16 +2079,19 @@ async function openThread(contactId) {
 
 
 /* =====================================================
-   GET / CREATE CONVERSATION
+   GET OR CREATE CONVERSATION
 ===================================================== */
 
 async function getConversation() {
 
   let result =
     await supabaseRequest(
-      "conversations?contact_id=eq." +
+
+      "conversations" +
+      "?contact_id=eq." +
       currentContact.supabase_id +
       "&select=*"
+
     );
 
 
@@ -1644,7 +2105,8 @@ async function getConversation() {
         "conversations",
         {
 
-          method: "POST",
+          method:
+            "POST",
 
           body: {
 
@@ -1671,6 +2133,15 @@ async function getConversation() {
 
 async function loadMessages() {
 
+  if (
+    !currentConversation
+  ) {
+
+    return;
+
+  }
+
+
   const result =
     await supabaseRequest(
 
@@ -1683,16 +2154,20 @@ async function loadMessages() {
     );
 
 
-  renderMessages(result);
+  renderMessages(
+    result
+  );
 
 }
 
 
 /* =====================================================
-   DISPLAY MESSAGES
+   RENDER MESSAGES
 ===================================================== */
 
-function renderMessages(messages) {
+function renderMessages(
+  messages
+) {
 
   const container =
     document.getElementById(
@@ -1703,7 +2178,10 @@ function renderMessages(messages) {
   container.innerHTML = "";
 
 
-  if (!messages.length) {
+  if (
+    !messages ||
+    messages.length === 0
+  ) {
 
     container.innerHTML = `
 
@@ -1724,58 +2202,66 @@ function renderMessages(messages) {
   }
 
 
-  messages.forEach(message => {
+  messages.forEach(
+    function(message) {
 
-    const bubble =
-      document.createElement(
-        "div"
+      const bubble =
+        document.createElement(
+          "div"
+        );
+
+
+      bubble.className =
+        "message " +
+        (
+          message.sender === "me"
+            ? "me"
+            : "contact"
+        );
+
+
+      const time =
+        new Date(
+          message.created_at
+        )
+        .toLocaleTimeString(
+          [],
+          {
+            hour:
+              "numeric",
+
+            minute:
+              "2-digit"
+          }
+        );
+
+
+      bubble.innerHTML = `
+
+        <div>
+
+          ${escapeHTML(
+            message.message
+          )}
+
+        </div>
+
+
+        <div class="message-time">
+
+          ${time}
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        bubble
       );
 
-
-    bubble.className =
-      "message " +
-      (
-        message.sender === "me"
-          ? "me"
-          : "contact"
-      );
-
-
-    const time =
-      new Date(
-        message.created_at
-      ).toLocaleTimeString(
-        [],
-        {
-          hour: "numeric",
-          minute: "2-digit"
-        }
-      );
-
-
-    bubble.innerHTML = `
-
-      <div>
-
-        ${escapeHTML(message.message)}
-
-      </div>
-
-
-      <div class="message-time">
-
-        ${time}
-
-      </div>
-
-    `;
-
-
-    container.appendChild(
-      bubble
-    );
-
-  });
+    }
+  );
 
 
   container.scrollTop =
@@ -1803,7 +2289,9 @@ async function sendMessage() {
   if (!text) return;
 
 
-  if (!currentConversation) {
+  if (
+    !currentConversation
+  ) {
 
     alert(
       "The conversation isn't ready yet."
@@ -1823,7 +2311,8 @@ async function sendMessage() {
       "messages",
       {
 
-        method: "POST",
+        method:
+          "POST",
 
         body: {
 
@@ -1850,11 +2339,15 @@ async function sendMessage() {
 
     console.error(error);
 
-    alert(
-      "Message couldn't be saved."
-    );
 
-    input.value = text;
+    input.value =
+      text;
+
+
+    alert(
+      "Couldn't save the message.\n\n" +
+      error.message
+    );
 
   }
 
@@ -1862,28 +2355,15 @@ async function sendMessage() {
 
 
 /* =====================================================
-   REALTIME
+   REFRESH THREAD
 ===================================================== */
 
-function subscribeToMessages() {
+function startMessageRefresh() {
 
-  /*
-    Supabase Realtime normally requires the
-    JavaScript client library.
-
-    For this first version we use polling below.
-  */
-
-  if (realtimeChannel) {
-
-    clearInterval(
-      realtimeChannel
-    );
-
-  }
+  stopMessageRefresh();
 
 
-  realtimeChannel =
+  messageTimer =
     setInterval(
       async function() {
 
@@ -1903,7 +2383,11 @@ function subscribeToMessages() {
 
           }
 
-          catch {
+          catch (error) {
+
+            console.error(
+              error
+            );
 
           }
 
@@ -1917,27 +2401,41 @@ function subscribeToMessages() {
 
 
 /* =====================================================
+   STOP REFRESH
+===================================================== */
+
+function stopMessageRefresh() {
+
+  if (
+    messageTimer
+  ) {
+
+    clearInterval(
+      messageTimer
+    );
+
+    messageTimer =
+      null;
+
+  }
+
+}
+
+
+/* =====================================================
    CLOSE THREAD
 ===================================================== */
 
 function closeThread() {
 
-  if (realtimeChannel) {
+  stopMessageRefresh();
 
-    clearInterval(
-      realtimeChannel
-    );
 
-    realtimeChannel =
-      null;
-
-  }
+  currentContact =
+    null;
 
 
   currentConversation =
-    null;
-
-  currentContact =
     null;
 
 
@@ -1947,6 +2445,13 @@ function closeThread() {
     )
     .classList
     .remove("show");
+
+
+  document
+    .getElementById(
+      "messageInput"
+    )
+    .value = "";
 
 }
 
@@ -1968,10 +2473,12 @@ function toggleHelp() {
 
 
 /* =====================================================
-   PHONE
+   PHONE CLEANUP
 ===================================================== */
 
-function phoneNumber(phone) {
+function phoneNumber(
+  phone
+) {
 
   return phone.replace(
     /[^0-9+]/g,
@@ -1982,18 +2489,22 @@ function phoneNumber(phone) {
 
 
 /* =====================================================
-   SAFE HTML
+   HTML SECURITY
 ===================================================== */
 
-function escapeHTML(text) {
+function escapeHTML(
+  text
+) {
 
   const div =
     document.createElement(
       "div"
     );
 
+
   div.textContent =
     text;
+
 
   return div.innerHTML;
 
@@ -2001,14 +2512,7 @@ function escapeHTML(text) {
 
 
 /* =====================================================
-   START
-===================================================== */
-
-renderContacts();
-
-
-/* =====================================================
-   ENTER KEY SENDS MESSAGE
+   ENTER KEY SENDS
 ===================================================== */
 
 document
@@ -2032,6 +2536,12 @@ document
     }
   );
 
+
+/* =====================================================
+   START APP
+===================================================== */
+
+renderContacts();
 
 </script>
 
