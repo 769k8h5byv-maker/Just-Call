@@ -13,7 +13,6 @@
 
 <title>Family Connect</title>
 
-
 <style>
 
 /* =====================================================
@@ -116,10 +115,6 @@ body {
 }
 
 
-/* =====================================================
-   CONTACT CARD
-===================================================== */
-
 .contact-card {
 
   background: white;
@@ -150,7 +145,7 @@ body {
 
 
 /* =====================================================
-   CALL + TEXT
+   CALL / TEXT
 ===================================================== */
 
 .contact-actions {
@@ -205,7 +200,7 @@ body {
 
 
 /* =====================================================
-   EMPTY CONTACTS
+   EMPTY
 ===================================================== */
 
 .empty-message {
@@ -387,10 +382,6 @@ body {
 }
 
 
-/* =====================================================
-   FAMILY NOTICE
-===================================================== */
-
 .family-notice {
 
   padding: 15px;
@@ -410,7 +401,7 @@ body {
 
 
 /* =====================================================
-   ADD CONTACT BUTTON
+   ADD CONTACT
 ===================================================== */
 
 .add-button {
@@ -828,6 +819,32 @@ body {
 }
 
 
+.send-button:disabled {
+
+  opacity: 0.6;
+
+  cursor: wait;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.sms-status {
+
+  text-align: center;
+
+  padding: 8px 15px;
+
+  font-size: 13px;
+
+  color: #777;
+
+  background: white;
+}
+
+
 </style>
 
 </head>
@@ -837,7 +854,7 @@ body {
 
 
 <!-- =====================================================
-     MAIN DASHBOARD
+     DASHBOARD
 ===================================================== -->
 
 <main class="app">
@@ -896,7 +913,7 @@ body {
 
 
 <!-- =====================================================
-     SETTINGS MODAL
+     SETTINGS
 ===================================================== -->
 
 <div
@@ -950,8 +967,6 @@ body {
       id="manageList"
     ></div>
 
-
-    <!-- CONTACT FORM -->
 
     <div
       class="form"
@@ -1016,7 +1031,7 @@ body {
 
 
 <!-- =====================================================
-     TEXT THREAD MODAL
+     TEXT THREAD
 ===================================================== -->
 
 <div
@@ -1053,6 +1068,14 @@ body {
     ></div>
 
 
+    <div
+      class="sms-status"
+      id="smsStatus"
+    >
+      Ready
+    </div>
+
+
     <div class="message-input-area">
 
 
@@ -1067,6 +1090,7 @@ body {
 
       <button
         class="send-button"
+        id="sendButton"
         onclick="sendMessage()"
       >
         ➤
@@ -1085,7 +1109,7 @@ body {
 <script>
 
 /* =====================================================
-   SUPABASE CONNECTION
+   SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -1097,11 +1121,19 @@ const SUPABASE_KEY =
 
 
 /* =====================================================
-   LOCAL STORAGE
+   TWILIO EDGE FUNCTION
+===================================================== */
+
+const SMS_FUNCTION_URL =
+  "https://jjxycvkmikagnivxdxdd.supabase.co/functions/v1/bright-endpoint";
+
+
+/* =====================================================
+   APP STATE
 ===================================================== */
 
 const CONTACT_STORAGE =
-  "familyConnectContacts_v4";
+  "familyConnectContacts_v5";
 
 
 let contacts = [];
@@ -1116,7 +1148,7 @@ let messageTimer = null;
 
 
 /* =====================================================
-   LOAD CONTACTS
+   LOAD LOCAL CONTACTS
 ===================================================== */
 
 try {
@@ -1143,7 +1175,7 @@ catch (error) {
 
 
 /* =====================================================
-   SAVE LOCAL CONTACTS
+   LOCAL STORAGE
 ===================================================== */
 
 function saveContactsLocally() {
@@ -1167,9 +1199,11 @@ async function supabaseRequest(
 
   const response =
     await fetch(
+
       SUPABASE_URL +
       "/rest/v1/" +
       endpoint,
+
       {
 
         method:
@@ -1202,6 +1236,7 @@ async function supabaseRequest(
             : undefined
 
       }
+
     );
 
 
@@ -1230,7 +1265,7 @@ async function supabaseRequest(
 
 
 /* =====================================================
-   RENDER DASHBOARD
+   RENDER CONTACTS
 ===================================================== */
 
 function renderContacts() {
@@ -1289,9 +1324,7 @@ function renderContacts() {
         </h2>
 
 
-        <div
-          class="contact-actions"
-        >
+        <div class="contact-actions">
 
           <a
             class="call-button"
@@ -1324,7 +1357,7 @@ function renderContacts() {
 
 
 /* =====================================================
-   OPEN SETTINGS
+   SETTINGS
 ===================================================== */
 
 function openSettings() {
@@ -1336,14 +1369,11 @@ function openSettings() {
     .getElementById(
       "settingsModal"
     )
-    .classList.add("show");
+    .classList
+    .add("show");
 
 }
 
-
-/* =====================================================
-   CLOSE SETTINGS
-===================================================== */
 
 function closeSettings() {
 
@@ -1354,7 +1384,8 @@ function closeSettings() {
     .getElementById(
       "settingsModal"
     )
-    .classList.remove("show");
+    .classList
+    .remove("show");
 
 }
 
@@ -1461,7 +1492,7 @@ function renderManageList() {
 
 
 /* =====================================================
-   ADD CONTACT FORM
+   ADD FORM
 ===================================================== */
 
 function showAddForm() {
@@ -1516,7 +1547,7 @@ function showAddForm() {
 
 
 /* =====================================================
-   EDIT CONTACT
+   EDIT
 ===================================================== */
 
 function editContact(id) {
@@ -1654,7 +1685,7 @@ async function saveContact() {
       ) {
 
         throw new Error(
-          "Supabase did not return the new contact."
+          "Supabase did not return the contact."
         );
 
       }
@@ -1861,15 +1892,17 @@ async function deleteContact(id) {
   if (!contact) return;
 
 
-  const confirmed =
-    confirm(
+  if (
+    !confirm(
       "Delete " +
       contact.name +
       "?"
-    );
+    )
+  ) {
 
+    return;
 
-  if (!confirmed) return;
+  }
 
 
   try {
@@ -1969,7 +2002,7 @@ function cancelForm() {
 
 
 /* =====================================================
-   OPEN TEXT THREAD
+   OPEN THREAD
 ===================================================== */
 
 async function openThread(
@@ -1995,7 +2028,7 @@ async function openThread(
   ) {
 
     alert(
-      "This contact needs to be saved again before texting."
+      "Please edit and save this contact first."
     );
 
     return;
@@ -2023,19 +2056,9 @@ async function openThread(
     .add("show");
 
 
-  document
-    .getElementById(
-      "messages"
-    )
-    .innerHTML = `
-
-      <div class="empty-message">
-
-        Loading conversation...
-
-      </div>
-
-    `;
+  setStatus(
+    "Loading conversation..."
+  );
 
 
   try {
@@ -2046,11 +2069,20 @@ async function openThread(
 
     startMessageRefresh();
 
+    setStatus(
+      "Ready"
+    );
+
   }
 
   catch (error) {
 
     console.error(error);
+
+
+    setStatus(
+      "Couldn't load conversation"
+    );
 
 
     document
@@ -2079,7 +2111,7 @@ async function openThread(
 
 
 /* =====================================================
-   GET OR CREATE CONVERSATION
+   GET / CREATE CONVERSATION
 ===================================================== */
 
 async function getConversation() {
@@ -2227,11 +2259,13 @@ function renderMessages(
         .toLocaleTimeString(
           [],
           {
+
             hour:
               "numeric",
 
             minute:
               "2-digit"
+
           }
         );
 
@@ -2271,7 +2305,7 @@ function renderMessages(
 
 
 /* =====================================================
-   SEND MESSAGE
+   SEND SMS
 ===================================================== */
 
 async function sendMessage() {
@@ -2279,6 +2313,12 @@ async function sendMessage() {
   const input =
     document.getElementById(
       "messageInput"
+    );
+
+
+  const button =
+    document.getElementById(
+      "sendButton"
     );
 
 
@@ -2290,6 +2330,7 @@ async function sendMessage() {
 
 
   if (
+    !currentContact ||
     !currentConversation
   ) {
 
@@ -2302,10 +2343,77 @@ async function sendMessage() {
   }
 
 
-  input.value = "";
+  button.disabled =
+    true;
+
+
+  setStatus(
+    "Sending..."
+  );
 
 
   try {
+
+    /*
+      First ask our secure Supabase
+      Edge Function to send the SMS.
+    */
+
+    const response =
+      await fetch(
+        SMS_FUNCTION_URL,
+        {
+
+          method:
+            "POST",
+
+          headers: {
+
+            "Content-Type":
+              "application/json",
+
+            "apikey":
+              SUPABASE_KEY,
+
+            "Authorization":
+              "Bearer " +
+              SUPABASE_KEY
+
+          },
+
+          body:
+            JSON.stringify({
+
+              to:
+                currentContact.phone,
+
+              message:
+                text
+
+            })
+
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        result.error ||
+        "SMS could not be sent."
+      );
+
+    }
+
+
+    /*
+      SMS successfully left Twilio.
+      Now save it in our conversation.
+    */
 
     await supabaseRequest(
       "messages",
@@ -2331,23 +2439,55 @@ async function sendMessage() {
     );
 
 
+    input.value =
+      "";
+
+
     await loadMessages();
+
+
+    setStatus(
+      "Sent ❤️"
+    );
+
+
+    setTimeout(
+      function() {
+
+        setStatus(
+          "Ready"
+        );
+
+      },
+      2000
+    );
 
   }
 
   catch (error) {
 
-    console.error(error);
+    console.error(
+      "SMS error:",
+      error
+    );
 
 
-    input.value =
-      text;
+    setStatus(
+      "Message failed"
+    );
 
 
     alert(
-      "Couldn't save the message.\n\n" +
+      "The text couldn't be sent.\n\n" +
       error.message
     );
+
+  }
+
+  finally {
+
+    button.disabled =
+      false;
 
   }
 
@@ -2355,7 +2495,7 @@ async function sendMessage() {
 
 
 /* =====================================================
-   REFRESH THREAD
+   THREAD REFRESH
 ===================================================== */
 
 function startMessageRefresh() {
@@ -2399,10 +2539,6 @@ function startMessageRefresh() {
 
 }
 
-
-/* =====================================================
-   STOP REFRESH
-===================================================== */
 
 function stopMessageRefresh() {
 
@@ -2453,6 +2589,11 @@ function closeThread() {
     )
     .value = "";
 
+
+  setStatus(
+    "Ready"
+  );
+
 }
 
 
@@ -2473,7 +2614,25 @@ function toggleHelp() {
 
 
 /* =====================================================
-   PHONE CLEANUP
+   STATUS
+===================================================== */
+
+function setStatus(
+  text
+) {
+
+  document
+    .getElementById(
+      "smsStatus"
+    )
+    .textContent =
+    text;
+
+}
+
+
+/* =====================================================
+   PHONE
 ===================================================== */
 
 function phoneNumber(
@@ -2512,7 +2671,7 @@ function escapeHTML(
 
 
 /* =====================================================
-   ENTER KEY SENDS
+   ENTER TO SEND
 ===================================================== */
 
 document
